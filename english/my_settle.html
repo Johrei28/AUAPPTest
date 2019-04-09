@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Redemption</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+    	html,body {
+    		background-color: #fff;
+    	}
+		.top_box {
+			padding: 0.5rem;
+			background-color: #f5f5f5;
+		}
+		.main_box {
+			padding-top: 2rem;
+			background-color: #fff;
+		}
+		.main_box img {
+			margin: auto;
+		}
+		.main_box p {
+			text-align: center;
+		}
+		.middle_line {
+			height: 0.5rem;
+			background-color: #f5f5f5;
+		}
+		.btn_box {
+			width: 70%;
+			margin:2rem auto;
+			text-align: center;
+			height: 2rem;
+			line-height: 2rem;
+			color: #fff;
+			background-color: rgb(255, 181, 30);
+			border-radius: 2rem;
+		}
+		.tips_box {
+			background-color: #fff;
+			padding-top: 1rem;
+			background-color: #fff;
+			padding-left: 1rem;
+			padding-bottom: 4rem;
+			padding-right: 1rem;
+			overflow: hidden;
+		}
+		.tips_box ul {
+			overflow: hidden;
+		}
+		.tips_box ul li {
+			overflow: hidden;
+			color: #666;
+			line-height: 1rem;
+		}
+		.tips_box ul li img {
+			float: left;
+			margin-right: 0.5rem;
+			width: 0.8rem;
+			height: 1rem;
+		}
+		.tips_box ul li div {
+			width: 90%;
+			float: left;
+		}
+		.isshow {
+			display: none;
+		}
+        .bankinfo {
+            display: none;
+        }
+        .isenable {
+            display: none;
+        }
+        .active{
+            background: #cccccc;
+        }        
+    </style>
+</head>
+<body>
+
+<div class="mainbody">
+	<div class="top_box">
+        <div class="isenable">
+            <div class="aui-font-size-12">You are not authenticated and cannot be exchanged</div>
+    		<div class="aui-btn aui-btn-warning aui-btn-sm aui-margin-t-10" style="border-radius: 2rem;" onclick="go_url(799)">
+    		Personal authentication
+    		</div>
+        </div>
+		<!-- <div class="isverified">
+            <div class="aui-font-size-12 aui-margin-t-10">
+    			您当前未设置安全密码，请先&nbsp;&nbsp;
+    			<div class="aui-btn aui-btn-warning aui-btn-sm" style="border-radius: 2rem;" onclick="go_url(801)">
+    				设置安全密码
+    			</div>
+    		</div>
+		</div> -->
+	</div>
+
+	<div class="main_box aui-padded-b-15">
+		<img src="../image/1.png" />
+		<p class="aui-margin-t-15">Cloud Union Account Balance</p>
+		<h1 class="aui-text-warning aui-margin-t-10" style="text-align:center;">OzPD <span class="cloudUnionAccount"></span></h1>
+	</div>
+
+	<div class="middle_line"></div>
+    <div class="aui-content-padded">
+        <div class="aui-btn aui-btn-info" style="width:30%;" onclick="showbankinfo(1)">AU Bank</div>
+        <div class="aui-btn aui-btn-info" style="width:30%;" onclick="showbankinfo(2)">PayPal</div>
+        <div class="aui-btn aui-btn-info" style="width:30%;" onclick="showbankinfo(3)">CN Bank</div>
+    </div>
+<form class="infobox1">
+	<div class="aui-content aui-margin-b-15 aui-font-size-14 bankinfo bankinfo1">
+	    <ul class="aui-list aui-form-list">
+	        <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    OzPD Redemption
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" name="amount" placeholder="Please Input your OzPD Redemption" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+	        <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Account Name
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" placeholder="Please Input your Account Name" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+	        <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Bank Account
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" name="bankAccount" placeholder="Please Input your Bank Account" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+	        <li class="aui-list-item" onclick="choose_bank()">
+	            <div class="aui-list-item-inner aui-list-item-arrow">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Bank
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <span class="aui-font-size-14 mybank" style="color:#999999;">Please Choose your Bank</span>
+	                </div>
+	            </div>
+	        </li>
+			<li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label aui-font-size-12">
+                        Security Password
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="password" name="password" placeholder="Please Input your Security Password" class="aui-font-size-14">
+                    </div>
+                </div>
+            </li>
+		</ul>
+	</div>
+</form>
+<form class="infobox2">
+    <div class="aui-content aui-margin-b-15 aui-font-size-14 bankinfo bankinfo2">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label aui-font-size-12">
+                         OzPD Redemption
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="text" name="amount" placeholder="Please Input your OzPD Redemption" class="aui-font-size-14">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label aui-font-size-12">
+                        PayPal ID
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="text" name="bankAccount" placeholder="Please enter the PayPal username" class="aui-font-size-14">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label aui-font-size-12">
+                        Security Password
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="password" name="password" placeholder="Please enter a security password" class="aui-font-size-14">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</form>
+<form class="infobox3">
+    <div class="aui-content aui-margin-b-15 aui-font-size-14 bankinfo bankinfo3">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label aui-font-size-12">
+                        OzPD Redemption
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="text" name="amount" placeholder="Please Input your OzPD Redemption" class="aui-font-size-14">
+                    </div>
+                </div>
+            </li>
+			<li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Name
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" placeholder="Please Input your Name" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+            <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Address of Bank
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" name="branchAddress" placeholder="Please Input your Address of Bank" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+            <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Phone Number
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" name="payeeMobile" placeholder="Please Input your Phone Number" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+            <li class="aui-list-item" onclick="choose_bank()">
+	            <div class="aui-list-item-inner aui-list-item-arrow">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Name of Bank
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <span class="aui-font-size-14 mybank" name="bank" style="color:#999999;">Please Choose your Bank</span>
+	                </div>
+	            </div>
+	        </li>
+            <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Bank Account
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" name="bankAccount" placeholder="Please Input your Bank Account" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+            <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Branch of Bank
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" name="branch" placeholder="Please Input your Branch of Bank" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+            <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label aui-font-size-12">
+	                    Address of Branch <br /> of Bank
+	                </div>
+	                <div class="aui-list-item-input">
+	                    <input type="text" name="payeeAddress" placeholder="Please Input your Address of Branch of Bank" class="aui-font-size-14">
+	                </div>
+	            </div>
+	        </li>
+			<li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label aui-font-size-12">
+                       Security Password
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="password" name="password" placeholder="Please Input your Security Password" class="aui-font-size-14">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</form>
+	<div class="btn_box aui-font-size-14 submit">Submit</div>
+
+	<div class="tips_box">
+		<h3 class="aui-margin-b-15">Notice</h3>
+		<ul>
+		<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+				<img src="../image/fd165844513guygsidgfi4864.png">
+				<div>Redemption means transferring your Oz Point Dollars (OzPD) from your Cloud Union Account into your nominated bank account (or PayPal).</div>
+			</li>
+			<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+				<img src="../image/fd165844513guygsidgfi4864.png">
+				<div>3% Comprehensive Service Fee is applicable when redeeming.</div>
+			</li>
+			<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+				<img src="../image/fd165844513guygsidgfi4864.png">
+				<div>The minimum amount to redeem is 100 Oz Point Dollars (OzPD). To redeem 100 Oz Point Dollars (OzPD), you would receive 97 AUD.</div>
+			</li>
+			<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+				<img src="../image/fd165844513guygsidgfi4864.png">
+				<div>According to the requirements of AML/CFT, the maximum of redemption amount would be 500 Oz Point Dollars (OzPD) and once a day.</div>
+			</li>
+			<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+				<img src="../image/fd165844513guygsidgfi4864.png">
+				<div>Please double check the redemption method and account details prior to completing checkout, to ensure that the funds will be transferred to your nominated back account.</div>
+			</li>
+			<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+				<img src="../image/fd165844513guygsidgfi4864.png">
+				<div>We authorized third-party to redeem your Oz Point Dollars (OzPD) to your nominated bank account in China(There is a 5 USD service charge per transaction)</div>
+			</li>
+			<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+				<img src="../image/fd165844513guygsidgfi4864.png">
+				<div>It takes certain time to redeem successfully to your bank account in China. Please wait in patient.</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class="aui-content aui-margin-b-15 isshow banklist">
+    <ul class="aui-list aui-list-in">
+        <li class="aui-list-header">
+             Bank
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">Westpac</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">Australia New Zealand Banking Group</div>
+            </div>
+        </li>
+        
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">Commonwealth Bank</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">National Australia Bank</div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="aui-content aui-margin-b-15 isshow banklist">
+    <ul class="aui-list aui-list-in">
+        <li class="aui-list-header">
+            国内银行开户总行
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">中国银行</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">中国建设银行</div>
+            </div>
+        </li>
+		<li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">中国农业银行</div>
+            </div>
+        </li>
+		<li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">中国工商银行</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">中国招商银行</div>
+            </div>
+        </li><li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">中国平安银行</div>
+            </div>
+        </li>
+		<li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title aui-font-size-14">中国民生银行</div>
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+
+<div class="shade_box isshow"></div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script>
+var apiurl = '';
+var user_info = '';
+var token = '';
+var user_name = '';
+var id = '';
+var infobox = '.infobox1';
+var isbankinfo = '';
+var bankInfoId = '';
+var cloudUnionAccount = '';
+var paystatus=true;
+function canpay() {
+    $('.submit').removeClass('active');
+    paystatus=true;
+}
+apiready = function() {
+    $('.bankinfo1').show();
+    var storage= window.localStorage;
+    if (!storage) {
+        api.alert('Please Upgrade APP');
+        return false;
+    }
+    apiurl=api_au;
+    token = storage.getItem('ylh_authorization_token');
+    token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+    user_name = storage.getItem('ylh_authorization_username');
+    id = storage.getItem('ylh_authorization_id');
+    user_info = JSON.parse(storage.getItem('ylh_authorization_userinfo'));
+    $('.cloudUnionAccount').html(user_info.cloudUnionAccount);
+    cloudUnionAccount = user_info.cloudUnionAccount;
+    //获取用户信息
+    api.ajax({
+        url: apiurl + 'member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": user_name,
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            storage.setItem('ylh_authorization_enable', ret.body.member.username);
+            storage.setItem('ylh_authorization_verified', ret.body.member.verified);
+            storage.setItem('ylh_authorization_userinfo', JSON.stringify(ret.body.member));
+            if (ret.body.member.verifyStatus != 'APPROVED') {
+                $('.isenable').show();
+            }
+            user_info = ret.body.member;
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+
+    //是否有银行信息
+    api.ajax({
+        url: apiurl + 'bankInfo/my',
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            if (ret.body.result == 'SUCCESS' && ret.body.bankInfo.length >= 1) {
+                for (var i = 0; i < ret.body.bankInfo.length; i++) {
+                    if (ret.body.bankInfo[i].isActive) {
+                        // switch (ret.body.bankInfo[i].type) {
+                        //     case 'OFFLINE_TRANSFER':
+                        //         $('.infobox1 input[name="bankAccount"]').val(ret.body.bankInfo[i].bankAccount).prop('readonly', 'readonly');
+                        //         break;
+                        //     case 'PAYPAL':
+                        //         $('.infobox2 input[name="bankAccount"]').val(ret.body.bankInfo[i].bankAccount).prop('readonly', 'readonly');;
+                        //         break;
+                        //     case 'IE_MONEY':
+                        //         $('.infobox3 input[name="bank"]').val(ret.body.bankInfo[i].bank).prop('readonly', 'readonly');
+                        //         $('.infobox3 input[name="bankAccount"]').val(ret.body.bankInfo[i].bankAccount).prop('readonly', 'readonly');
+                        //         $('.infobox3 input[name="branch"]').val(ret.body.bankInfo[i].branch).prop('readonly', 'readonly');
+                        //         $('.infobox3 input[name="branchAddress"]').val(ret.body.bankInfo[i].branchAddress).prop('readonly', 'readonly');
+                        //         $('.infobox3 input[name="payee"]').val(ret.body.bankInfo[i].payee).prop('readonly', 'readonly');
+                        //         $('.infobox3 input[name="payeeAddress"]').val(ret.body.bankInfo[i].payeeAddress).prop('readonly', 'readonly');
+                        //         $('.infobox3 input[name="payeeMobile"]').val(ret.body.bankInfo[i].payeeMobile).prop('readonly', 'readonly');
+                        //         break;
+                        //     default:
+                        // }
+                        // isbankinfo = 1;
+                        bankInfoId = ret.body.bankInfo[i].id;
+                        break;
+                    }
+                }
+            }
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+}
+function go_url(typenub) {
+	var jsfun = 'go_url('+typenub+');';
+	api.execScript({
+	    script: jsfun
+	});
+}
+
+function choose_bank() {
+	$('.banklist').toggle('isshow');
+	$('.mainbody').toggle('isshow');
+}
+
+$('body').on('click', '.banklist ul li', function(event) {
+	$('.banklist').toggle('isshow');
+	$('.mainbody').toggle('isshow');
+	$('.mybank').text($(this).find('.aui-list-item-title').text());
+});
+function showbankinfo(n) {
+    $('.bankinfo').hide();
+    switch (n) {
+        case 1:
+        $('.bankinfo1').show();
+        infobox = '.bankinfo1';
+            break;
+        case 2:
+        $('.bankinfo2').show();
+        infobox = '.bankinfo2';
+            break;
+        case 3:
+        $('.bankinfo3').show();
+        infobox = '.bankinfo3';
+            break;
+        default:
+        $('.bankinfo1').show();
+        infobox = '.bankinfo1';
+    }
+}
+$('.submit').on('click', function () {
+    var amount = $(infobox + ' input[name="amount"]').val();
+    var password = $(infobox + ' input[name="password"]').val();
+    var bankAccount = $(infobox + ' input[name="bankAccount"]').val();
+    var number = moment().local().format('YYMMDD');
+    var serviceCharge = '';
+    var tmptype = '';
+    if(!(/(^[1-9]\d*$)/.test(Number(amount)))){
+      alert("请输入整数");
+      return;
+    }
+    if(Number(amount) > Number(cloudUnionAccount)){
+      alert("余额不足,无法交易");
+      return;
+    }
+    if (amount > 500 || amount < 100) {
+        alert('Settlement OzPD needs to be greater than 100 and less than 500');
+        return false;
+    }
+    if(paystatus){
+        $('.submit').addClass('active');
+        paystatus=false;
+        api.ajax({
+            url: apiurl + 'payment/get',
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'authorization': 'Bearer ' + token
+            },
+            returnAll: true,
+            data: {
+                body: {
+                  "memberId": id,
+                  "paymentType": "CA_REDEEM"
+                }
+            }
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.body.result == 'SUCCESS' && ret.body.payments.length >= 1) {
+                    for (var i = ret.body.payments.length - 1; i >= 0; i--) {
+                        if (moment(ret.body.payments[i].createdDate).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD') && (ret.body.payments[i].paymentStatus != 'DECLINED' || ret.body.payments[i].paymentStatus == 'APPROVED')) {
+                            api.toast({
+                                msg: '只能每天兑换一次',
+                                duration: 2500,
+                                location: 'middle'
+                            });
+                            canpay();
+                            return false;
+                        }
+                    }
+                } else {
+
+                }
+                var body = {
+                    "bank": "",
+                    "bankAccount": bankAccount,
+                    "branch": "",
+                    "branchAddress": "",
+                    "memberId": id,
+                    "payee": "",
+                    "payeeAddress": "",
+                    "payeeMobile": "",
+                    "type": ""
+                }
+                switch (infobox) {
+                    case '.bankinfo1':
+                        body.type = tmptype = "OFFLINE_TRANSFER";
+                        serviceCharge = amount * 0.03;
+                        break;
+                    case '.bankinfo2':
+                        body.type = tmptype = "PAYPAL";
+                        var serivceCharge_co = amount * 0.03;
+                        var serivceCharge_paypal = (amount - amount * 0.03) * 0.034 + 0.45;
+                        serviceCharge = serivceCharge_paypal + serivceCharge_co;//CA扣费
+                        break;
+                    case '.bankinfo3':
+                        body.type = tmptype = "IE_MONEY";
+                        body.bank = $(infobox + ' span[name="bank"]').html();
+                        body.branch = $(infobox + ' input[name="branch"]').val();
+                        body.branchAddress = $(infobox + ' input[name="branchAddress"]').val();
+                        body.payee = $(infobox + ' input[name="payee"]').val();
+                        body.payeeAddress = $(infobox + ' input[name="payeeAddress"]').val();
+                        body.payeeMobile = $(infobox + ' input[name="payeeMobile"]').val();
+                        serviceCharge = amount * 0.03 +5;
+                        break;
+                    default:
+                }
+                if (isbankinfo != 1) {
+                    api.ajax({
+                        url: apiurl + 'bankInfo/create',
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8',
+                            'authorization': 'Bearer ' + token
+                        },
+                        returnAll: true,
+                        data: {
+                            body: body
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            bankInfoId = ret.body.bankInfo[0].id;
+                        } else {
+                          canpay();
+                            api.toast({
+                                msg: err.body.message,
+                                duration: 2500,
+                                location: 'middle'
+                            });
+                        }
+                    });
+                }
+                setTimeout(function () {
+                    api.ajax({
+                        url: apiurl + 'payment/create',
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8',
+                            'authorization': 'Bearer ' + token
+                        },
+                        returnAll: true,
+                        data: {
+                            body: {
+                              "accountIn": "EN",
+                              "accountInAmount": amount,
+                              "accountOut": "CA",
+                              "accountOutAmount": amount,
+                              "bankInfoId": bankInfoId,
+                              "memberId": id,
+                              "method": "OFFLINE_TRANSFER",
+                              "paymentType": "CA_REDEEM",
+                              "securityPassword": password,
+                              "serialNumHeader": "ce" + number,
+                              "serviceCharge": serviceCharge
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            alert('Redemption Successfully!');
+                            canpay();
+                            api.sendEvent({
+                                name: 'update'
+                            });
+                            api.closeWin();
+                        } else {
+                          canpay();
+                            api.toast({
+                                msg: err.body.message,
+                                duration: 2500,
+                                location: 'middle'
+                            });
+                        }
+                    });
+                }, 1000);
+            }
+        });
+    }
+});
+// 检查每日兑换次数
+// function checkExchange() {
+//
+// }
+</script>

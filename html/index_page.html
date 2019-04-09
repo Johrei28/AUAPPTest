@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>引导页</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.clearfix::after{
+				clear: both;
+				content: "";
+				display: block;
+			}
+			.box{
+				position: fixed;
+				width: 100%;
+				height: 100%;
+			}
+			.pic{
+				width: 300%;
+				height: 100%;
+			}
+			.pic li{
+				float: left;
+				height: 100%;
+			}
+			.pic li img{
+				width: 100%;
+				height: 100%;
+			}
+
+			.dots{
+				position: absolute;
+				left: 50%;
+				bottom:6rem;
+				transform: translateX(-50%);
+				height: 1rem;
+			}
+			.dots li{
+				float: left;
+				width: 0.5rem;
+				height: 0.5rem;
+				border-radius: 0.5rem;
+				background: #fff;
+				margin-left: 0.5rem;
+			}
+			.dots li.now{
+				width: 1rem;
+				background: orange;
+			}
+
+
+			.next{
+				position: relative;
+			}
+			.next a{
+				position: absolute;
+				left: 50%;
+				bottom: 8rem;
+				transform: translateX(-50%);
+				width:5.5rem;
+				height: 1.6rem;
+				border: 1px solid #fff;
+				color: #fff;
+				text-align: center;
+				line-height: 1.6rem;
+				text-decoration:none;
+				border-radius: 1rem;
+			}
+			.skip{
+				position: absolute;
+				display: block;
+				right: 1rem;
+				top: 1rem;
+				width: 3rem;
+				height: 1.5rem;
+				line-height: 1.5rem;
+				text-align: center;
+				color: #fff;
+				background: #f1c550;
+				border-radius: 1.5rem;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="header">
+			<ul class="pic clearfix">
+				<li><img src="../image/57960040910331603.png"/></li>
+				<li><img src="../image/57960040910331603.png"/></li>
+				<li class="next">
+					<img src="../image/57960040910331603.png"/>
+					<a href="javascript:;" class="aui-font-size-12" onclick="go_index()">立即体验</a>
+				</li>
+			</ul>
+			<ul class="dots clearfix">
+				<li class="now"></li>
+				<li></li>
+				<li></li>
+			</ul>
+
+			<a href="javascript:;" class="skip aui-font-size-12 aui-margin-t-15"  onclick="go_index()">跳过</a>
+		</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+	<script type="text/javascript">
+		var oPic = document.querySelector(".box");
+		var oUl = oPic.querySelector(".pic");
+		var oLi = oUl.querySelectorAll("li");
+		var oDotLi = document.querySelectorAll(".dots li")
+		var oWidth = oUl.offsetWidth/3;
+		var clientStartX = 0;
+		var clientEndX = 0;
+		var clientMoveX = 0;
+		var moved = oUl.offsetWidth/9;
+		var index = 0;
+		var j = 0;
+
+		window.onload = function(){
+			for(let i = 0;i<oLi.length;i++){
+				oLi[i].style.width = oUl.offsetWidth/3 + "px";
+			}
+		}
+
+		oUl.ontouchstart = function(e){
+			clientStartX = e.targetTouches[0].clientX;
+		}
+
+		oUl.ontouchmove = function(e){
+			clientMoveX = e.changedTouches[0].clientX;
+			j = clientMoveX - clientStartX;
+			if(index > 0 && j < 0){
+				oUl.style.transform = "translateX("  + (j - oWidth*index) +"px)";
+			}else if(index < 2 && j > 0){
+				oUl.style.transform = "translateX("  + (j + oWidth*index) +"px)";
+			}
+		}
+
+		oUl.ontouchend = function(e){
+			clientEndX = e.changedTouches[0].clientX;
+			let displacement = clientEndX - clientStartX;
+			if(clientEndX - clientStartX > moved){
+				oUl.offsetLeft = displacement + "px";
+				if(index > 0){
+					index --;
+					oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+					oUl.style.transition = "all 1s";
+				}else{
+					oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+					oUl.style.transition = "all 1s";
+				}
+			}else if(clientEndX - clientStartX < -moved){
+				oUl.offsetLeft = -displacement + "px";
+				if(index < oLi.length-1){
+					index ++;
+					oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+					oUl.style.transition = "all 1s";
+				}else{
+					oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+					oUl.style.transition = "all 1s";
+				}
+			}else if(clientEndX - clientStartX < moved && clientEndX - clientStartX > -moved){
+				oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+				oUl.style.transition = "all 1s";
+			}
+
+			for(let i = 0;i<oDotLi.length;i++){
+				for(let k = 0;k<oDotLi.length;k++){
+					oDotLi[k].classList.remove("now");
+				}
+				oDotLi[index].classList.add("now");
+			}
+		}
+	</script>
+</html>
+
+<script type="text/javascript" src="../script/api.js"></script>
+
+<script>
+
+function go_index() {
+	api.openWin({
+	    name: 'index',
+	    url: 'index.html',
+	});
+}
+
+</script>

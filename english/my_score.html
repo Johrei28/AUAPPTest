@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我的积分</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+		.top_box {
+			overflow: hidden;
+		}
+		.top_box li {
+			width: 33.3%;
+			height: 2rem;
+			line-height: 2rem;
+			text-align: center;
+		}
+		.top_box li .this_active {
+			padding-left: 0.5rem;
+			padding-right: 0.5rem;
+			color: #ffc107;
+			border-bottom: 0.1rem solid #ffc107;
+		}
+		.top_box li span {
+			height: 100%;
+			overflow: hidden;
+		}
+		.filter_box {
+			margin-top: 0.4rem;
+			color: gray;
+			overflow: hidden;
+		}
+		.filter_box div:nth-child(1) {
+			width: 30%;
+			height: 1rem;
+			line-height: 1rem;
+			text-align: center;
+		}
+		.filter_box div:nth-child(2) {
+			width: 40%;
+			height: 1rem;
+			line-height: 1rem;
+			text-align: center;
+		}
+		.filter_box div:nth-child(3) {
+			width: 30%;
+			height: 1rem;
+			line-height: 1rem;
+			text-align: center;
+		}
+		.main_top {
+			overflow: hidden;
+			height: 1.7rem;
+			line-height: 1.7rem;
+			color: gray;
+			background-color: #dcdcdc;
+			margin-top: 0.5rem;
+		}
+		.main_top li {
+			width: 25%;
+			text-align: center;
+		}
+		.main_top .li_shou {
+			width: 25%;
+		}
+		.main_box {
+			overflow: hidden;
+		}
+		.main_ul {
+			overflow: hidden;
+		}
+		.main_box .main_ul li {
+			width: 25%;
+			height: 2.2rem;
+			line-height: 2.2rem;
+			color: #ffc107;
+			text-align: center;
+		}
+		.main_box .main_ul .li_shou {
+			width: 25%;
+		}
+		.main_box .main_ul li img {
+			width: 1.2rem;
+			margin: auto;
+			vertical-align: middle;
+			margin-top: 0.4rem;
+		}
+		.btn_box {
+			width: 60%;
+			background-color: #ffc107;
+			margin: 0 auto;
+			text-align: center;
+			color: #fff;
+			padding: 0.35rem 0rem;
+			border-radius: 2rem;
+			position: fixed;
+			left: 20%;
+			bottom:10%;
+		}
+		.isshow {
+			display: none;
+		}
+		.type_maxbox {
+			position: relative;
+		}
+		.type_box {
+			position: absolute;
+			top: 2.5rem;
+			width: 100%;
+			background-color: #fff;
+			z-index: 1000;
+		}
+		.type_box li {
+			width: 100%;
+			height: 1.6rem;
+			line-height: 1.6rem;
+			padding-left: 0.5rem;
+		}
+		.isshow {
+			display: none;
+		}
+		.shade_box {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: #000;
+			opacity: 0.4;
+			z-index: 888;
+		}
+        .main_box {
+            display:none;
+        }
+        .main_box1 {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="top_box aui-font-size-14 aui-border-b">
+	<li class="aui-pull-left" value="5001">
+		<span ></span>
+	</li>
+	<li class="aui-pull-left" value="5002">
+		<span class="this_active">Gift Points</span>
+	</li>
+	<li class="aui-pull-left" value="5003">
+		<span></span>
+	</li>
+</ul>
+
+<div class="filter_box aui-font-size-14">
+	<div class="aui-pull-left aui-border-r" onclick="type_filter()">
+		<span class="aui-padded-r-5 type_text">All</span>
+		<i class="aui-iconfont aui-icon-down"></i>
+	</div>
+	<div class="aui-pull-left aui-border-r" id="demo1">
+		<span class="aui-padded-r-5 month_text">Month</span>
+		<i class="aui-iconfont aui-icon-down"></i>
+	</div>
+	<div class="aui-pull-left" id="demo2">
+		<span class="aui-padded-r-5 date_text">Date</span>
+		<i class="aui-iconfont aui-icon-down"></i>
+	</div>
+</div>
+
+<div class="shade_box isshow"></div>
+
+<div class="type_maxbox isshow">
+	<ul class="type_box aui-font-size-14">
+		<li class="aui-border-b">all</li>
+		<li class="aui-border-b">admin top to</li>
+		<li class="aui-border-b">consumption return</li>
+		<li class="aui-border-b">sign in</li>
+		<li class="aui-border-b">settlement</li>
+		<li class="aui-border-b">sales rewards</li>
+		<li class="aui-border-b">consumption rewards</li>
+		<li class="aui-border-b">entreprenurship rewards(sales)</li>
+		<li>entrepreneurship rewards(consumption)</li>
+	</ul>
+</div>
+
+<ul class="main_top aui-font-size-12">
+	<li class="aui-pull-left">Time</li>
+	<li class="aui-pull-left">State</li>
+	<li class="aui-pull-left li_shou">Receipts & Payments</li>
+	<li class="aui-pull-left">Balance</li>
+</ul>
+
+<div class="main_box main_box1 aui-font-size-14">
+
+</div>
+
+<div class="main_box main_box2 aui-font-size-14">
+
+</div>
+
+<div class="main_box main_box3 aui-font-size-14">
+
+</div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+
+
+<script>
+
+apiready = function() {
+	var pagetype = api.pageParam.pagetype;
+	$('.top_box li span').removeClass('this_active');
+	$('.top_box li').each(function(index, el) {
+		var tabval = $(this).attr('value');
+		if (tabval == pagetype) {
+			$(this).find('span').addClass('this_active');
+			if (tabval == 5001) {
+				$('.btn_box').addClass('isshow');
+				$('.type_box').html('<li class="aui-border-b">全部</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">consumption return</li><li class="aui-border-b">sign in</li><li class="aui-border-b">settlement</li><li class="aui-border-b">sales rewards</li><li class="aui-border-b">consumption rewards</li><li class="aui-border-b">entreprenurship rewards(sales)</li><li>entrepreneurship rewards(consumption)</li>');
+			} else if (tabval == 5002) {
+				$('.btn_box').removeClass('isshow');
+				$('.btn_box').text('兑换');
+				$('.btn_box').attr('onclick','go_url(876)');
+				$('.type_box').html('<li class="aui-border-b">all</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">exchange</li><li class="aui-border-b">settlement</li>');
+			} else {
+				$('.btn_box').removeClass('isshow');
+				$('.btn_box').text('充值库存积分');
+				$('.btn_box').attr('onclick','go_url(907)');
+				$('.type_box').html('<li class="aui-border-b">all</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">checkout</li>');
+			}
+		}
+	});
+
+
+    var storage= window.localStorage;
+    if (!storage) {
+        api.alert('Please Upgrade Your APP');
+        return false;
+    }
+    token = storage.getItem('ylh_authorization_token');
+    id = storage.getItem('ylh_authorization_id');
+    username = storage.getItem('ylh_authorization_username');
+
+	apiurl=api_au;
+    mrmon();
+}
+var montime='';
+var daytime='';
+//默认月份
+function mrmon(){
+  var nowdate = new Date();
+  var seperator1 = "-";
+  var nowyear = nowdate.getFullYear();
+  var nowmon = nowdate.getMonth() + 1;
+  var nowDay = nowdate.getDate();
+  if (nowmon >= 1 && nowmon <= 9) {
+      nowmon = "0" + nowmon;
+  }
+  if (nowDay >= 0 && nowDay <= 9) {
+      nowDay = "0" + nowDay;
+  }
+  var nowstr = nowyear + seperator1 + nowmon;
+  $('.month_text').text(nowstr);
+  montime=nowstr;
+  daytime='';
+  $('.main_box1').html('');
+  $('.main_box2').html('');
+  creadall();
+}
+function creadall(){
+
+      api.ajax({
+          url: apiurl + 'transaction/get',
+          method: 'get',
+          headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              'authorization': 'Bearer ' + token
+          },
+          returnAll: true,
+          data: {
+              body: {
+                "memberId": id
+              }
+          }
+      }, function(ret, err) {
+          if (ret) {
+              var str = '';
+              var tmpval = '';
+
+              for (var i in ret.body.transactions) {
+                          let monindex=moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('YYYY-MM');
+                          let dayindex=moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('YYYY-MM-DD');
+
+                  if(ret.body.transactions[i].transactionType == 'TP_TO_GP') {
+                    tmpval = ret.body.transactions[i].accountInAmount - ret.body.transactions[i].serviceCharge;
+                  } else if(ret.body.transactions[i].transactionType == 'CHECK_OUT') {
+                      if(username == ret.body.transactions[i].fromUsername) {
+                          tmpval = ret.body.transactions[i].accountOutAmount;
+                      } else if(username == ret.body.transactions[i].toUsername){
+                          tmpval = ret.body.transactions[i].accountInAmount - ret.body.transactions[i].serviceCharge;
+                      }
+                  }else {
+                    tmpval = ret.body.transactions[i].accountInAmount - ret.body.transactions[i].serviceCharge;
+                  }
+                  if (ret.body.transactions[i].transactionType == 'TP_TO_GP' || ret.body.transactions[i].transactionType == 'SIGN_IN' || ret.body.transactions[i].transactionType == 'UPGRADE_MEMBERSHIP' || ret.body.transactions[i].transactionType == 'CA_TO_TP' || ret.body.transactions[i].transactionType == 'PA_TO_TP' || ret.body.transactions[i].transactionType == 'CHECK_OUT') {
+                      tmpbalance = ret.body.transactions[i].accountInBalanceAfter;
+                  } else if(ret.body.transactions[i].transactionType == 'CHECK_OUT'){
+                  	if(username == ret.body.transactions[i].fromUsername) {
+                  		tmpbalance = ret.body.transactions[i].accountOutBalanceAfter;
+                  	} else if(username == ret.body.transactions[i].toUsername){
+                  		tmpbalance = ret.body.transactions[i].accountInBalanceAfter;
+                  	}
+                  }
+                  else if(ret.body.transactions[i].transactionType == 'GP_TO_KP'){
+                  	tmpbalance = ret.body.transactions[i].accountInBalanceAfter;
+                  }
+                   else {
+                      tmpbalance = ret.body.transactions[i].accountOutBalanceAfter;
+                  }
+
+                  str = '<ul class="main_ul aui-border-b">' +
+                      '<li class="aui-pull-left">' + moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('YYYY-MM-DD') + '</li>' +
+                      '<li class="aui-pull-left" style="overflow:hidden;"><span>' + ret.body.transactions[i].transactionType + '</span></li>' +
+                      '<li class="aui-pull-left li_shou">' +
+                          '<span>' + tmpval.toFixed(2) + '</span>' +
+                      '</li>' +
+                      '<li class="aui-pull-left">' + tmpbalance.toFixed(2) + '</li>' +
+                  '</ul>';
+
+
+                  if (ret.body.transactions[i].transactionType == 'GP_TO_KP') {
+                      var str2 = '<ul class="main_ul aui-border-b">' +
+                          '<li class="aui-pull-left">' + moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('YYYY-MM-DD') + '</li>' +
+                          '<li class="aui-pull-left" style="overflow:hidden;"><span>' + ret.body.transactions[i].transactionType + '</span></li>' +
+                          '<li class="aui-pull-left li_shou">' +
+                              '<span>' + ret.body.transactions[i].accountOutAmount.toFixed(2) + '</span>' +
+                          '</li>' +
+                          '<li class="aui-pull-left">' + ret.body.transactions[i].accountInBalanceAfter.toFixed(2) + '</li>' +
+                      '</ul>';
+                  }
+                  if (ret.body.transactions[i].transactionType == 'CHECK_OUT') {
+                      if(username == ret.body.transactions[i].fromUsername) {
+                          // $('.main_box3').append(str);
+                      } else if(username == ret.body.transactions[i].toUsername){
+                          // $('.main_box2').append(str);
+                            if(daytime.length>1){
+                              if(daytime==dayindex){
+                                $('.main_box2').append(str);
+                              }
+                            }else if(montime.length>1){
+                              if(montime==monindex){
+                                $('.main_box2').append(str);
+                              }
+                            }else {
+                              $('.main_box2').append(str);
+
+                            }
+                      }
+                  }
+                  if (ret.body.transactions[i].transactionType == 'GP_TO_KP') {
+                      // $('.main_box2').append(str2);
+                        if(daytime.length>1){
+                          if(daytime==dayindex){
+                            $('.main_box2').append(str2);
+                          }
+                        }else if(montime.length>1){
+                          if(montime==monindex){
+                            $('.main_box2').append(str2);
+                          }
+                        }else {
+                          $('.main_box2').append(str2);
+
+                        }
+                  }
+                  if (ret.body.transactions[i].transactionType == 'TP_TO_GP' || ret.body.transactions[i].transactionType == 'SIGN_IN' || ret.body.transactions[i].transactionType == 'UPGRADE_MEMBERSHIP') {
+                      // $('.main_box2').append(str);
+                        if(daytime.length>1){
+                          if(daytime==dayindex){
+                            $('.main_box2').append(str);
+                          }
+                        }else if(montime.length>1){
+                          if(montime==monindex){
+                            $('.main_box2').append(str);
+                          }
+                        }else {
+                          $('.main_box2').append(str);
+
+                        }
+                  }
+              }
+              $('.main_box2').show();
+          } else {
+              api.toast({
+                  msg: err.body.message,
+                  duration: 2500,
+                  location: 'middle'
+              });
+          }
+      });
+}
+
+// $('body').on('click', '.top_box li', function(event) {
+
+//     $('.main_box1').empty();
+//     $('.main_box2').empty();
+//     $('.main_box3').empty();
+//     api.ajax({
+//         url: apiurl + 'transaction/get',
+//         method: 'get',
+//         headers: {
+//             'Content-Type': 'application/json;charset=utf-8',
+//             'authorization': 'Bearer ' + token
+//         },
+//         returnAll: true,
+//         data: {
+//             body: {
+//               "memberId": id
+//             }
+//         }
+//     }, function(ret, err) {
+//         if (ret) {
+//             var str = '';
+//             var tmpval = '';
+//             var tmpbalance = '';
+//             for (var i in ret.body.transactions) {
+//               if (ret.body.transactions[i].transactionType == 'KP_TO_CA') {
+//                 tmpval = ret.body.transactions[i].accountOutAmount;
+//               } else if(ret.body.transactions[i].transactionType == 'TP_TO_GP') {
+//                 tmpval = ret.body.transactions[i].accountInAmount - ret.body.transactions[i].serviceCharge;
+//               } else {
+//                 tmpval = ret.body.transactions[i].accountInAmount;
+//               }
+//                 if (ret.body.transactions[i].transactionType == 'TP_TO_GP' || ret.body.transactions[i].transactionType == 'SIGN_IN' || ret.body.transactions[i].transactionType == 'UPGRADE_MEMBERSHIP' || ret.body.transactions[i].transactionType == 'GP_TO_KP' || ret.body.transactions[i].transactionType == 'CA_TO_TP' || ret.body.transactions[i].transactionType == 'PA_TO_TP') {
+//                     tmpbalance = ret.body.transactions[i].accountInBalanceAfter;
+//                 } else {
+//                     tmpbalance = ret.body.transactions[i].accountOutBalanceAfter;
+//                 }
+//                 str = '<ul class="main_ul aui-border-b">' +
+//                     '<li class="aui-pull-left">' + moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('DD/HH:mm:ss') + '</li>' +
+//                     '<li class="aui-pull-left" style="overflow:hidden;"><span>' + ret.body.transactions[i].transactionType + '</span></li>' +
+//                     '<li class="aui-pull-left li_shou">' +
+//                         '<span>' + tmpval.toFixed(2) + '</span>' +
+//                     '</li>' +
+//                     '<li class="aui-pull-left">' + tmpbalance.toFixed(2) + '</li>' +
+//                 '</ul>';
+//                 if (ret.body.transactions[i].transactionType == 'GP_TO_KP') {
+//                    var str2 = '<ul class="main_ul aui-border-b">' +
+//                        '<li class="aui-pull-left">' + moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('DD/HH:mm:ss') + '</li>' +
+//                        '<li class="aui-pull-left" style="overflow:hidden;"><span>' + ret.body.transactions[i].transactionType + '</span></li>' +
+//                        '<li class="aui-pull-left li_shou">' +
+//                            '<span>' + ret.body.transactions[i].accountOutAmount + '</span>' +
+//                        '</li>' +
+//                        '<li class="aui-pull-left">' + ret.body.transactions[i].accountOutBalanceAfter + '</li>' +
+//                    '</ul>';
+//                }
+//                if (ret.body.transactions[i].transactionType == 'CHECK_OUT' && username == ret.body.transactions[i].toUsername) {
+//                     var coval = Number(ret.body.transactions[i].accountInAmount) - Number(ret.body.transactions[i].serviceCharge);
+//                     var str3 = '<ul class="main_ul aui-border-b">' +
+//                       '<li class="aui-pull-left">' + moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('DD/HH:mm:ss') + '</li>' +
+//                       '<li class="aui-pull-left" style="overflow:hidden;"><span>' + ret.body.transactions[i].transactionType + '</span></li>' +
+//                       '<li class="aui-pull-left li_shou">' +
+//                           '<span>' + coval.toFixed(2) + '</span>' +
+//                       '</li>' +
+//                       '<li class="aui-pull-left">' + ret.body.transactions[i].accountInBalanceAfter + '</li>' +
+//                   '</ul>';
+//                   $('.main_box1').append(str3);
+//                }
+//                if (ret.body.transactions[i].transactionType == 'GP_TO_KP') {
+//                    $('.main_box1').append(str2);
+//                }
+//                 if (ret.body.transactions[i].transactionType == 'TP_TO_GP' || ret.body.transactions[i].transactionType == 'SIGN_IN' || ret.body.transactions[i].transactionType == 'UPGRADE_MEMBERSHIP') {
+//                     $('.main_box1').append(str);
+//                 } else if (ret.body.transactions[i].transactionType == 'GP_TO_KP' || ret.body.transactions[i].transactionType == 'KP_TO_CA') {
+//                     $('.main_box2').append(str);
+//                 } else if (ret.body.transactions[i].transactionType == 'CA_TO_TP' || ret.body.transactions[i].transactionType == 'PA_TO_TP' || ret.body.transactions[i].transactionType == 'CHECK_OUT') {
+//                     $('.main_box3').append(str);
+//                 }
+//             }
+//             // $('.main_box').html(str);
+//         } else {
+//             api.toast({
+//                 msg: err.body.message,
+//                 duration: 2500,
+//                 location: 'middle'
+//             });
+//         }
+//     });
+
+
+
+// 	$('.top_box li span').removeClass('this_active');
+// 	$(this).find('span').addClass('this_active');
+// 	var tab_value = $(this).attr('value');
+//     $('.main_box').hide();
+// 	if (tab_value == 5001) {
+//         api.openWin({
+//             name: 'giftpoint',
+//             url: 'my_score.html',
+//             pageParam: {
+//             }
+//     });
+
+// 	} else if (tab_value == 5002) {
+//         api.openWin({
+//             name: 'kiwipoint',
+//             url: 'my_score2.html',
+//             pageParam: {
+//             }
+//     });
+// 	} else {
+//         api.openWin({
+//             name: 'tradingpoint',
+//             url: 'my_score3.html',
+//             pageParam: {
+//             }
+//     });
+// 	}
+// });
+
+function go_url(typenub) {
+	var jsfun = 'go_url('+typenub+');';
+	api.execScript({
+	    script: jsfun
+	});
+}
+$('body').on('click', '.type_box li', function(event) {
+	$('.type_maxbox').toggle('isshow');
+	$('.shade_box').toggle('isshow');
+	$('.type_text').text($(this).text());
+});
+
+function type_filter() {
+	$('.type_maxbox').toggle('isshow');
+	$('.shade_box').toggle('isshow');
+}
+
+$('.shade_box').click(function(event) {
+	$('.shade_box').toggle('isshow');
+	$('.date_maxbox').toggle('isshow');
+	$('.type_maxbox').toggle('isshow');
+});
+
+
+</script>
+
+<script type="text/javascript" src="../plugin/datePicker/datePicker.js"></script>
+<script type="text/javascript">
+
+var calendar = new datePicker();
+
+// 年月
+calendar.init({
+	'trigger': '#demo1', /*按钮选择器，用于触发弹出插件*/
+	'type': 'ym',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'minDate':'1980-1-1',/*最小日期*/
+	'maxDate':'2030-12-31',/*最大日期*/
+	'onSubmit':function(){/*确认时触发事件*/
+		var theSelectData=calendar.value;
+		$('.month_text').text(theSelectData);
+		$('.date_text').text('Date');
+    daytime='';
+    montime=theSelectData;
+    $('.main_box2').html('');
+    creadall();
+	},
+	'onClose':function(){/*取消时触发事件*/
+	}
+});
+
+</script>
+
+<script type="text/javascript">
+var id = '';
+var username = '';
+var token = '';
+var apiurl = '';
+//签到记录
+var signInRecord = [];
+var calendar2 = new datePicker();
+
+// console.log(JSON.stringify(moment('2018-11-07T06:15:22Z').local().format('YYYY-MM-DD HH:mm:ss')));
+
+// 年月日
+calendar2.init({
+	'trigger': '#demo2', /*按钮选择器，用于触发弹出插件*/
+	'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'minDate':'1980-1-1',/*最小日期*/
+	'maxDate':'2030-12-31',/*最大日期*/
+	'onSubmit':function(){/*确认时触发事件*/
+		var theSelectData =calendar2.value;
+		$('.date_text').text(theSelectData);
+		$('.month_text').text('Month');
+    montime='';
+    daytime=theSelectData;
+    $('.main_box2').html('');
+    creadall();
+	},
+	'onClose':function(){/*取消时触发事件*/
+	}
+});
+
+</script>
+
+
+</html>

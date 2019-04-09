@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>用户中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        html,body {
+            background-color: #fff;
+        }
+		#top_box {
+			background-color: #ffa034;
+		}
+        .set_box {
+            height: 1.5rem;
+            line-height: 2rem;
+            padding-right: 1rem;
+        }
+        .set_box img {
+            float: right;
+            height: 1.2rem;
+            vertical-align: middle;
+        }
+        .top_main {
+            overflow: hidden;
+        }
+        .top_logo {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        .top_logo img {
+            border-radius: 50%;
+        }
+        .top_info {
+            color: #fff;
+        }
+        .info_top {
+            height: 1.5rem;
+            line-height: 1.5rem;
+        }
+        .userrank {
+            height: 1.2rem;
+            line-height: 1rem;
+            border-radius: 2rem;
+            border:1px solid #fff;
+            margin-top: 0.2rem;
+        }
+        .userrank img {
+            height: 0.8rem;
+            margin-top: 0.1rem;
+        }
+        .vzhang {
+            height: 1rem;
+            line-height: 0.9rem;
+            border-radius: 2.5rem;
+            background-color: #fff;
+            color: #ffa034;
+            margin-top: 0.3rem;
+        }
+        .vzhang img {
+            height: 0.6rem;
+            margin-top: 0.2rem;
+        }
+        .icon_box img {
+            height: 1.1rem;
+        }
+        .right_rate {
+            text-align: center;
+            color: #ffa034;
+            background-color: #fff;
+            border-top-left-radius:1em;
+            border-bottom-left-radius:1em;
+            position: absolute;
+            right: 0;
+            top: 6rem;
+        }
+        .point_box {
+            overflow: hidden;
+        }
+        .item_point {
+            text-align: center;
+            color: #fff;
+            width: 33.3%;
+        }
+        .item_mony {
+            text-align: center;
+            color: #fff;
+            width: 45%;
+        }
+        .order_box {
+            height: 3rem;
+        }
+        .order_box li {
+            text-align: center;
+            width: 20%;
+            color: #666;
+        }
+        .order_box li img {
+            height: 1.2rem;
+            margin: auto;
+        }
+        .middle_line {
+            height: 0.8rem;
+            background-color: #f5f5f5;
+        }
+        .list_box {
+            overflow: hidden;
+        }
+        .list_box .list_item {
+            width: 33.3%;
+            text-align: center;
+        }
+        .list_item img {
+            height: 1.5rem;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="aui-content aui-padded-b-10" id="top_box">
+    <div class="set_box aui-margin-t-15">
+        <img src="../image/set.png" class="aui-margin-l-10" onclick="gosetting()"/>
+        <img src="../image/erweima.png" style="height:1rem;margin-top:0.1rem;" onclick="goqrcode()" />
+    </div>
+    <div class="top_main">
+        <div class="top_logo aui-pull-left aui-margin-l-10">
+            <img src="../image/touxiang.jpg">
+        </div>
+        <div class="top_info aui-pull-left aui-margin-l-15">
+            <div class="info_top aui-margin-t-5">
+                <h3 class="aui-pull-left" name="username"></h3>
+                <div class="aui-pull-left aui-margin-l-15 aui-padded-l-5 aui-padded-r-5 userrank">
+                    <img class="aui-pull-left" src="../image/uservip.png">
+                    <span class="aui-margin-l-5 aui-font-size-12" name="level">普通会员</span>
+                </div>
+                <div class="aui-pull-left aui-margin-l-10 aui-padded-l-5 aui-padded-r-5 vzhang">
+                    <img class="aui-pull-left" src="../image/vzhang.png">
+                    <span class="aui-margin-l-5 aui-font-size-12" onclick="upgrade()">升级</span>
+                </div>
+            </div>
+            <div class="info_bottom aui-margin-t-10">
+                <div class="aui-pull-left icon_box">
+                    <img class="aui-pull-left aui-margin-r-10 auth-info" src="../image/531.png" >
+                    <img class="aui-pull-left aui-margin-r-10 auth-info" src="../image/532.png" >
+                    <img class="aui-pull-left aui-margin-r-10 auth-info" src="../image/20180607140402.png" >
+                    <img class="aui-pull-left aui-margin-r-10 auth-info" src="../image/C.png" >
+                </div>
+                <div class="right_rate aui-pull-right aui-font-size-14 aui-padded-l-5 aui-padded-r-5">&nbsp;速率 <span class="sulv">0.00</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="aui-content-padded point_box">
+        <div class="item_point aui-pull-left" onclick="go_url(101)">
+            <h3 name='giftPoint'></h3>
+            <span class="aui-font-size-14">Gift Points</span>
+        </div>
+        <div class="item_point aui-pull-left" onclick="go_url(102)">
+            <h3 name='kiwiPoint'></h3>
+                <span class="aui-font-size-14">Oz Points</span>
+        </div>
+        <div class="item_point aui-pull-left" onclick="go_url(103)">
+            <h3 name='tradingPoints'></h3>
+            <span class="aui-font-size-14">Trading Points</span>
+        </div>
+    </div>
+    <div class="aui-content money_box">
+        <div class="item_mony aui-pull-left" onclick="go_url(201)">
+            <h3>
+                    AU$
+                <span name='prepayAccount'></span>
+            </h3>
+            <span class="aui-font-size-14">Prepayment 账户</span>
+        </div>
+        <div class="item_mony aui-pull-right" onclick="go_url(202)">
+
+            <h3>
+                    OzPD
+                <span name='cloudUnionAccount'></span>
+            </h3>
+            <span class="aui-font-size-14">Cloudunion 账户</span>
+        </div>
+    </div>
+</div>
+<div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-list-in">
+        <li class="aui-list-item" onclick="jumptips()">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">商城订单</div>
+                <div class="aui-list-item-right">
+                    查看全部
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="order_box aui-margin-t-15">
+        <li class="aui-pull-left">
+            <img src="../image/20180607113004.jpg" >
+            <span class="aui-font-size-14 aui-margin-t-10">待付款</span>
+        </li>
+        <li class="aui-pull-left">
+            <img src="../image/20180607112954.jpg" >
+            <span class="aui-font-size-14 aui-margin-t-10">待发货</span>
+        </li>
+        <li class="aui-pull-left">
+            <img src="../image/20180607113022.jpg" >
+            <span class="aui-font-size-14 aui-margin-t-10">待收款</span>
+        </li>
+        <li class="aui-pull-left">
+            <img src="../image/20180607113014.jpg" >
+            <span class="aui-font-size-14 aui-margin-t-10">待评价</span>
+        </li>
+        <li class="aui-pull-left">
+            <img src="../image/20180607112946.jpg" >
+            <span class="aui-font-size-14 aui-margin-t-10">退款退货</span>
+        </li>
+    </div>
+</div>
+
+<div class="middle_line"></div>
+
+<div class="aui-content">
+    <ul class="list_box aui-border-b">
+        <li class="aui-pull-left list_item aui-padded-10" onclick="go_url(300)">
+            <img src="../image/751552299563167875.png" >
+            <span class="aui-font-size-14 aui-margin-t-10">签到</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10" onclick="go_url(101)">
+        <!-- <li class="aui-pull-left list_item aui-padded-10" onclick="go_url(89)"> -->
+            <img src="../image/8.png" >
+            <span class="aui-font-size-14 aui-margin-t-10">交易记录</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10" onclick="go_url(8)">
+            <img src="../image/662502297821545312.png" >
+            <span class="aui-font-size-14 aui-margin-t-10">认证中心</span>
+        </li>
+
+    </ul>
+    <ul class="list_box aui-border-b">
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/20180607160701.png" >
+            <span class="aui-font-size-14 aui-margin-t-10" onclick="jumptips()">会员权益</span>
+
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/845540982041978276.png" >
+            <span class="aui-font-size-14 aui-margin-t-10" onclick="jumptips()">收付款</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/20180605105924.png" >
+            <span class="aui-font-size-14 aui-margin-t-10" onclick="jumptips()">商圈</span>
+        </li>
+    </ul>
+
+   <ul class="list_box">
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/9078.png" >
+            <span class="aui-font-size-14 aui-margin-t-10" onclick="referrers()">推荐管理</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10" onclick="go_url(88)">
+            <img src="../image/4357489.png" >
+            <span class="aui-font-size-14 aui-margin-t-10">联系我们</span>
+        </li>
+    </ul>
+</div>
+
+<br>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+
+<script>
+var apiurl = '';
+var user_info = '';
+var storage= window.localStorage;
+var token = storage.getItem('ylh_authorization_token');
+var token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+var user_name = storage.getItem('ylh_authorization_username');
+var modtime = moment().format('YYYY-MM-DD HH:mm:ss');
+var user_email = '';
+apiready = function() {
+    // api.parseTapmode();
+    // var header = $api.byId('top_box');
+    if (!storage) {
+        api.alert('请升级APP');
+        return false;
+    }
+
+    apiurl=api_au;
+    // $api.fixStatusBar(header);
+    //新验证登陆
+    if (!token || (modtime > token_expiry_time)) {
+        to_login();
+    }
+    api.ajax({
+        url: apiurl + 'rate/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "rateType": "GP_TO_KP"
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            $('.sulv').html(ret.body.rate.toFixed(2));
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+    getMemberInfo();
+    //下拉样式
+    api.setCustomRefreshHeaderInfo({
+        bgColor: '#C0C0C0',
+        image: {
+            pull: '../image/jdload.gif'
+        }
+    }, function() {
+        //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+        //下拉刷新被触发，使用 api.refreshHeaderLoadDone() 结束加载中状态
+        getMemberInfo();
+    });
+
+    api.addEventListener({
+        name: 'shake'
+    }, function(ret, err) {
+        api.refreshHeaderLoadDone();
+    });
+
+    api.addEventListener({
+        name: 'update'
+    }, function(ret, err) {
+        window.location.reload();
+        getMemberInfo();
+    });
+}
+
+function to_login() {
+    api.openWin({
+        name: 'login',
+        url: './login.html',
+        bgColor: '#f5f5f5'
+    });
+    return false;
+}
+
+function lang_change() {
+    api.openFrame({
+        name: 'index2',
+        url: '../english/index.html',
+        bounces: false,
+        rect: {
+            x:0,
+            y:0,
+            w:'auto',
+            h:'auto'
+        }
+    })
+}
+
+function go_url(number) {
+    var storage= window.localStorage;
+    if (!storage) {
+        alert('请升级浏览器');
+        return false;
+    }
+    var token = storage.getItem('ylh_authorization_token');
+    var token_expiry_time = storage.getItem('ylh_authorization_token_expiry');
+    var username = storage.getItem('ylh_authorization_username');
+
+    //新验证登陆
+    if (!token) {
+        to_login();
+    }
+
+    if (number == 8) {
+        api.openWin({
+            name: 'userwin',
+            url: './userwin.html',
+            pageParam: {
+                pagetype: 8
+            }
+        });
+    } else if (number == 101) {
+        api.openWin({
+            name: 'userwin',
+            url: './userwin.html',
+            reload: true,
+            pageParam: {
+                pagetype: 101
+            }
+        });
+    } else if (number == 102) {
+        api.openWin({
+            name: 'userwin',
+            url: './userwin.html',
+            reload: true,
+            pageParam: {
+                pagetype: 102
+            }
+        });
+    } else if (number == 103) {
+        if (user_info.type == 'REGULAR') return false;
+        api.openWin({
+            name: 'userwin',
+            url: './userwin.html',
+            reload: true,
+            pageParam: {
+                pagetype: 103
+            }
+        });
+    } else if (number == 201) {
+        api.openWin({
+            name: 'userwin',
+            url: './userwin.html',
+            pageParam: {
+                pagetype: 201
+            }
+        });
+    } else if (number == 202) {
+        api.openWin({
+            name: 'userwin',
+            url: './userwin.html',
+            pageParam: {
+                pagetype: 202
+            }
+        });
+    } else if (number == 203) {
+        api.openWin({
+            name: 'userwin',
+            url: './userwin.html',
+            pageParam: {
+                pagetype: 203
+            }
+        });
+    } else if (number == 300) {
+        api.openWin({
+            name: 'sign',
+            url: 'sign.html',
+            reload: true,
+            pageParam: {
+                pagetype: 300
+            }
+        });
+    }else if (number == 88) {
+        api.openWin({
+            name: 'contactus',
+            url: 'contact_us.html',
+            pageParam: {
+                pagetype: 88
+            }
+        });
+    }else if (number == 89) {
+        api.openWin({
+            name: 'tradingPoints',
+            url: 'stock_points.html',
+            pageParam: {
+                pagetype: 89
+            }
+        });
+    }else if (number == 90) {
+        api.openWin({
+            name: 'referrers',
+            url: 'referrers.html',
+            pageParam: {
+                pagetype: 90
+            }
+        });
+    }
+}
+
+$('.auth-info').click(function () {
+    api.openWin({
+        name: 'auth_center',
+        url: 'auth_center.html',
+        reload: true,
+        bgColor: '#f5f5f5'
+    });
+});
+function gosetting() {
+    api.openWin({
+        name: 'user_setting',
+        url: 'user_setting.html',
+        reload: true,
+        bgColor: '#f5f5f5'
+    });
+}
+function goqrcode() {
+    api.openWin({
+        name: 'qrcode',
+        url: 'qrcode.html',
+        reload: true,
+        bgColor: '#f5f5f5'
+    });
+}
+function upgrade() {
+    api.openWin({
+        name: 'upgrade',
+        url: 'upgrade.html',
+        pageParam: {
+        }
+    });
+
+}
+function referrers() {
+    var storage= window.localStorage;
+    if (!storage) {
+        alert('请升级浏览器');
+        return false;
+    }
+    var token = storage.getItem('ylh_authorization_token');
+    var user_name = storage.getItem('ylh_authorization_username');
+    var user_email = '';
+    //添加监听时间，刷新数据
+    api.addEventListener({
+        name: 'update'
+    }, function(ret, err) {
+        window.location.reload();
+    });
+    //验证是否登录
+
+    //获取用户信息
+    api.ajax({
+        url: apiurl + 'member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": user_name,
+            }
+        }
+    }, function(ret) {
+
+         alert("我的推荐人："+" "+ret.body.member.referrer+"\n\n"+"我推荐的人:"+" "+ret.body.member.referrals+"\n\n");
+
+
+    });
+
+}
+
+function getMemberInfo() {
+    //获取用户信息
+    api.ajax({
+        url: apiurl + 'member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": user_name,
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            storage.setItem('ylh_authorization_enable', ret.body.member.username);
+            storage.setItem('ylh_authorization_verified', ret.body.member.verified);
+            storage.setItem('pa',ret.body.member.prepayAccount);
+            storage.setItem('ca',ret.body.member.cloudUnionAccount);
+            storage.setItem('ylh_authorization_userinfo', JSON.stringify(ret.body.member));
+            user_info = ret.body.member;
+            $('h3[name="username"]').html(ret.body.member.username);
+            $('h3[name="giftPoint"]').html(ret.body.member.giftPoint.toFixed(2));
+            $('h3[name="kiwiPoint"]').html(ret.body.member.kiwiPoint.toFixed(2));
+            $('h3[name="tradingPoints"]').html(ret.body.member.tradingPoint.toFixed(2));
+            $('span[name="prepayAccount"]').html(ret.body.member.prepayAccount.toFixed(2));
+            $('span[name="cloudUnionAccount"]').html(ret.body.member.cloudUnionAccount.toFixed(2));
+            if (ret.body.member.type != 'REGULAR') {
+                $('.vzhang').css('display', 'none');
+            }
+            var levels = {'REGULAR' : '普通会员', 'DIAMOND' : '钻石会员'};
+            $('span[name="level"]').html(levels[ret.body.member.type]);
+            //发送停止下拉刷新加载
+            api.sendEvent({
+                name: 'shake'
+            });
+        } else {
+            api.toast({
+                msg: '用户信息获取失败',
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+}
+$('.order_box').on('click', function (){
+    jumptips();
+});
+
+function jumptips() {
+    api.openWin({
+        name: 'tips',
+        url: 'https://www.cloudunion.com.au',
+        pageParam: {
+        }
+    });
+}
+</script>
+
+</html>

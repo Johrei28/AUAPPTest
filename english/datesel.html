@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>日期范围选择</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+		.date_maxbox {
+			/*height: 20rem;*/
+			overflow: hidden;
+			background-color: #fff;
+			/*border: 1px solid red;*/
+		}
+		.date_topbtn {
+			margin-top: 0.8rem;
+			overflow: hidden;
+		}
+		.date_topbtn span {
+			color: #fff;
+			background-color: rgb(255,182,28);
+			padding:0.2rem 0.5rem;
+			border-radius: 1rem;
+			border: 1px solid #ffc107;
+		}
+		.left_btn {
+			margin-left: 0.5rem;
+			float: left;
+		}
+		.date_topbtn .right_btn {
+			margin-right:0.5rem;
+			float: right;
+			color: #ffc107;
+			background-color: #fff;
+		}
+		.date_timebox {
+			margin-top: 0.4rem;
+			color: rgb(255,182,28);
+			overflow: hidden;
+		}
+		.left_text {
+			margin-left: 1rem;
+			float: left;
+		}
+		.right_text {
+			margin-right:1rem;
+			float: right;
+		}
+		.date_backline {
+			margin-top: 0.4rem;
+			height: 2rem;
+			line-height: 2rem;
+			background-color: rgb(204,204,204);
+		}
+		.left_linetext {
+			margin-left: 0.8rem;
+			float: left;
+		}
+		.right_linetext {
+			margin-right:0.8rem;
+			float: right;
+		}
+
+		.date_cal {
+			overflow: hidden;
+		}
+		.cal_header {
+			overflow: hidden;
+		}
+		.cal_header span{
+			height: 100%;
+		}
+		.cal_header_left {
+			height: 2.3rem;
+			line-height: 2.3rem;
+			text-align: center;
+			width: 30%;
+		}
+		.cal_header_middle {
+			height: 2.3rem;
+			line-height: 2.3rem;
+			text-align: center;
+			width: 40%;
+		}
+		.cal_header_right {
+			height: 2.3rem;
+			line-height: 2.3rem;
+			text-align: center;
+			width: 30%;
+		}
+		.cal_week {
+			overflow: hidden;
+		}
+		.cal_week li {
+			height: 1.8rem;
+			line-height: 1.8rem;
+			text-align: center;
+			width: 14.2%;
+			float: left;
+		}
+		.cal_main {
+			overflow: hidden;
+		}
+		.cal_main li {
+			width: 14.28%;
+			height: 2.2rem;
+			line-height: 2.2rem;
+			float: left;
+			/*border: 1px solid #ddd;*/
+			text-align: center;
+		}
+		.cal_header img  {
+			width: 1.3rem;
+			height: 1.3rem;
+			margin:auto;
+			margin-top: 0.6rem;
+			vertical-align: middle;
+		}
+    </style>
+</head>
+<body>
+
+<div class="aui-btn aui-btn-warning aui-margin-t-15 aui-margin-b-15">日期选择</div>
+
+<div class="date_maxbox">
+	<div class="date_topbtn aui-font-size-14">
+		<span class="left_btn">Start Date</span>
+		<span class="right_btn">Finish Date</span>
+	</div>
+	<div class="date_timebox aui-font-size-12">
+		<span class="left_text">01-01-1980</span>
+		<span class="right_text">21-06-2018</span>
+	</div>
+	<div class="date_backline aui-font-size-16">
+		<span class="left_linetext">Please Set Start Time</span>
+		<span class="right_linetext">Choice</span>
+	</div>
+	<div class="date_cal aui-font-size-16">
+		<div class="cal_header aui-border-b">
+			<div class="cal_header_left aui-pull-left">
+				<span onclick="prev_year()">
+					<img src="../image/page_pre2.png" />
+				</span>
+				<span class="aui-margin-l-10" onclick="prev_month()">
+					<img src="../image/page_pre5.png" />
+				</span>
+			</div>
+			<div class="cal_header_middle aui-pull-left">
+				<span class="year_sel"></span> /
+				<span class="month_sel"></span>
+			</div>
+			<div class="cal_header_right aui-pull-left">
+				<span onclick="next_month()">
+					<img src="../image/page_next5.png" />
+				</span>
+				<span class="aui-margin-l-10" onclick="next_year()">
+					<img src="../image/page_next2.png" />
+				</span>
+			</div>
+		</div>
+		<div class="cal_week">
+			<li>日</li>
+			<li>一</li>
+			<li>二</li>
+			<li>三</li>
+			<li>四</li>
+			<li>五</li>
+			<li>六</li>
+		</div>
+		<div class="cal_main aui-border-b">
+
+		</div>
+	</div>
+</div>
+<input type="hidden" name="day_sel" value="1">
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+
+<script>
+$(function(){
+	// 初始化
+	initialize_fun();
+})
+
+var nowselect = 1;
+
+function initialize_fun() {
+	var day2 = new Date();
+	day2.setTime(day2.getTime());
+	var s2 = day2.getFullYear()+"-" + (day2.getMonth()+1) + "-" + day2.getDate();
+	var thisyear = day2.getFullYear();
+	var thismonth = day2.getMonth()+1;
+	// 填充页面上的年月日
+	$('.year_sel').text(thisyear);
+	if (thismonth < 10) {
+		$('.month_sel').text('0'+thismonth);
+	} else {
+		$('.month_sel').text(thismonth);
+	}
+	$("input[name='day_sel']").val(day2.getDate());
+	// 一个月有多少天
+	var monthday = getDaysInMonth(thisyear,thismonth);
+	// 获取某一天是星期几
+	var oneday = thisyear+'-'+thismonth+'-'+'01';
+	var thisweek = getWeekByDay(oneday);
+	// 填充空白部分
+	bankday(thisweek);
+	// 填充本月的天数
+	dayview(monthday);
+}
+
+function getDaysInMonth(year, month) {
+	var date = new Date(year, month, 1);
+	return new Date(date.getTime() - 864e5).getDate();
+}
+
+function getWeekByDay(dayValue){ //dayValue=“2014-01-01”
+	var day = new Date(Date.parse(dayValue.replace(/-/g, '/'))); //将日期值格式化
+	return day.getDay();  //返回星期几，数字
+	// var today = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六"); //创建星期数组
+	//return today[day.getDay()];  //返一个星期中的某一天，其中0为星期日
+}
+
+function bankday(num) {
+	$('.cal_main').html('');
+	for(var i=0; i<num; i++) {
+		$('.cal_main').append('<li>&nbsp;</li>')
+	}
+}
+
+function dayview(num) {
+	for(var i=1; i<=num; i++) {
+		$('.cal_main').append('<li>'+i+'</li>');
+	}
+}
+
+$('body').on('click', '.cal_main li', function(event) {
+	if ($(this).html() != '&nbsp;') {
+		$('.cal_main li').css('background-color','#fff');
+		$('.cal_main li').css('color','#000');
+		$(this).css('background-color','#FFB61C');
+		$(this).css('color','#fff');
+		// 保存选择的数据
+		if ($(this).text() < 10) {
+			$("input[name='day_sel']").val('0'+$(this).text());
+		} else {
+			$("input[name='day_sel']").val($(this).text());
+		}
+	}
+});
+
+$('body').on('click', '.right_linetext', function(event) {
+	// 获取当前选择的年月日
+	var year_sel = $('.year_sel').text();
+	var month_sel = $('.month_sel').text();
+	var day_sel = $("input[name='day_sel']").val();
+	// 验证是开始时间还是结束时间
+	if (nowselect == 1) {
+		$('.left_text').html(day_sel+'-'+month_sel+'-'+year_sel);
+	} else {
+		$('.right_text').html(day_sel+'-'+month_sel+'-'+year_sel);
+	}
+});
+
+function next_month() {
+	// 获取当前月份
+	var month_sel = $('.month_sel').text();
+	var year_sel = $('.year_sel').text();
+	var new_month = parseInt(month_sel)+1;
+	if (new_month > 12) {
+		$('.month_sel').text('01');
+		newsel_month = 01;
+	} else {
+		if (new_month < 10) {
+			$('.month_sel').text('0'+new_month);
+		} else {
+			$('.month_sel').text(new_month);
+		}
+		newsel_month = new_month;
+	}
+	// 重新计算天数
+	// 一个月有多少天
+	var monthday = getDaysInMonth(year_sel, newsel_month);
+	// 获取某一天是星期几
+	var oneday = year_sel+'-'+newsel_month+'-'+'01';
+	var thisweek = getWeekByDay(oneday);
+	// 填充空白部分
+	bankday(thisweek);
+	// 填充本月的天数
+	dayview(monthday);
+	$('.cal_main').addClass('aui-border-b');
+}
+
+function prev_month() {
+	// 获取当前月份
+	var month_sel = $('.month_sel').text();
+	var year_sel = $('.year_sel').text();
+	var new_month = parseInt(month_sel)-1;
+	if (new_month < 1) {
+		$('.month_sel').text(12);
+		newsel_month = 12;
+	} else {
+		if (new_month < 10) {
+			$('.month_sel').text('0'+new_month);
+		} else {
+			$('.month_sel').text(new_month);
+		}
+		newsel_month = new_month;
+	}
+	// 重新计算天数
+	// 一个月有多少天
+	var monthday = getDaysInMonth(year_sel, newsel_month);
+	// 获取某一天是星期几
+	var oneday = year_sel+'-'+newsel_month+'-'+'01';
+	var thisweek = getWeekByDay(oneday);
+	// 填充空白部分
+	bankday(thisweek);
+	// 填充本月的天数
+	dayview(monthday);
+	$('.cal_main').addClass('aui-border-b');
+}
+
+function prev_year() {
+	// 获取当前月份
+	var year_sel = $('.year_sel').text();
+	var month_sel = $('.month_sel').text();
+	var new_year = parseInt(year_sel)-1;
+	$('.year_sel').text(new_year);
+	// 重新计算天数
+	// 一个月有多少天
+	var monthday = getDaysInMonth(new_year, month_sel);
+	// 获取某一天是星期几
+	var oneday = new_year+'-'+month_sel+'-'+'01';
+	var thisweek = getWeekByDay(oneday);
+	// 填充空白部分
+	bankday(thisweek);
+	// 填充本月的天数
+	dayview(monthday);
+	$('.cal_main').addClass('aui-border-b');
+}
+
+function next_year() {
+	// 获取当前月份
+	var year_sel = $('.year_sel').text();
+	var month_sel = $('.month_sel').text();
+	var new_year = parseInt(year_sel)+1;
+	$('.year_sel').text(new_year);
+	// 重新计算天数
+	// 一个月有多少天
+	var monthday = getDaysInMonth(new_year, month_sel);
+	// 获取某一天是星期几
+	var oneday = new_year+'-'+month_sel+'-'+'01';
+	var thisweek = getWeekByDay(oneday);
+	// 填充空白部分
+	bankday(thisweek);
+	// 填充本月的天数
+	dayview(monthday);
+	$('.cal_main').addClass('aui-border-b');
+}
+
+$('body').on('click', '.date_topbtn span', function(event) {
+	$('.date_topbtn span').css('background-color','#fff');
+	$('.date_topbtn span').css('color','#ffc107');
+	$(this).css('background-color','#ffc107');
+	$(this).css('color','#fff');
+	if ($(this).hasClass('right_btn')) {
+		$('.left_linetext').html('Please Set Finish Time');
+		nowselect = 2;
+	} else {
+		$('.left_linetext').html('Please Set Start Time');
+		nowselect = 1;
+	}
+});
+
+</script>

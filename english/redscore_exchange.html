@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Oz Points Exchange</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+
+    <style>
+    	html,body {
+    		background-color: #fff;
+    	}
+		.top_box {
+			padding: 0.5rem;
+			background-color: #f5f5f5;
+		}
+		.main_box {
+			background-color: #fff;
+		}
+		.main_box img {
+			width: 5rem;
+			height: 5rem;
+			margin: auto;
+		}
+		.sub_box {
+			background-color: #fff;
+			padding-left: 2.2rem;
+			padding-right: 2.2rem;
+		}
+		.exchange_form {
+			padding-left: 1rem;
+			padding-bottom: 1rem;
+		}
+		.exchange_form input {
+			display:inline;
+			width: 58%;
+			height: 1.5rem;
+			border-radius: 2rem;
+			border: 1px solid #ccc;
+		}
+		.tips_box {
+			margin-top: 2rem;
+			background-color: #fff;
+			padding: 0.8rem;
+		}
+		.tips_box ul li {
+			overflow: hidden;
+			color: #666;
+			line-height: 1rem;
+		}
+		.tips_box ul li img {
+			float: left;
+			margin-right: 0.5rem;
+			width: 0.8rem;
+			height: 1rem;
+		}
+		.tips_box ul li div {
+			width: 85%;
+			float: left;
+		}
+        .box-bottom{
+                margin-top: 2rem;
+                width: 100%;
+                color: #999;
+                margin-bottom: 2rem;
+            }
+            .box-bottom>span{
+                margin-left: 1rem;
+            }
+            .box-bottom-text{
+                margin-top: 1rem;
+                line-height: 1rem;
+                font-size: 0.7rem;
+            }
+            .box-bottom-text img{
+                float: left;
+                display: block;
+                width: 0.8rem;
+                height: 1rem;
+                margin-left: 1rem;
+                margin-right: 0.3rem;
+                margin-top: -0.2rem;
+            }
+            .box-bottom-text span{
+                display: inline-block;
+                width: calc(100% - 2.8rem);
+                color: #666;
+                margin-left: 0.1rem;
+            }
+    </style>
+</head>
+<body>
+
+<div class="top_box">
+    <!-- <div class="isenable">
+        <div class="aui-font-size-12">您还未实名认证地，无法兑换2</div>
+    	<div class="aui-btn aui-btn-warning aui-btn-sm aui-margin-t-10" style="border-radius: 2rem;" onclick="go_url(799)">
+    	个人认证
+    	</div>
+    </div> -->
+	<!-- <div class="isverified">
+        <div class="aui-font-size-12 aui-margin-t-10">
+    		您当前未设置安全密码，请先&nbsp;&nbsp;
+    		<div class="aui-btn aui-btn-warning aui-btn-sm" style="border-radius: 2rem;" onclick="go_url(801)">
+    			设置安全密码
+    		</div>
+    	</div>
+	</div> -->
+</div>
+
+<div class="main_box aui-padded-t-10 aui-padded-b-10">
+	<img src="../image/2998465644723625222.png" />
+	<p style="text-align:center;">Oz Points Balance</p>
+	<h4 class="aui-text-warning aui-margin-t-5 kiwiPoint" style="text-align:center;"></h4>
+	<div class="exchange_form aui-font-size-14 aui-margin-t-15 aui-margin-b-15">
+		<span>Oz Points Conversion</span>
+		<input type="number" min="1" name="red_score" class="aui-font-size-12 aui-padded-l-10" placeholder="Please enter the amount of Oz Points to be converted">
+	</div>
+    <div class="exchange_form aui-font-size-14 aui-margin-t-15 aui-margin-b-15">
+        <span>Security Password</span>
+        <input type="password" name="password" class="aui-font-size-12 aui-padded-l-10" placeholder="lease Type Your Security Password">
+    </div>
+	<div class="sub_box aui-margin-b-15 aui-margin-t-15">
+		<div class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm submit" style="border-radius: 2rem;">
+		Submit
+		</div>
+	</div>
+</div>
+
+<div class="box-bottom">
+            <span>Notice</span>
+            <div class="box-bottom-text">
+	<ul>
+		<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-14">
+			<img src="../image/fd165844513guygsidgfi4864.png">
+			<div>10% Platform Service Fee (8% during promotions) are applicable when transferring Oz Points to Oz Point Dollars (Cloud Union Account).</div>
+		</li>
+		<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-14">
+			<img src="../image/fd165844513guygsidgfi4864.png">
+			<div>10,000 = 92 Oz Point Dollars (OzPD).</div>
+		</li>
+	</ul>
+</div>
+</div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src='../script/moment.min.js'></script>
+
+<script>
+var apiurl = '';
+var token = '';
+var id = '';
+var kiwipoint = '';
+apiready = function () {
+    // api.parseTapmode();
+    // var header = $api.byId('top_box');
+    var storage= window.localStorage;
+    if (!storage) {
+        api.alert('请升级APP');
+        return false;
+    }
+    var enable = storage.getItem('ylh_authorization_enable');
+    var verified = storage.getItem('ylh_authorization_verified');
+    var userinfo = JSON.parse(storage.getItem('ylh_authorization_userinfo'));
+    token = storage.getItem('ylh_authorization_token');
+    id = storage.getItem('ylh_authorization_id');
+
+    $('.kiwiPoint').html(userinfo.kiwiPoint.toFixed(2));
+    kiwipoint = userinfo.kiwiPoint.toFixed(2);
+    if (enable) $('.isenable').css('display', 'none');
+    if (verified) $('.verified').css('display', 'none');
+
+    apiurl=api_au;
+
+    //添加监听时间，刷新数据
+    api.addEventListener({
+        name: 'update'
+    }, function(ret, err) {
+        window.location.reload();
+    });
+}
+function go_url(typenub) {
+	var jsfun = 'go_url('+typenub+');';
+	api.execScript({
+	    script: jsfun
+	});
+}
+$('.submit').on('click', function () {
+    var red_score = $('input[name="red_score"]').val();
+    var password = $('input[name="password"]').val();
+    var number = moment().local().format('YYMMDD');
+    if(!(/(^[1-9]\d*$)/.test(Number(red_score)))){
+      alert("请输入整数");
+      return;
+    }
+    if(Number(red_score) > Number(kiwipoint)){
+      alert("余额不足,无效交易");
+      return;
+    }
+    api.ajax({
+        url: apiurl + 'transaction/create',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+              "accountIn": "CA",
+              "accountInAmount": red_score / 100,
+              "accountOut": "KP",
+              "accountOutAmount": red_score,
+              "fromMemberId": id,
+              "securityPassword": password,
+              "serialNumHeader": "kc" + number,
+              //   "serviceCharge": red_score / 100 * 0.05,//修改于2019/2/26
+              "serviceCharge": red_score / 100 * 0.08,
+              "toMemberId": id,
+              "transactionType": "KP_TO_CA"
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            if (ret.body.result == 'SUCCESS') {
+                alert('Transaction successfully');
+                api.sendEvent({
+                    name: 'update'
+                });
+                api.closeWin();
+            }
+        } else {
+            api.alert({
+                title: err.body.message,
+                msg: 'Please set or reset the security password.',
+            });
+            api.openWin({
+                name: 'security-password',
+                url: 'security-password.html'
+            });
+
+        }
+    });
+});
+$('input[name="red_score"]').on('change', function () {
+    $(this).val(Math.round($(this).val()));
+});
+</script>
+
+</html>

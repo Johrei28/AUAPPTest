@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>认证中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        .phone {
+            display: none;
+        }
+        .card {
+            display: none;
+        }
+        .pending {
+            display: none;
+        }
+        .company .decline{
+            display: none;
+        }
+        .pending{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-media-list alllist">
+        <!-- <li class="aui-list-item phone">
+            <div class="aui-media-list-item-inner">
+	            <div class="aui-list-item-media" style="width:2.5rem;">
+	                <img src="../image/rz_true.png" style="width:2.5rem;">
+	            </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">手机/邮箱 已认证</div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        手机/邮箱验证已通过
+                    </div>
+                </div>
+            </div>
+        </li> -->
+        <li class="aui-list-item aui-list-item-arrow card" style="display: flex;align-items: center;">
+            <div class="aui-media-list-item-inner">
+	            <div class="aui-list-item-media" style="width:2.5rem;">
+	                <img src="../image/rz_true.png" style="width:2.5rem;">
+	            </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title"><span class="memberInfoType">个人认证</span> <span class="status">已认证</span></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        个人/公司认证已通过
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- <li class="aui-list-item aui-list-item-arrow email">
+            <div class="aui-media-list-item-inner" onclick="goauth()">
+	            <div class="aui-list-item-media" style="width:2.5rem;">
+	                <img src="../image/rz_false.png" style="width:2.5rem; margin-top:0.8rem;">
+	            </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">手机/邮箱 未认证</div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        绑定手机/邮箱可以更方便用户找回密码，接收邮件等服务，认证之后不能修改
+                    </div>
+                </div>
+            </div>
+        </li> -->
+
+        <li class="aui-list-item aui-list-item-arrow mr">
+            <div class="aui-media-list-item-inner" style="display: flex;align-items: center;">
+                <div class="aui-list-item-media" style="width:2.5rem;">
+                    <img src="../image/rz_false.png" style="width:2.5rem;">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title"><span class="memberInfoType">个人认证</span> <span class="status">未认证</span></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        真实身份信息认证，保证您的资金安全
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow company">
+            <div class="aui-media-list-item-inner" onclick="goauth()" style="display: flex;align-items: center;">
+                <div class="aui-list-item-media" style="width:2.5rem;">
+                    <img src="../image/rz_false.png" style="width:2.5rem;">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title"><span class="memberInfoType">个人认证</span> <span class="status">未认证</span></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        真实身份信息认证，保证您的资金安全
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12 decline" style="color:#ccc;">
+                        <p>拒绝理由：<span id = "declineReason"></span></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow pending" style="display: flex;align-items: center;" >
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width:2.5rem;">
+                    <img src="../image/rz_false.png" style="width:2.5rem;">
+                </div>
+                <div class="aui-list-item-inner" style="display: flex;align-items: center;">
+                    <div class="aui-list-item-text" style="color: #cccccc;height: 1rem;line-height: 1rem;font-size: 0.8rem;">
+                        认证申请已提交，待审核中
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script>
+var apiurl = '';
+
+apiready = function() {
+    // api.parseTapmode();
+    // var header = $api.byId('top_box');
+    var storage= window.localStorage;
+
+    $('.mr').show().siblings().hide();
+    apiurl=api_au;
+    if (!storage) {
+        api.alert('请升级浏览器');
+        return false;
+    }
+    var token = storage.getItem('ylh_authorization_token');
+    var user_name = storage.getItem('ylh_authorization_username');
+    var user_email = '';
+    //获取用户信息
+    api.ajax({
+        url: apiurl + 'member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": user_name,
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            console.log(JSON.stringify(ret.body.member.verifyStatus));
+            if (ret.body.member.enable) {
+                $('.phone').css('display', 'block');
+                $('.email').css('display', 'none');
+            } else {
+                $('.phone').css('display', 'none');
+                $('.email').css('display', 'block');
+            }
+
+            if (ret.body.member.verifyStatus == 'APPROVED') {
+                $('.card').show().siblings().hide();
+            }
+            else if(ret.body.member.verifyStatus == 'DECLINED') {
+                 $('.status').html('拒绝');
+                $('.company').show().siblings().hide();
+                $('.company .decline').show();
+                $('#declineReason').html(ret.body.member.declineReason);
+
+            }
+            else if(ret.body.member.verifyStatus == 'PENDING_APPROVAL') {
+                $('.status').html('审核中');
+                $('.pending').css('display','flex').siblings().hide();
+            }
+            else if(ret.body.member.verifyStatus == 'DEFAULF') {
+                $('.status').html("未认证");
+                $('.card').css('display', 'none');
+                $('.company').show().siblings().hide();
+            }else {
+                $('.status').html("未认证");
+                $('.company').show().siblings().hide();
+            }
+
+            if (ret.body.member.memberInfoType == 'INDIVIDUAL') {
+                $('.memberInfoType').html('个人认证');
+            } else {
+                $('.memberInfoType').html('公司认证');
+            }
+        } else {
+            api.toast({
+                msg: '用户信息获取失败',
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+}
+function goauth() {
+    api.openWin({
+        name: 'user_auth',
+        reload: true,
+        url: 'user_auth.html'
+    });
+
+}
+</script>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>提示</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+
+      .tip_con{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fbab70;
+      }
+      .tip_con .tip_top{
+        flex: 1;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+      }
+      .tip_con .tip_top .tips{
+        color: #ffffff;
+        font-size: 8vw;
+        font-weight: 600;
+        height: 14vw;
+        line-height: 14vw;
+        text-align: center;
+
+      }
+      .tip_con .tip_bottom{
+        height: auto;
+      }
+      .tip_con .tip_bottom>img{
+        width: 100%;
+        height: auto;
+      }
+    </style>
+</head>
+<body>
+  <div class="tip_con">
+    <div class="tip_top">
+      <p class="tips">这项功能</p>
+      <p class="tips">即将上线</p>
+
+    </div>
+    <div class="tip_bottom">
+      <img src="../image/tip_logo.png" alt="">
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>

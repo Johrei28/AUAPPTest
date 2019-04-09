@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Cloud Union</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <link rel="stylesheet" type="text/css" href="./css/aui.css" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            background: #0f8ff4;
+        }
+
+        .wrap {
+            display: flex;
+            align-items: center;
+            justify-content:center;
+        }
+        .header,.footer{
+            width: 100%;
+            height: auto;
+            position: absolute;
+            z-index: 9;
+            left: 0;
+        }
+        .header{
+            top: 0;
+        }
+        .footer{
+            bottom: 0;
+        }
+        .header>img,.footer>img{
+            width: 100%;
+            height: auto;
+        }
+        .btnbox{
+            width: 100%;
+            margin: 0 auto;
+            height: auto;
+            position: relative;
+            z-index: 99;
+            display: flex;
+            justify-content: space-around;
+
+        }
+        .btnbox .btn{
+            font-size: 3vw;
+            width: 30vw;
+            height: auto;
+            text-align: center;
+        }
+        .btnbox .btn>img{
+            width: 20vw;
+            height: auto;
+            margin-left: 5vw;
+        }
+
+        .btnbox .btn .t1{
+            font-size: 4vw;
+            margin-top: 6vw;
+            line-height: 6vw;
+            font-weight: 600;
+
+        }
+        .btnbox .btn .t2{
+            font-size: 4vw;
+            line-height: 6vw;
+
+        }
+    </style>
+</head>
+<body class="wrap">
+    <div class="header">
+        <img src="./image/banner1.gif">
+    </div>
+    <div class="btnbox">
+        <div class="btn" id="btn_adly">
+            <img src="./image/btn_adly.png">
+            <div class="t1">AUSTRALIA</div>
+            <div class="t2">澳大利亚
+
+            </div>
+        </div>
+        <div class="btn" id="btn_xxl">
+            <img src="./image/btn_xxl.png">
+            <div class="t1">NEW ZEALAND</div>
+            <div class="t2">新西兰</div>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="./image/banner2.gif">
+    </div>
+</body>
+
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript" src="./script/aui-tab.js" ></script>
+<script type="text/javascript" src="./script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./script/moment.min.js"></script>
+
+<script type="text/javascript">
+apiready = function() {
+    $('#btn_xxl').click(function () {
+        localStorage.clear();
+        api.openWin({
+            name: 'index',
+            url: './NZ/html/startover.html',
+            bgColor: '#f5f5f5'
+        });
+    });
+    $('#btn_adly').click(function () {
+        localStorage.clear();
+        api.openWin({
+            name: 'index',
+            url: './AUS/html/index.html',
+            bgColor: '#f5f5f5'
+        });
+    })
+};
+</script>
+
+</html>

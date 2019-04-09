@@ -1,0 +1,1 @@
+var api_au = 'http://cloudunionauproduction-env.3fpfpq2mra.ap-southeast-2.elasticbeanstalk.com/';

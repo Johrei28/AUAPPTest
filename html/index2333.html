@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Cloud Union AU</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+        }
+        .flex-1 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+        }
+        #footer {
+            border-top: 1px solid #f5f5f5;
+            box-shadow: 5px 5px 0px #ccc;
+        }
+        .icon_img {
+            height: 1.2rem;
+            margin:auto;
+        }
+        #footer .aui-active {
+            color:#FBB223;
+        }
+    </style>
+</head>
+
+<body class="wrap">
+    <footer class="aui-bar aui-bar-tab aui-margin-t-5" id="footer" style="color:#FBB223;">
+        <div class="aui-bar-tab-item aui-padded-t-5" tapmode>
+            <i><img src="../image/today_011.png" class="icon_img icimg1"></i>
+            <div class="aui-bar-tab-label aui-padded-t-5 icon_text1" style="color:#ff7400;">商城</div>
+        </div>
+        <div class="aui-bar-tab-item aui-padded-t-5" tapmode>
+            <i><img src="../image/today_02.png" class="icon_img icimg2"></i>
+            <div class="aui-bar-tab-label aui-padded-t-5 icon_text2">资讯</div>
+        </div>
+        <div class="aui-bar-tab-item aui-padded-t-5" tapmode>
+            <i><img src="../image/today_03.png" class="icon_img icimg3"></i>
+            <div class="aui-bar-tab-label aui-padded-t-5 icon_text3">购物车</div>
+        </div>
+        <div class="aui-bar-tab-item aui-padded-t-5" tapmode>
+            <i><img src="../image/today_04.png" class="icon_img icimg4"></i>
+            <div class="aui-bar-tab-label aui-padded-t-5 icon_text4">会员</div>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-tab.js" ></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+
+<script type="text/javascript">
+apiready = function() {
+    var footer = $api.byId('footer');
+    var footerH = $api.offset(footer).h;
+    //frame的高度为当前window高度减去header和footer的高度
+    var frameH = api.winHeight - footerH;
+    api.openFrame({
+        name: 'main',
+        url: 'main.html',
+        bounces: false,
+        bgColor: '#fff',
+        rect: {
+            x:0,
+            y:0,
+            w:'auto',
+            h:frameH
+        }
+    })
+
+
+    api.parseTapmode();
+    if(api.pageParam.pagetype){
+        var pagetype = api.pageParam.pagetype;
+        $('.icimg1').attr('src','../image/today_01.png');
+        $('.icimg2').attr('src','../image/today_02.png');
+        $('.icimg3').attr('src','../image/today_03.png');
+        $('.icimg4').attr('src','../image/today_04.png');
+        $('.aui-bar-tab-label').css('color','#FBB223');
+        $('.icon_text'+ret.index).css('color','#ff7400');
+        if(pagetype=='main1'){
+            $('.icimg1').attr('src','../image/today_011.png');
+            api.openFrame({
+                name: 'index',
+                url: 'main.html',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+        }else if(pagetype=='main2'){
+
+            $('.icimg2').attr('src','../image/today_022.png');
+            api.openFrame({
+                name: 'tips',
+                url: 'tips.html',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+        }else if(pagetype=='main3'){
+            $('.icimg3').attr('src','../image/today_033.png');
+            api.openFrame({
+                name: 'tips',
+                url: 'tips.html',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+
+        }else if(pagetype=='main4'){
+
+            var storage= window.localStorage;
+            var token = storage.getItem('ylh_authorization_token');
+            var token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+            var user_name = storage.getItem('ylh_authorization_username');
+            var modtime = moment().format('YYYY-MM-DD HH:mm:ss');
+            if (!token || (modtime > token_expiry_time)) {
+                to_login();
+                return false;
+            }
+            $('.icimg4').attr('src','../image/today_044.png');
+            api.openFrame({
+                name: 'index2',
+                url: 'user_center.html',
+                customRefreshHeader: 'UIPullRefresh',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+        }
+
+        if(pagetype!='main4'){
+            api.closeFrame({
+                name:'index2'
+            })
+
+        }
+
+        }
+    }
+
+
+    // 底部切换栏
+    var tab = new auiTab({
+        element:document.getElementById("footer"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        $('.icimg1').attr('src','../image/today_01.png');
+        $('.icimg2').attr('src','../image/today_02.png');
+        $('.icimg3').attr('src','../image/today_03.png');
+        $('.icimg4').attr('src','../image/today_04.png');
+        $('.aui-bar-tab-label').css('color','#FBB223');
+        $('.icon_text'+ret.index).css('color','#ff7400');
+        if (ret.index == 1) {
+            $('.icimg1').attr('src','../image/today_011.png');
+            api.openFrame({
+                name: 'index',
+                url: 'main.html',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+        } else if (ret.index == 2) {
+            $('.icimg2').attr('src','../image/today_022.png');
+            api.openFrame({
+                name: 'tips',
+                url: 'tips.html',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+        } else if (ret.index == 3) {
+            $('.icimg3').attr('src','../image/today_033.png');
+            api.openFrame({
+                name: 'tips',
+                url: 'tips.html',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+        } else if (ret.index == 4) {
+            var storage= window.localStorage;
+            var token = storage.getItem('ylh_authorization_token');
+            var token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+            var user_name = storage.getItem('ylh_authorization_username');
+            var modtime = moment().format('YYYY-MM-DD HH:mm:ss');
+            if (!token || (modtime > token_expiry_time)) {
+                to_login();
+                return false;
+            }
+            $('.icimg4').attr('src','../image/today_044.png');
+            api.openFrame({
+                name: 'index2',
+                url: 'user_center.html',
+                customRefreshHeader: 'UIPullRefresh',
+                bounces: false,
+                bgColor: '#fff',
+                rect: {
+                    x:0,
+                    y:0,
+                    w:'auto',
+                    h:frameH
+                }
+            })
+        }
+
+                if(ret.index != 4){
+                  api.closeFrame({
+                    name:'index2'
+                  })
+
+                }
+
+    });
+};
+function to_login() {
+    api.openWin({
+        name: 'login',
+        url: './login.html',
+        bgColor: '#f5f5f5'
+    });
+    return false;
+}
+
+</script>
+
+</html>

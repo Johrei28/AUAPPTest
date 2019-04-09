@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QRCode</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            /*background: #ccc;*/
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .bg {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url("../image/qrcode.jpg") no-repeat;
+            background-size:cover;
+            background-position: center;
+
+        }
+        #qrcode{
+            position: absolute;
+            width: 40vw;
+            height: 40vw;
+        }
+        .username{
+            width: 100vw;
+            height: 2rem;
+            line-height: 2rem;
+            position: absolute;
+            left: 0;
+            top: 28rem;
+        }
+        .username>p{
+            text-align: center;
+            align-items: center;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="bg"></div>
+
+<div id="qrcode" class="qrcode"></div>
+<div class="username" id="username">
+    <p id = "refer_username_idsplay"></p>
+</div>
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../plugin/qrcode/qrcode.min.js"></script>
+
+<script>
+
+    apiready = function() {
+        api.parseTapmode();
+        document.getElementById('refer_username_idsplay').innerHTML = localStorage.getItem('ylh_authorization_username');
+        var offH=document.body.clientHeight;
+        var offW=document.body.clientWidth;
+        var offT=0;
+        if(offH*10000>offW*15754){
+            offT=Math.ceil(offH/3)*0.8;
+            offT2=Math.ceil(offH/3)*1.8;
+        }else {
+            offT=(offH/2-1.5754*offW/6)*0.8;
+            offT2=(offH/2-1.5754*offW/6)*1.8;
+        }
+        var ewmsize=window.screen.width*4/10*(offH/offW/1.5754);
+        document.getElementById('qrcode').style.top=offT+'px';
+        document.getElementById('qrcode').style.width=ewmsize+'px';
+        document.getElementById('qrcode').style.height=ewmsize+'px';
+        document.getElementById('qrcode').style.left=(offW-ewmsize)/2+'px';
+        document.getElementById('username').style.top=offT2+'px';
+        var storage= window.localStorage;
+        if (!storage) {
+            api.alert('Upgrade your browser');
+            return false;
+        }
+        var token = storage.getItem('ylh_authorization_token');
+        var user_name = storage.getItem('ylh_authorization_username');
+        var user_email = '';
+        var data = "https://cloudunion.com.au/sign_up.html?referrer=" + user_name;
+        new QRCode(document.getElementById('qrcode'), {
+            text:data,
+            width: ewmsize,
+            height: ewmsize,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    }
+</script>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+   	 	<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Checkout</title>
+		<style type="text/css">
+			html,body {
+				background-color: #fff;
+			}
+			*{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.box-header{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.box-header span{
+				display: block;
+				width: 35%;
+				text-align: center;
+				border: 1px solid orange;
+				padding: 0.30rem 0;
+				border-radius: 2rem;
+				color: #444;
+			}
+			.box-header span:nth-child(2){
+				margin-left:10%;
+			}
+			.box-header span.now{
+				border: none;
+				background: orange;
+				color: #fff;
+			}
+
+			.box-top{
+				width: 60%;
+				margin: auto;
+				padding-top: 1.6rem;
+			}
+			.box-top img{
+				display: block;
+				width: 4rem;
+				height: 4rem;
+				margin: auto;
+			}
+			.box-top>span{
+				display: block;
+				color: #444;
+			}
+			.box-top>span:nth-child(2){
+				padding-top: 0.8rem;
+				text-align: center;
+			}
+			.box-top>span:nth-child(3){
+				font-size: 1rem;
+				padding: 0.4rem 0;
+				text-align: center;
+			}
+			.box-top-text {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.box-top-text span{
+				font-size: 0.6rem;
+			}
+			.box-top-text span:nth-child(1){
+				margin-top: 0.25rem;
+				margin-right: 0.5rem;
+			}
+			.box-top-text span:nth-child(2){
+				padding:0.2rem 0.5rem;
+				background-color: orange;
+				color: #fff;
+				border-radius: 0.8rem;
+			}
+
+			.box-checkout{
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				margin-top: 3rem;
+			}
+			.box-checkout-img{
+				display: inline-block;
+				background: orange;
+				width: 3.5rem;
+				height: 3.5rem;
+				border-radius:2.5rem;
+				margin: auto;
+			}
+			.box-checkout-img img{
+				width: 1.5rem;
+				height: 1.5rem;
+				padding: 1rem;
+			}
+			.box-checkout span{
+				display: inline-block;
+				text-align: center;
+				line-height: 2rem;
+			}
+
+			.box-bottom{
+				margin-top: 2rem;
+				width: 100%;
+				color: #999;
+				margin-bottom: 2rem;
+			}
+			.box-bottom>span{
+				margin-left: 1rem;
+			}
+			.box-bottom-text{
+				margin-top: 1rem;
+				line-height: 1rem;
+				font-size: 0.7rem;
+			}
+			.box-bottom-text img{
+				float: left;
+				display: block;
+				width: 0.8rem;
+				height: 1rem;
+				margin-left: 1rem;
+				margin-right: 0.3rem;
+				margin-top: -0.2rem;
+			}
+			.box-bottom-text span{
+				display: inline-block;
+				width: calc(100% - 2.8rem);
+				color: #666;
+				margin-left: 0.1rem;
+			}
+			.box_checkout img {
+				width: 4rem;
+				margin:auto;
+				margin-top: 1.5rem;
+			}
+			.textcenter {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content aui-margin-t-15">
+			<div class="box-header aui-margin-t-15">
+				<span class="now aui-font-size-14">Digital Checkout(QR Code)</span>
+				<span class="aui-font-size-14" onclick="go_url(107)">Offline Checkout</span>
+			</div>
+
+			<div class="box-top">
+				<img src="../image/djfaskhfawe46846g4dfguygaer.png"/>
+				<div class="box-top-text">
+					<span class="aui-font-size-14">
+					<p class="aui-margin-t-10">Trading Points Balance</p>
+	                <h1 class="aui-text-warning aui-margin-t-10" name='total1'></h1></span>
+				</div>
+				<div class="box-top-text">
+					<span class="aui-font-size-14">
+					<p class="aui-margin-t-10">Available CheckOut Amount</p>
+	                <h1 class="aui-text-warning aui-margin-t-10" name='total2'></h1></span>
+					<span class="aui-font-size-12" style = "height:40px;width:40px;border-radius:35%;" onclick="go_url(907)">Top Up</span>
+				</div>
+			</div>
+
+			<div class="box_checkout aui-margin-t-15" onclick="checkout_erweima(1)">
+				<img src="../image/20180614172753.png" >
+				<div class="textcenter aui-margin-t-10">CheckOut</div>
+			</div>
+
+			<div class="box_checkout aui-margin-t-15" onclick="checkout_erweima(2)">
+				<img src="../image/20180614172753.png" >
+				<div class="textcenter aui-margin-t-10">Payment</div>
+			</div>
+		</div>
+
+		<div class="box-bottom">
+			<span>Notice</span>
+			<div class="box-bottom-text">
+				<ul>
+					<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+						<img src="../image/fd165844513guygsidgfi4864.png">
+						<div>When the checkout is completed successfully, the Buyer's Gift Points shall increase by the respective amount (GST exclusive).
+						</div>
+					</li>
+					<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+						<img src="../image/fd165844513guygsidgfi4864.png">
+						<div>Once the transaction is completed, it cannot be reversed; please complete with care.
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script>
+var apiurl = '';
+var user_info = '';
+var token = '';
+var user_name = '';
+apiready = function() {
+    var storage= window.localStorage;
+    apiurl=api_au;
+    token = storage.getItem('ylh_authorization_token');
+    var token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+    user_name = storage.getItem('ylh_authorization_username');
+	user_info = JSON.parse(storage.getItem('ylh_authorization_userinfo'));
+    var modtime = moment().format('YYYY-MM-DD HH:mm:ss');
+	<!-- $('h1[name="total1"]').html(user_info.tradingPoint.toFixed(2)); -->
+	<!-- $('h1[name="total2"]').html("NZ$"+" "+(+user_info.tradingPoint *0.01).toFixed(2)); -->
+	//获取用户信息
+	api.ajax({
+		url: apiurl + 'member/get',
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'authorization': 'Bearer ' + token
+		},
+		returnAll: true,
+		data: {
+			body: {
+				"email": '',
+				"type": 'username',
+				"username": user_name,
+			}
+		}
+	}, function(ret, err) {
+		if (ret) {
+			storage.setItem('ylh_authorization_enable', ret.body.member.username);
+			storage.setItem('ylh_authorization_verified', ret.body.member.verified);
+			storage.setItem('ylh_authorization_userinfo', JSON.stringify(ret.body.member));
+			user_info = ret.body.member;
+		} else {
+			api.toast({
+				msg: err.body.message,
+				duration: 2500,
+				location: 'middle'
+			});
+		}
+	});
+	//添加监听时间，刷新数据
+	api.addEventListener({
+		name: 'update'
+	}, function(ret, err) {
+		window.location.reload();
+	});
+	trading_point_display1 = user_info.tradingPoint;
+	trading_point_display2 = user_info.tradingPoint * 0.01;
+
+	trading_point_display1 = trading_point_display1.toString();
+	trading_point_display2 = trading_point_display2.toString();
+
+	if (trading_point_display1.indexOf('.') != -1) {
+		trading_point_display1 = trading_point_display1.slice(0, (trading_point_display1.indexOf(".")) + 3);
+		$('h1[name="total"]').html(trading_point_display1);
+	} else {
+		$('h1[name="total"]').html(trading_point_display1);
+	};
+	if (trading_point_display2.indexOf('.') != -1) {
+		trading_point_display2 = trading_point_display2.slice(0, (trading_point_display2.indexOf(".")) + 3);
+		$('h1[name="total2"]').html("AU$"+" "+trading_point_display2);
+	} else {
+		$('h1[name="total2"]').html("AU$"+" "+trading_point_display2);
+	};
+}
+function go_url(typenub) {
+	var jsfun = 'go_url('+typenub+');';
+	api.execScript({
+	    script: jsfun
+	});
+}
+
+function checkout_erweima(type) {
+	var FNScanner = api.require('FNScanner');
+	FNScanner.open({
+	    autorotation: true
+	}, function(ret, err) {
+	    if (ret) {
+	        // alert(JSON.stringify(ret));
+	    } else {
+	        // alert(JSON.stringify(err));
+	    }
+	});
+}
+
+$('.submit').on('click', function () {
+	var amount = $('input[name="amount"]').val();
+	var password = $('input[name="password"]').val();
+	var member = $('input[name="member"]').val();
+	var persent = $('input[name="persent"]').val();
+	var memberid = '';
+	api.ajax({
+		url: apiurl + 'member/get',
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'authorization': 'Bearer ' + token
+		},
+		returnAll: true,
+		data: {
+			body: {
+			  "email": "",
+			  "type": "username",
+			  "username": member
+			}
+		}
+	}, function(ret, err) {
+		if (ret) {
+			memberid = ret.body.member.id;
+		} else {
+			api.toast({
+				msg: err.body.message,
+				duration: 2500,
+				location: 'middle'
+			});
+		}
+	});
+	api.ajax({
+        url: apiurl + 'transaction/create',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+			  "accountIn": "GP",
+			  "accountInAmount": amount * 100 * persent / 100,
+			  "accountOut": "TP",
+			  "accountOutAmount": amount,
+			  "fromMemberId": id,
+			  "securityPassword": password,
+			  "serialNumHeader": "co" + number,
+			  "serviceCharge":  0,
+			  "toMemberId": memberid,
+			  "transactionType": "CHECK_OUT"
+			}
+        }
+    }, function(ret, err) {
+        if (ret) {
+			if (ret.body.result == 'SUCCESS') {
+				alert(ret.body.message);
+				api.sendEvent({
+				    name: 'update'
+				});
+				api.closeWin();
+			} else {
+				api.toast({
+					msg: ret.body.message,
+					duration: 2500,
+					location: 'middle'
+				});
+			}
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+});
+
+</script>

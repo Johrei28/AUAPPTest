@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../plugin/layui/css/layui.css">
+    <style>
+		html,body {
+			background-color: #fff;
+		}
+		.top_box {
+			padding-top: 1.5rem;
+			text-align: center;
+		}
+		.xieyi_box span {
+			color: rgb(255, 181, 30);
+		}
+		.sub_box {
+			padding-top: 2.5rem;
+			padding-left: 2.2rem;
+			padding-right: 2.2rem;
+		}
+		.register_account {
+			color: #666;
+			margin-top: 2rem;
+			text-align: center;
+		}
+		.register_account span {
+			color: rgb(255, 181, 30);
+		}
+		.footer_info {
+			color: #666;
+			margin-top: 2rem;
+			margin-bottom: 0.5rem;
+			text-align: center;
+			position: fixed;
+			bottom: 0px;
+			width: 100%;
+		}
+    </style>
+</head>
+<body>
+
+<div class="aui-margin-t-15 top_box">
+	<div class="aui-btn aui-btn-warning aui-margin-r-15 user_type" value="1">Individual Member</div>
+	<div class="aui-btn aui-btn-warning aui-btn-outlined user_type" value="2">Company Member</div>
+</div>
+
+<!-- <div class="aui-content-padded aui-margin-b-15">
+    <ul class="aui-list aui-list-in" style="border-top:none;">
+        <li class="aui-list-item aui-padded-b-5 aui-padded-t-10">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">New Zealand</div>
+            </div>
+        </li>
+    </ul>
+</div> -->
+
+<div class="aui-content-padded aui-margin-b-15">
+    <ul class="aui-list aui-list-in" style="border-top:none;">
+		<li class="aui-list-item aui-padded-b-5 aui-padded-t-10">
+			<div class="aui-list-item-inner aui-list-item-arrow">
+				<select class="aui-list-item-title" name="register_type">
+					<option value="1">Mobile Registration</option>
+					<option value="2">Email Registration</option>
+				</select>
+			</div>
+		</li>
+    </ul>
+</div>
+
+<div class="xieyi_box aui-font-size-12 aui-margin-l-15 aui-margin-t-15">
+	<input type="checkbox" name="xieyi" checked="checked" style="margin-top: 5px;">
+	I have read and agreed
+	<span onclick="toxieyi()">&nbsp;&nbsp;Cloud Union Customer Terms & Conditions</span>
+</div>
+
+<div class="sub_box" onclick="next_step()">
+	<div class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm" style="border-radius: 2rem;">
+	Next
+	</div>
+</div>
+
+<div class="aui-font-size-12 register_account" onclick="go_login()">
+	Already have an account&nbsp;&nbsp; <span>|</span> &nbsp;&nbsp;Log in
+</div>
+
+<div class="aui-font-size-12 footer_info">
+      Cloud Union (Australia) Network Technology Pty Ltd.
+</div>
+
+<input type="hidden" name="user_type" value="1">
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+
+<script>
+var referrer = '';
+$("body").on("click", '.user_type' ,function(){
+    var user_type = $(this).attr('value');
+    $("input[name='user_type']").val(user_type);
+    $('.user_type').addClass('aui-btn-outlined');
+    $(this).removeClass('aui-btn-outlined');
+});
+
+// 前去登录
+function go_login() {
+	var jsfun = 'go_login();';
+	// api.execScript({
+	//     script: jsfun
+	// });
+	api.openWin({
+			name: 'login',
+			url: './login.html',
+			pageParam: {
+			}
+	});
+}
+
+function next_step() {
+	var user_type = $("input[name='user_type']").val();
+	var register_type = $("select[name='register_type']").val();
+	var jsfun = 'next_step('+user_type+',"'+register_type+'");';
+	// api.execScript({
+	//     script: jsfun
+	// });
+	api.openWin({
+			name: 'register_next',
+			url: './register_next.html',
+			pageParam: {
+				'user_type' : user_type,
+				'register_type' : register_type,
+				'referrer' : referrer
+			}
+	});
+}
+apiready = function() {
+	referrer = api.pageParam.referrer;
+	// console.log($('input[name="xieyi"]').prop('checked'));
+}
+$('input[name="xieyi"]').on('click', function () {
+	// console.log($(this).prop('checked'));
+	if ($(this).prop('checked') != true) {
+		$('.sub_box').hide();
+	} else {
+		$('.sub_box').show();
+	}
+});
+function toxieyi() {
+	api.openWin({
+	    name: 'xieyi',
+	    url: 'xieyi.html',
+	});
+
+}
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>广告</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.banner{
+				position: fixed;
+				width: 100%;
+				height: 100%;
+			}
+			.banner img{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+			.timer{
+				position: absolute;
+				right: 8%;
+				top: 1.25rem;
+				background: #fff;
+				width: 1.8rem;
+				height: 1.8rem;
+				border-radius: 50%;
+			}
+			.timer span{
+				display: block;
+				text-align: center;
+				color: #666;
+			}
+			.timer span:nth-child(1){
+				margin-top: 2px;
+			}
+			.banner a{
+				position: absolute;
+				display: block;
+				top: 75%;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 28%;
+				height: 1.2rem;
+				border-radius: 0.6rem;
+				color: #fff;
+				background: crimson;
+				text-align: center;
+				text-decoration: none;
+				line-height: 1.2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="banner">
+			<img src="../image/57960040910331603.png"/>
+			<div class="timer">
+				<span class="aui-font-size-12">跳转</span>
+				<span class="time aui-font-size-12">5S</span>
+			</div>
+			<a href="" class="aui-font-size-14">立即体验</a>
+		</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var timeSpan = document.querySelector(".time");
+			var timeS = 4;
+				setInterval(function(){
+					if(timeS>0){
+						timeSpan.innerHTML = timeS + "S";
+						timeS -- ;
+					}else{
+						timeSpan.innerHTML = "0S";
+					}
+				},1000);	
+		}
+		
+		
+	</script>
+</html>

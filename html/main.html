@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>商城</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        html,body {
+            background-color: #fff;
+        }
+        body{
+        	padding-bottom: 1rem;
+        }
+        img{
+        	border:none;
+        }
+        .top_box {
+            height: 11rem;
+            background-image: url(../image/index_bg.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .top_tool {
+            height: 2rem;
+            clear: both;
+        }
+        .top_sao img {
+            width: 1.35rem;
+            height: 1.35rem;
+        }
+        .top_search {
+            width: 78%;
+        }
+        .top_search input {
+            width: 100%;
+            height: 1.45rem;
+            background-color: #fff;
+            opacity: 0.8;
+            border-radius: 1rem;
+        }
+        .middle_line {
+            height: 0.4rem;
+            background-color: #f5f5f5;
+        }
+        .list_box {
+            overflow: hidden;
+        }
+        .list_box .list_item {
+            width: 25%;
+            text-align: center;
+        }
+        .list_item img {
+            height: 1.4rem;
+            margin: auto;
+        }
+
+        .banner{
+        	width: 100%;
+        	margin-top:2rem;
+        }
+        .banner-box{
+        	/*height: 5rem;*/
+        	margin:0 1rem;
+        	border-radius:0.6rem;
+        	/*-webkit-border-radius: 0.5rem 1.5rem 1.5rem 1.5rem;
+        	-moz-border-radius:0.5rem 1.5rem 1.5rem 1.5rem ;*/
+        	overflow: hidden;
+        	box-sizing: border-box;
+        	-webkit-box-sizing: border-box;
+        }
+        .slider{
+        	width: 300%;
+        }
+        .slider li{
+        	float: left;
+        }
+        .slider li a{
+        	display:block;
+        	width:100%;
+        }
+        .slider li a img{
+        	display:block;
+        	width:100%;
+        }
+        .dots{
+        	width: 1.8rem;
+        	padding-top: 1rem;
+        	margin: auto;
+        }
+        .dots li{
+        	float: left;
+        	width: 0.3rem;
+        	height: 0.3rem;
+        	border-radius: 50%;
+        	background:#ccc;
+        	margin-left: 0.3rem;
+        }
+        .dots li.now{
+        	background: orange;
+        }
+
+
+        .clearfix::after{
+        	clear: both;
+        	content: "";
+        	display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="top_box" id="header">
+    <div class="top_tool aui-padded-t-15">
+        <div class="top_sao aui-pull-left aui-margin-l-15" onclick="checkout_erweima(1)"><img src="../image/15.png" /></div>
+        <div class="top_search aui-pull-left aui-margin-l-15">
+            <input type="search" placeholder="搜索" class="aui-font-size-14 aui-padded-l-10">
+        </div>
+    </div>
+</div>
+
+<div class="middle_line"></div>
+
+<div class="aui-content aui-padded-10">
+    <ul class="list_box">
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_213243.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">健康产品</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_baby.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">幼儿护理</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_fool.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">美食天地</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_892347.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">化妆护肤</span>
+        </li>
+    </ul>
+    <ul class="list_box">
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_3745.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">衣饰箱包</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_group.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">车房天地</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_984.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">数码科技</span>
+        </li>
+        <li class="aui-pull-left list_item aui-padded-10">
+            <img src="../image/new_384.png" >
+            <span class="aui-font-size-12 aui-margin-t-10">旅行天下</span>
+        </li>
+    </ul>
+</div>
+
+<div class="banner">
+	<div class="banner-box">
+		<ul class="clearfix slider">
+            <li><a href=""><img src="../image/new_91.jpg"/></a></li>
+            <li><a href=""><img src="../image/new_92.jpg"/></a></li>
+            <li><a href=""><img src="../image/new_91.png"/></a></li>
+		</ul>
+
+	</div>
+	<ul class="dots clearfix">
+		<li class="now"></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+
+apiready = function() {
+    api.parseTapmode();
+    var header = $api.byId('header');
+    $api.fixStatusBar(header);
+
+    var oUl = document.querySelector(".banner-box ul");
+    var oLi = oUl.querySelectorAll("li");
+    var oDotsLi = document.querySelectorAll(".dots li");
+    var oWidth = (oUl.offsetWidth)/3;
+    var moved = oUl.offsetWidth/9;
+    var index = 0;
+    var oDotLi = document.querySelectorAll(".dots li")
+
+    for(var i = 0;i<oLi.length;i++){
+        oLi[i].style.width = oWidth + "px";
+    }
+
+}
+
+
+
+var oUl = document.querySelector(".banner-box ul");
+var oLi = oUl.querySelectorAll("li");
+var oDotsLi = document.querySelectorAll(".dots li");
+var oWidth = (oUl.offsetWidth)/3;
+var moved = oUl.offsetWidth/9;
+var index = 0;
+var oDotLi = document.querySelectorAll(".dots li")
+// window.onload = function(){
+// 	for(let i = 0;i<oLi.length;i++){
+// 		oLi[i].style.width = oWidth + "px";
+// 	}
+// }
+//banner点击事件
+// $('.banner-box').on('click', function () {
+//     api.openWin({
+//         name: 'luckypocket',
+//         url: 'https://cloudunion.nz/luckypocket.html',
+//         pageParam: {
+//         }
+//     });
+// });
+function checkout_erweima(type) {
+    var FNScanner = api.require('FNScanner');
+    FNScanner.open({
+        autorotation: true
+    }, function(ret, err) {
+        if (ret.eventType == 'success') {
+            api.openWin({
+                name : 'outsideweb',
+                url : ret.content,
+                rect : {
+                        x : 0,
+                        y : 0,
+                }
+            });
+            // var args = JSON.parse(ret.content);
+            // api.openWin({
+            //     name: args.url,
+            //     url: args.url + '.html',
+            //     pageParam: {
+            //         referrer: args.referrer
+            //     }
+            // });
+        } else {
+            // alert(JSON.stringify(err));
+        }
+    });
+}
+
+$('.list_box').on('click', function (){
+    api.openWin({
+        name: 'shop',
+        url: 'https://www.cloudunion.com.au',
+        pageParam: {
+        }
+    });
+
+});
+
+function jumptips() {
+    api.openWin({
+        name: 'luckypocket',
+        url: 'https://www.cloudunion.com.au',
+        pageParam: {
+        }
+    });
+}
+
+function slider(){
+	var that = this;
+	this.timer = setInterval(function(){
+		if(index == 2){
+			index =0 ;
+		}else{
+			index ++ ;
+		}
+
+		oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+//		oUl.style.transition = "all 1s";
+		for(var i = 0;i<oDotsLi.length;i++){
+			oDotsLi[i].classList.remove("now");
+		}
+		oDotsLi[index].classList.add("now");
+		if(index == 2){
+			clearInterval(that.timer);
+			index = -1;
+			slider();
+		}
+	},3000);
+
+
+//oUl.ontouchstart = function(e){
+//	clientStartX = e.targetTouches[0].clientX;
+//	clearInterval(that.timer);
+//}
+//
+//oUl.ontouchmove = function(e){
+//	clientMoveX = e.changedTouches[0].clientX;
+//	j = clientMoveX - clientStartX;
+//	if(index > 0 && j < 0){
+//		oUl.style.transform = "translateX("  + (j - oWidth*index) +"px)";
+//	}else if(index < 2 && j > 0){
+//		oUl.style.transform = "translateX("  + (j + oWidth*index) +"px)";
+//	}
+//}
+//
+//oUl.ontouchend = function(e){
+//	clientEndX = e.changedTouches[0].clientX;
+//	let displacement = clientEndX - clientStartX;
+//	if(clientEndX - clientStartX > moved){
+//		oUl.offsetLeft = displacement + "px";
+//		if(index > 0){
+//			index --;
+//			oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+//			oUl.style.transition = "all 1s";
+//		}else{
+//			oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+//			oUl.style.transition = "all 1s";
+//		}
+//	}else if(clientEndX - clientStartX < -moved){
+//		oUl.offsetLeft = -displacement + "px";
+//		if(index < oLi.length-1){
+//			index ++;
+//			oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+//			oUl.style.transition = "all 1s";
+//		}else{
+//			oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+//			oUl.style.transition = "all 1s";
+//		}
+//	}else if(clientEndX - clientStartX < moved && clientEndX - clientStartX > -moved){
+//		oUl.style.transform = "translateX(" + (-index*oWidth) + "px)";
+//		oUl.style.transition = "all 1s";
+//	}
+//	for(let i = 0;i<oDotLi.length;i++){
+//		for(let k = 0;k<oDotLi.length;k++){
+//			oDotLi[k].classList.remove("now");
+//		}
+//		oDotLi[index].classList.add("now");
+//	}
+//	slider();
+//}
+
+}
+slider();
+</script>
+
+</html>

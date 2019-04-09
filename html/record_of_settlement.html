@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>结算记录</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<style type="text/css">
+			*{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.header{
+				width: 100%;
+				height: 2rem;
+				background: #ddd;	
+			}
+			.header ul{
+				width: 100%;
+			}
+			.header ul li{
+				float: left;
+				line-height: 2rem;
+				width: 15%;
+				text-align: center;
+				color: #666;
+			}
+			.header ul li:nth-child(3){
+				width: 45%;
+				text-align: left;
+				margin-left: 5%;
+			}
+			.header ul li:nth-child(4){
+				width: 20%;
+				text-align: left;
+			}
+			.clearfix::after{
+				clear: both;
+				content: "";
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<ul class="clearfix aui-font-size-14">
+				<li>时间</li>
+				<li>状态</li>
+				<li>结算金额</li>
+				<li>到账金额</li>
+			</ul>
+		</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>

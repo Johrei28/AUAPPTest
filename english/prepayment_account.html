@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>资金账户统计</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mydateselect.css" />
+    <style>
+		.main_box {
+			padding-top: 2rem;
+			background-color: #fff;
+		}
+		.main_box img {
+			width: 2rem;
+			height: 2.5rem;
+			margin: auto;
+		}
+		.main_box p,.main_box h1 {
+			text-align: center;
+		}
+		.main_bottom {
+			color: #666;
+			overflow: hidden;
+		}
+		.middle_line {
+			background-color: #f5f5f5;
+			height: 0.8rem;
+		}
+		.bottom_box {
+			position: relative;
+			color: gray;
+			background-color: #fff;
+		}
+		.shuai_box {
+			height: 2rem;
+			line-height: 2rem;
+			overflow: hidden;
+		}
+		.shuai_box img {
+			display: inline;
+			width: 0.8rem;
+			vertical-align:middle;
+		}
+		.pie {
+			height: 10rem;
+		}
+		.pie_left {
+			width: 50%;
+			height: 10rem;
+		}
+		.pie_right {
+			width: 30%;
+			height: 10rem;
+		}
+		.change_icon {
+			height: 2rem;
+			line-height: 2rem;
+		}
+		.change_icon img {
+			width: 1rem;
+			display: inline;
+			vertical-align:middle;
+		}
+		.pie_main {
+			height: 9rem;
+		}
+		.red_exchange {
+			width: 2.5rem;
+			height: 1.3rem;
+			line-height: 1.3rem;
+			text-align: center;
+			margin: 0.5rem auto;
+			border-radius: 2rem;
+			background-color: rgb(255, 181, 30);
+			color: #fff;
+		}
+		.top_tab {
+			height: 2rem;
+			background-color: #fff;
+		}
+		.top_tab ul li {
+			width: 40%;
+			height: 2rem;
+			line-height: 2rem;
+			text-align: center;
+		}
+		.this_tab {
+			border-bottom: 0.1rem solid #ffb51e;
+			color: #ffb51e;
+		}
+		.day_box {
+			z-index: 999;
+			position: absolute;
+			left: 0rem;
+			top:-8rem;
+		}
+		.day_box li {
+			background-color: #fff;
+			padding-left:1rem;
+			width: 4.5rem;
+			height: 2rem;
+			line-height: 2rem;
+		}
+		.isshow {
+			display: none;
+		}
+		.shade_box {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: #000;
+			opacity: 0.4;
+			z-index: 999;
+			width: 100%;
+			height: 100%;
+		}
+    </style>
+</head>
+<body>
+<div class="top_tab aui-border-b aui-margin-t-10">
+	<ul class="aui-content">
+		<li class="aui-pull-left aui-font-size-14 this_tab">Prepayment Account</li>
+		<li class="aui-pull-right aui-font-size-14"  onclick="go_url(202)">Cloud Union  Account</li>
+	</ul>
+</div>
+
+<div class="main_box aui-padded-b-15">
+	<img src="../image/money.png" />
+	<p class="aui-margin-t-10">Prepayment Account Balance</p>
+	<h1 class="aui-text-warning aui-margin-t-10" name='total'></h1>
+	<div class="red_exchange aui-font-size-12" onclick="go_url(204)">Top Up</div>
+	<div class="main_bottom aui-font-size-14 aui-margin-t-15">
+		<span class="aui-pull-left aui-margin-l-15">Today Amount: <b class="aui-text-warning" name='sum'></b></span>
+		<span class="aui-pull-right aui-margin-r-15">Points Gained Today: <b class="aui-text-warning" name='new_total'>AU$ 0.00</b></span>
+	</div>
+</div>
+
+<div class="middle_line"></div>
+
+<!-- <div class="bottom_box" id="bottom_time">
+	<div class="shuai_box aui-font-size-14 aui-border-b">
+		<div class="aui-pull-left aui-margin-l-15" onclick="show_dayselect()">
+			<span class="day_text">今天</span>
+			<i class="aui-iconfont aui-icon-down"></i>
+		</div>
+		<div class="day_box aui-font-size-12 isshow">
+			<li>今天</li>
+			<li>昨天</li>
+			<li>近三天</li>
+			<li>近一个月</li>
+		</div>
+		<div class="aui-pull-right aui-margin-r-15" onclick="show_filter()">
+			<img src="../image/060113.png" >
+			&nbsp;时间筛选
+		</div>
+	</div>
+	<div class="pie">
+		<div class="pie_left aui-pull-left">
+			<div class="pie_main" id="mypie">
+
+			</div>
+			<div class="change_icon aui-font-size-14 aui-text-warning">
+				&nbsp;&nbsp;&nbsp;
+				<img src="../image/change_icon.png" />
+				Income/Expenses
+			</div>
+		</div>
+		<div class="pie_right aui-pull-left aui-padded-t-15 aui-margin-l-10">
+			<h3>收入</h3>
+			<h2 class="aui-text-warning">0.00</h2>
+		</div>
+	</div>
+</div> -->
+
+
+<div class="date_maxbox isshow">
+	<div class="date_topbtn aui-font-size-14">
+		<span class="left_btn">Start Date</span>
+		<span class="right_btn">Finish Date</span>
+	</div>
+	<div class="date_timebox aui-font-size-12">
+		<span class="left_text">01-01-1980</span>
+		<span class="right_text">21-06-2018</span>
+	</div>
+	<div class="date_backline aui-font-size-16">
+		<span class="left_linetext">Please Set Start Time</span>
+		<span class="right_linetext">Choice</span>
+	</div>
+	<div class="date_cal aui-font-size-16">
+		<div class="cal_header aui-border-b">
+			<div class="cal_header_left aui-pull-left">
+				<span onclick="prev_year()">
+					<img src="../image/page_pre2.png" />
+				</span>
+				<span class="aui-margin-l-10" onclick="prev_month()">
+					<img src="../image/page_pre5.png" />
+				</span>
+			</div>
+			<div class="cal_header_middle aui-pull-left">
+				<span class="year_sel"></span> /
+				<span class="month_sel"></span>
+			</div>
+			<div class="cal_header_right aui-pull-left">
+				<span onclick="next_month()">
+					<img src="../image/page_next5.png" />
+				</span>
+				<span class="aui-margin-l-10" onclick="next_year()">
+					<img src="../image/page_next2.png" />
+				</span>
+			</div>
+		</div>
+		<div class="cal_week">
+			<li>日</li>
+			<li>一</li>
+			<li>二</li>
+			<li>三</li>
+			<li>四</li>
+			<li>五</li>
+			<li>六</li>
+		</div>
+		<div class="cal_main aui-border-b">
+
+		</div>
+	</div>
+</div>
+<input type="hidden" name="day_sel" value="1">
+
+<div class="shade_box isshow"></div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<!-- 时间筛选 -->
+<script type="text/javascript" src="../script/mydateselect.js"></script>
+<!-- 饼图 -->
+<script type="text/javascript" src="../plugin/echarts/echarts.common.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script>
+var apiurl = '';
+var token = '';
+var id = '';
+var user_name = '';
+apiready = function() {
+    var storage= window.localStorage;
+    if (!storage) {
+        alert('请升级浏览器');
+        return false;
+    }
+    apiurl=api_au;
+    token = storage.getItem('ylh_authorization_token');
+    id = storage.getItem('ylh_authorization_id');
+    user_name = storage.getItem('ylh_authorization_username');
+    var user_email = '';
+    //获取用户信息
+    api.ajax({
+        url: apiurl + 'member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": user_name,
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            storage.setItem('ylh_authorization_enable', ret.body.member.username);
+            storage.setItem('ylh_authorization_verified', ret.body.member.verified);
+            storage.setItem('ylh_authorization_userinfo', JSON.stringify(ret.body.member));
+            user_info = ret.body.member;
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+    //添加监听时间，刷新数据
+    api.addEventListener({
+        name: 'update'
+    }, function(ret, err) {
+        window.location.reload();
+    });
+    api.ajax({
+        url: 'http://cloudunionauproduction-env.3fpfpq2mra.ap-southeast-2.elasticbeanstalk.com/member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": user_name,
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            storage.setItem('ylh_authorization_username', ret.body.member.username);
+            storage.setItem('ylh_authorization_userinfo', JSON.stringify(ret.body.member));
+            $('h1[name="total"]').html('AU$' + ret.body.member.prepayAccount.toFixed(2));
+            $('b[name="sum"]').html('AU$' + ret.body.member.prepayAccount.toFixed(2));
+
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+    //今日新增
+    api.ajax({
+        url: apiurl + 'transaction/get',
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            var amount = 0;
+            for (var i in ret.body.transactions) {
+                if (moment(ret.body.transactions[i].createdDate.slice(0,-6)).local().format('YYMMDD') == moment().local().format('YYMMDD')) {
+                      if (ret.body.transactions[i].transactionType == 'CA_TO_PA' ||ret.body.transactions[i].transactionType == 'PA_TOP_UP' ) {
+                          amount = Number(amount) + Number(ret.body.transactions[i].accountInAmount);
+                      }
+                }
+            }
+            api.ajax({
+                url: apiurl + 'payment/get',
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'authorization': 'Bearer ' + token
+                },
+                returnAll: true,
+                data: {
+                    body: {
+                          "memberId": id,
+                          "paymentType": "PA_TOP_UP"
+                    }
+                }
+            }, function(ret, err) {
+                for (var i in ret.body.payments) {
+                    if (moment(ret.body.payments[i].createdDate).local().format('YYMMDD') == moment().local().format('YYMMDD')) {
+                          if (ret.body.payments[i].paymentType == 'PA_TOP_UP' && ret.body.payments[i].paymentStatus == 'APPROVED') {
+                              amount = Number(amount) + Number(ret.body.payments[i].accountInAmount);
+                          }
+                    }
+                }
+                $('b[name="new_total"]').html('AU$' + amount.toFixed(2));
+            });
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+}
+
+
+function go_url(typenub) {
+	var jsfun = 'go_url('+typenub+');';
+	api.execScript({
+	    script: jsfun
+	});
+}
+
+function show_dayselect() {
+	$('.day_box').toggle('.isshow');
+}
+
+$('.day_box li').click(function(event) {
+	$('.day_box').toggle('.isshow');
+	$('.day_text').html($(this).text());
+});
+
+function show_filter() {
+	$('.date_maxbox').toggle('.isshow');
+	$('.shade_box').toggle('isshow');
+}
+
+$('.shade_box').click(function(event) {
+	$('.shade_box').toggle('isshow');
+	$('.date_maxbox').toggle('isshow');
+});
+
+</script>
+
+<!-- <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('mypie'));
+    // 指定图表的配置项和数据
+	option = {
+	    series : [
+	        {
+	            name: '访问来源',
+	            type: 'pie',
+	            radius : '62%',
+	            center: ['50%', '50%'],
+	            data:[
+                    {name: 'A', value: 1212},
+                    {name: 'B', value: 2323},
+                    {name: 'C', value: 1919}
+	            ]
+	        }
+	    ]
+	};
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script> -->
+
+</html>

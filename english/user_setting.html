@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Setting</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        html,body {
+            background-color: #F8F8F8;
+        }
+        .content-box {
+            margin-top: 2rem;
+        }
+        .user-pic {
+            height: 5rem;
+        }
+        .top-logo-box {
+            width: 3.5rem;
+            height: inherit;
+            display: inline-flex;
+            align-items: center;
+        }
+        .user-name {
+            display: inline-block;
+            float: left;
+        }
+
+        .top_logo {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        .top_logo img {
+            border-radius: 50%;
+        }
+        .aui-pull-right {
+            font-size: 1.2rem;
+            margin-left: .5rem;
+            margin-top: .2rem;
+        }
+        .user-desc {
+            float: right;
+        }
+        .aui-list-item-title {
+            float: left;
+        }
+        .float-right {
+            color: #A2A2A4;
+        }
+        .loginout {
+            height: 3rem;
+            width: 100%;
+            color: red;
+            display: inline-flex;
+            align-items: center;
+        }
+        .loginout span {
+            display: block;
+            width: inherit;
+            text-align: center;
+        }
+        .return {
+            height: 3rem;
+            width: 100%;
+            color: #A2A2A4;
+            display: inline-flex;
+            align-items: center;
+        }
+        .return span {
+            display: block;
+            width: inherit;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class='content-box'>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in">
+
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title user-pic">
+                            <div class="top-logo-box">
+                                <div class="top_logo aui-pull-left aui-margin-l-10">
+                                    <img src="../image/touxiang.jpg">
+                                </div>
+                            </div>
+
+                            <div class="aui-pull-right user-name">
+
+                            </div>
+                            <!-- <div class="aui-pull-right user-desc">
+                                xxx
+                            </div> -->
+
+                        </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title security">
+                            Security password settings
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item language_change">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title">
+                            language
+                        </div>
+                        <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                            English
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title">
+                            setting
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+
+            <div class='content-box'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                management
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                pic management
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class='content-box'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="loginout">
+                                <span>Log Out</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="return">
+                                <span>Return</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+
+<script>
+var storage= window.localStorage;
+var token = storage.getItem('ylh_authorization_token');
+var token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+var user_name = storage.getItem('ylh_authorization_username');
+var modtime = moment().format('YYYY-MM-DD HH:mm:ss');
+if (!storage) {
+    alert('请升级到最新版');
+}
+apiready = function () {
+    $('.user-name').html(storage.getItem('ylh_authorization_username'));
+    if (!token || (modtime > token_expiry_time)) {
+        to_login();
+    }
+}
+$('.user-pic').parent().on('click', function () {
+    api.openWin({
+        name: 'user_info',
+        url: 'user_info.html',
+        pageParam: {
+
+        }
+    });
+});
+$('.loginout').on('click', function () {
+
+    storage.removeItem('ylh_authorization_token');
+    storage.removeItem('ylh_authorization_token_expiry');
+    storage.removeItem('ylh_authorization_username');
+    storage.removeItem('ylh_authorization_userinfo');
+    storage.removeItem('ylh_authorization_id');
+    api.openWin({
+        name: 'login',
+        url: '../../cover.html',
+        reload: true,
+        bgColor: '#f5f5f5'
+    });
+});
+$('.language_change').on('click', function () {
+    api.openFrame({
+        name: 'index2',
+        url: '../html/user_setting.html',
+        reload: true,
+        bounces: false,
+        rect: {
+            x:0,
+            y:0,
+            w:'auto',
+            h:'auto'
+        }
+    })
+});
+$('.return').on('click', function () {
+    api.openWin({
+        name: 'index',
+        url: 'index4.html',
+        pageParam: {
+
+        }
+    });
+
+});
+$('.security').on('click', function () {
+    api.openWin({
+        name: 'security-password',
+        url: 'security-password.html',
+        pageParam: {
+
+        }
+    });
+});
+function to_login() {
+    api.openWin({
+        name: 'login',
+        url: './login.html',
+        bgColor: '#f5f5f5'
+    });
+    return false;
+}
+</script>
+
+</html>

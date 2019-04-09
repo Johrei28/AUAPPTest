@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>充值</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+   	 	<style type="text/css">
+   	 		body{
+   	 			background: #fff;
+   	 		}
+   	 		.prompt-header{
+   	 			width: 100%;
+   	 			height: 2rem;
+   	 			background: #ddd;
+   	 		}
+   	 		.prompt-header-text{
+   	 			padding-left: 10%;
+   	 			line-height: 2rem;
+   	 		}
+   	 		.prompt-header-text span{
+   	 			float: left;
+   	 			color: #444;
+   	 		}
+   	 		.prompt-header-text a{
+   	 			float: left;
+				display: block;
+				height: 1rem;
+				line-height: 1rem;
+   	 			background: orange;
+   	 			margin-top: 0.5rem;
+   	 			margin-left: 5px;
+   	 			padding: 0 0.5rem;
+   	 			border-radius: 0.5rem;
+   	 			color: #eee;
+   	 		}
+   	 		.content{
+   	 			width: 50%;
+   	 			margin: auto;
+   	 			padding-top: 1.5rem;
+   	 			padding-bottom: 2rem;
+   	 		}
+   	 		.content span{
+   	 			display: block;
+   	 			text-align: center;
+   	 			padding: 0.1rem 0;
+   	 		}
+   	 		.content span:nth-child(2){
+   	 			color: #444;
+   	 		}
+   	 		.content span:nth-child(3){
+   	 			color: orange;
+   	 		}
+   	 		.content span:nth-child(4){
+   	 			color: #ddd;
+   	 		}
+   	 		.password{
+   	 			width: 90%;
+   	 			margin: auto;
+   	 			padding-bottom: 1.5rem;
+   	 		}
+   	 		.password .user-pass,.password .determine-pass{
+   	 			border-bottom: 1px solid #ddd;
+   	 		}
+   	 		.password span{
+   	 			display: inline-block;
+   	 			width: 20%;
+   	 			height: 1rem;
+   	 			font-weight: bold;
+   	 			text-align: center;
+   	 			line-height: 1rem;
+   	 			color: #666;
+   	 		}
+   	 		.password input{
+   	 			display: inline-block;
+   	 			width: 75%;
+   	 			height: 2rem;
+   	 			box-sizing: border-box;
+   	 			-webkit-box-sizing: border-box;
+   	 			text-indent: 1rem;
+   	 		}
+   	 		.password input::-webkit-input-placeholder{
+   	 			color: #aaa;
+   	 		}
+   	 		.prompt{
+   	 			width: 90%;
+   	 			margin: auto;
+   	 			padding-top:0.5rem;
+   	 			padding-bottom: 2.5rem;
+   	 		}
+   	 		.prompt p{
+   	 			color: #ddd;
+   	 		}
+   	 		.btn{
+   	 			display: block;
+   	 			margin:auto;
+   	 			width: 50%;
+   	 			height: 1.5rem;
+   	 			background: orange;
+   	 			border-radius: 0.75rem;
+   	 			color: #fff;
+   	 		}
+   	 		.determine-pass{
+   	 			height: 2rem;
+   	 			line-height: 2rem;
+   	 		}
+   	 		.determine-pass span:nth-child(2){
+   	 			width: 60%;
+   	 			color: #aaa;
+   	 			text-align: left;
+   	 			font-weight: 200;
+   	 			text-indent: 1rem;
+   	 		}
+   	 		.determine-pass span:nth-child(3){
+   	 			width: 10%;
+   	 			color: #aaa;
+   	 		}
+			.contentbox {
+				display: none;
+			}
+			.imgbox {
+				width: 100%;
+				align-items: center;
+				display: flex;
+			}
+   	 	</style>
+	</head>
+	<body>
+		<!-- <div class="prompt-header">
+			<div class="prompt-header-text">
+				<span class="aui-font-size-12">您当前还未设置安全密码，请先</span>
+				<a href="javascript:;" class="aui-font-size-12" onclick="go_url(801)">设置安全密码</a>
+			</div>
+		</div> -->
+
+		<div class="content">
+			<img src="../image/664986797673468132.png"/>
+			<span class="aui-font-size-16">Prepayment 账户</span>
+        <span class="aui-font-size-14">AU$ <span class="total"></span></span>
+		</div>
+
+		<div style="height: 0.5rem;width: 100%;background: #eee;margin-bottom: 0.4rem;"></div>
+
+		<div class="form_box aui-content aui-margin-b-15 aui-margin-t-10">
+		    <ul class="aui-list aui-form-list">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label" style="width: 30%;">
+		                    充值金额
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input class="aui-font-size-14" type="text" name="account" placeholder="请输入您需要充值Trading Points的金额">
+		                </div>
+		            </div>
+		        </li>
+		        <!-- <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    充值积分
+		                </div>
+		            </div>
+		        </li> -->
+		        <!-- <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    选择支付方式
+		                </div>
+		            </div>
+		        </li> -->
+		        <li class="aui-list-item">
+		           <div class="aui-list-item-inner">
+		               <div class="aui-list-item-label">
+		                   支付方式
+		               </div>
+		               <div class="aui-list-item-input">
+		                   <select name="payment">
+		                       <option value="0">请选择</option>
+		                       <option value="1">银行转账</option>
+		                       <option value="2">支付宝/微信</option>
+		                   </select>
+		               </div>
+		           </div>
+		       </li>
+			   <li class="aui-list-item">
+			      <div class="aui-list-item-inner">
+			   	   <div class="aui-list-item-label">
+			   		   安全密码
+			   	   </div>
+			   	   <div class="aui-list-item-input">
+					   <input class="aui-font-size-14" type="password" name="password" placeholder="请输入您的安全密码">
+			   	   </div>
+			      </div>
+			   </li>
+		    </ul>
+		<div class="aui-content aui-margin-b-15 contentbox contentbox1">
+		    <ul class="aui-list aui-list-in">
+		        <li class="aui-list-header">
+                    Cloud Union( Australia) Network Technology Aus Pty Ltd
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">Bank: Australia and New Zealand Banking Group Limited</div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">BSB: 013225</div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">Bank Address: 10 Main St，Box Hill ，VIC 3128，Australia</div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">Account: 417207277</div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">Oversea Swift Code: ANZBAU3M</div>
+		            </div>
+		        </li>
+		    </ul>
+		</div>
+		<div class="aui-content aui-margin-b-15 contentbox contentbox2">
+		    <img src="../image/wechat_alipay.png" alt="支付宝付款二维码" style="width:18rem;">
+		</div>
+		<!--  支付凭证上传-->
+        <div class="container">
+            <div class="page-header">
+                <form id="uploadForm" enctype='multipart/form-data'>
+                    <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                            <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                 <img id='verification_pay_pic' onclick="showAction('verification_pay_pic')" style="width: 100%;height: auto;max-height: 140px;" src="../image/authpic1.jpg" alt="请上传支付凭证" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        </div>
+                    </div>
+                </form>
+                    请上传支付凭证
+            </div>
+        </div>
+
+		<input type="button" class="btn submit" value="提交" id = "PA_topup_sbmit"/>
+    <div class="tips_box">
+    <h3 class="aui-margin-b-15">Notice</h3>
+    <ul>
+      <li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+        <img src="../image/fd165844513guygsidgfi4864.png">
+        <div>充值成功后将不能撤回，请谨慎操作</div>
+      </li>
+    </ul>
+  </div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src='../script/moment.min.js'></script>
+<script type="text/javascript">
+var apiurl = '';
+var token = '';
+var id = '';
+var username = '';
+var img = '';
+var userinfo = '';
+apiready = function() {
+    // api.parseTapmode();
+    // var header = $api.byId('top_box');
+    var storage= window.localStorage;
+    apiurl=api_au;
+    var enable = storage.getItem('ylh_authorization_enable');
+    var verified = storage.getItem('ylh_authorization_verified');
+    token = storage.getItem('ylh_authorization_token');
+    id = storage.getItem('ylh_authorization_id');
+    username = storage.getItem('ylh_authorization_username');
+    if (enable) $('.isenable').css('display', 'none');
+    if (verified) $('.verified').css('display', 'none');
+	userinfo = JSON.parse(storage.getItem('ylh_authorization_userinfo'));
+	$('.total').html(userinfo.prepayAccount.toFixed(2));
+    apiurl=api_au;
+	//添加监听时间，刷新数据
+	api.addEventListener({
+		name: 'update'
+	}, function(ret, err) {
+		window.location.reload();
+	});
+}
+$('select[name="payment"]').on('change', function(event) {
+	$('.contentbox').hide();
+    $('.contentbox' + $(this).val()).show();
+});
+
+   function go_url(typenub) {
+      var jsfun = 'go_url('+typenub+');';
+      api.execScript({
+          script: jsfun
+      });
+   }
+   $('.submit').on('click', function () {
+	   $('#PA_topup_submit').css('display', 'none');
+       var number = moment().local().format('YYMMDD');
+       var account = $('input[name="account"]').val();
+	   var password = $('input[name="password"]').val();
+		var payment = $('select[name="payment"]').val();
+		if (account == '' || password == '' || img == '' || payment == '0') {
+			alert('请上传支付凭证并完整填写信息.');
+			return false;
+		}
+       api.ajax({
+           url: apiurl + 'payment/create',
+           method: 'post',
+           headers: {
+               'Content-Type': 'application/json;charset=utf-8',
+               'authorization': 'Bearer ' + token
+           },
+           returnAll: true,
+           data: {
+               body: {
+				  "accountIn": "PA",
+				  "accountInAmount": account,
+				  "accountOut": "EN",
+				  "accountOutAmount": 0,
+				  "memberId": id,
+				  "method": "OFFLINE_TRANSFER",
+				  "paymentType": "PA_TOP_UP",
+				  "securityPassword": password,
+				  "serialNumHeader": "pt" + number,
+				  "serviceCharge": 0
+				}
+           }
+       }, function(ret, err) {
+           if (ret) {
+				if (ret.body.result == 'SUCCESS') {
+					alert('充值成功！');
+					api.closeWin();
+				} else {
+					alert('充值失败，请再次尝试');
+					$('#PA_topup_submit').css('display', 'block');
+				}
+           } else {
+               api.toast({
+                   msg: '交易信息创建失败',
+                   duration: 2500,
+                   location: 'middle'
+               });
+			   $('#PA_topup_submit').css('display', 'block');
+           }
+       });
+   });
+
+   function getPicture(sourceType, picImg) {
+       if(sourceType==1){ // 拍照
+           api.getPicture({
+               sourceType: 'camera',
+               encodingType: 'jpg',
+               mediaValue: 'pic',
+               allowEdit: false,
+               destinationType: 'base64',
+               quality: 90,
+               saveToPhotoAlbum: true
+           }, function(ret, err) {
+               if (ret) {
+                  if (ret.base64Data == '') return false;
+               //    $('#' + picImg).attr('src', ret.base64Data);
+                  img = ret.base64Data;
+               }else {
+                   api.alert('充值失败，请再次尝试');
+               }
+           });
+       }
+       else if(sourceType==2){ // 从相机中选择
+           api.getPicture({
+                   sourceType: 'library',
+                   encodingType: 'jpg',
+                   mediaValue: 'pic',
+                   destinationType: 'base64',
+                   quality: 50,
+                   targetWidth: 750,
+                   targetHeight: 750
+               }, function(ret, err) {
+
+                   if (ret) {
+                       if (ret.base64Data == '') return false;
+                       // $('#imgUp').attr('src', ret.base64Data)
+                       var aa=ret.base64Data;
+                       // $('#' + picImg).attr('src',aa);
+                       img = aa;
+                       api.ajax({
+                           method:"post",
+                           url:apiurl + "resource/store",
+                           headers: {
+                               'Content-Type': 'application/json;charset=utf-8',
+                               'authorization': 'Bearer ' + token
+                           },
+                           data:{
+                               body: {
+                                   "data": img.substr(23),
+                                   "fileName": id + '_' + 'PApayment',
+                                   "memberId": id,
+                                   "path": id + "/",
+                                   "resourceType": 'PAYMENT'
+                               }
+                           },
+                           dataType:'json',
+                           async:true,
+                       },function(ret,err){
+                           if(ret){
+                               api.toast({
+                                   msg: '上传图片成功',
+                                   duration: 3000,
+                                   location: 'middle'
+                               });
+                           }else{
+                               api.toast({
+                                   msg: err.message,
+                                   duration: 3000,
+                                   location: 'middle'
+                               });
+                           }
+                       })
+                   } else {
+                       alert('充值失败，请再次尝试');
+                   }
+           });
+       }
+   }
+
+   // 上传图片
+   function showAction(picImg){
+        api.actionSheet({
+            title: '上传图片',
+            cancelTitle: '取消',
+            buttons: ['拍照','从手机相册选择']
+        }, function(ret, err) {
+            if (ret) {
+                getPicture(ret.buttonIndex, picImg);
+            }
+        });
+   }
+</script>

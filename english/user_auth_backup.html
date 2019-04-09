@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Personal information</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel='stylesheet' type="text/css" href="../css/Mdate.css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-fileinput.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/zhifu.css">
+<style>
+        html,body {
+            background-color: #F8F8F8;
+        }
+        .content-box {
+            margin-top: 2rem;
+        }
+        .user-pic {
+            display: inline-flex;
+            align-items: center;
+            height: 5rem;
+        }
+        .user-name {
+            display: inline-block;
+        }
+
+        .top_logo {
+            /*margin-left: 5rem;*/
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        .top_logo img {
+            border-radius: 50%;
+        }
+        .aui-pull-right {
+            font-size: 1.2rem;
+            margin-left: .5rem;
+            margin-top: .2rem;
+        }
+        .user-desc {
+            float: right;
+        }
+        .aui-list-item-title {
+            float: left;
+        }
+        .float-right {
+            color: #A2A2A4;
+        }
+        .return {
+            height: 3rem;
+            width: 100%;
+            color: #A2A2A4;
+            display: inline-flex;
+            align-items: center;
+        }
+        .return span {
+            display: block;
+            width: inherit;
+            text-align: center;
+        }
+        .submit {
+            height: 3rem;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            text-align: center;
+            color: #00BCD4;
+        }
+        .submit span {
+            display: block;
+            width: inherit;
+            text-align: center;
+        }
+        .aui-list-item {
+            height: 5rem;
+        }
+        .desc p {
+            margin: 1rem;
+        }
+        #tab div {
+            height:4rem;
+        }
+        #tab {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="aui-tab" id="tab">
+        <div  class="aui-tab-item aui-font-size-20 aui-padded-5 aui-active" data="box1">Passport</div>
+        <div  class="aui-tab-item aui-font-size-20 aui-padded-5" data="box2">Driver License</div>
+        <div  class="aui-tab-item aui-font-size-20 aui-padded-5" data="box3">中国身份证</div>
+    </div>
+    <div class='content-box xbox box1'>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Real Name
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' name='realName' placeholder='Please input your real name' class="aui-font-size-20 float-right"  />
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Passport number
+                        </div>
+                        <div class="aui-list-item-right">
+                           <input class="aui-text aui-font-size-20" type="text" name="certificateNum" placeholder='Please enter your passport number' value=''>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            DetailedAddress
+                        </div>
+                        <div class="aui-list-item-right">
+                           <input class="aui-text aui-font-size-20" type="text" name="detailedAddress" placeholder='Please enter your detailedAddress' value=''>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Date of birth
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="dateOfBirth" class='aui-font-size-20' type="text" id='birthday' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            expiration date
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="expiryDate" class='aui-font-size-20' type="text" id='expiryday' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Upload passport
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+            <div class='desc'>
+                <p class="aui-font-size-20">• Please use passport with valid time more than 1 year</p>
+                <p class="aui-font-size-20">• Please take photos without makeup and/or PS</p>
+                <p class="aui-font-size-20">• Take a photo with you holding your passport without covering any information</p>
+                <p class="aui-font-size-20">• Make sure your photos are clear and readable</p>
+                <p class="aui-font-size-20">• The size of the picture should be less than 2MB and in JPG or PNG format</p>
+            </div>
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic1' onclick="showAction('passport_pic1')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport1.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+                </div>
+            </div>
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic2' onclick="showAction('passport_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport2.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic3' onclick="showAction('passport_pic3')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport3.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic4' onclick="showAction('passport_pic4')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport4.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+                </div>
+            </div>
+            <!-- <div class='content-box xbox box2'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-title">
+                                会员信息
+                            </div>
+                            <div class="aui-btn aui-btn-info float-right">
+                                保存
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                会员等级
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                修改
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                会员类型
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                修改
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+
+            <!-- <div class='content-box xbox box3'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-title">
+                                联系信息
+                            </div>
+                            <div class="aui-btn aui-btn-info float-right">
+                                保存
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                所在地区
+                            </div>
+                            <input style='color:#A2A2A4;' id="picker" name='user_area' class="aui-font-size-20"  />
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                详细地址
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                请输入
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                手机号码
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                电话号码
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                email
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                邮编
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                QQ号码
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+
+
+        </div>
+    </div>
+
+    <div class='content-box xbox box2'>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Real Name
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' name='realName' placeholder='未填写' class="aui-font-size-20 float-right"  />
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Driver License Number
+                        </div>
+                        <div class="aui-list-item-right">
+                           <input class="aui-text aui-font-size-20" type="text" name="certificateNum" value=''>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            DetailedAddress
+                        </div>
+                        <div class="aui-list-item-right">
+                           <input class="aui-text aui-font-size-20" type="text" name="detailedAddress" placeholder='Please enter your detailedAddress' value=''>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Date of Birth
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="dateOfBirth" class='aui-font-size-20' type="text" id='birthday' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Expired Date
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="expiryDate" class='aui-font-size-20' type="text" id='birthday' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Upload Driver License
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+            <div class='desc'>
+                <p class="aui-font-size-20">• Please use driver license with valid time more than 1 year.</p>
+                <p class="aui-font-size-20">• Please take photos without makeup and/or PS.</p>
+                <p class="aui-font-size-20">• Take a photo with you holding your driver license without covering any information.</p>
+                <p class="aui-font-size-20">• Make sure your photos are clear and readable.</p>
+                <p class="aui-font-size-20">• The size of the picture should be less than 2MB and in JPG or PNG format.</p>
+            </div>
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='driver_pic1' onclick="showAction('driver_pic1')" style="width: 100%;height: auto;max-height: 140px;" src="../image/driverLicense1.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <form id="uploadForm" enctype='multipart/form-data'>
+                <div class="form-group">
+                    <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                        <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                            <img id='driver_pic2' onclick="showAction('driver_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/driverLicense2.jpg" alt="" />
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <!-- <span class="btn btn-primary btn-file"> -->
+                                <!-- <span class="fileinput-new">选择文件</span> -->
+                                <!-- <span class="fileinput-exists">换一张</span> -->
+                                <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                            <!-- </span> -->
+                            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <form id="uploadForm" enctype='multipart/form-data'>
+                <div class="form-group">
+                    <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                        <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                            <img id='driver_pic3' onclick="showAction('driver_pic3')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport2.jpg" alt="" />
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <!-- <span class="btn btn-primary btn-file"> -->
+                                <!-- <span class="fileinput-new">选择文件</span> -->
+                                <!-- <span class="fileinput-exists">换一张</span> -->
+                                <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                            <!-- </span> -->
+                            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <form id="uploadForm" enctype='multipart/form-data'>
+                <div class="form-group">
+                    <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                        <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                            <img id='driver_pic4' onclick="showAction('driver_pic4')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport3.jpg" alt="" />
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <!-- <span class="btn btn-primary btn-file"> -->
+                                <!-- <span class="fileinput-new">选择文件</span> -->
+                                <!-- <span class="fileinput-exists">换一张</span> -->
+                                <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                            <!-- </span> -->
+                            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <form id="uploadForm" enctype='multipart/form-data'>
+                <div class="form-group">
+                    <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                        <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                            <img id='driver_pic5' onclick="showAction('driver_pic5')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport4.jpg" alt="" />
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <!-- <span class="btn btn-primary btn-file"> -->
+                                <!-- <span class="fileinput-new">选择文件</span> -->
+                                <!-- <span class="fileinput-exists">换一张</span> -->
+                                <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                            <!-- </span> -->
+                            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+            </form>
+        </div>
+    </div>
+    <a href="javascript:void(0);" class="ljzf_but all_w">Immediate payment</a>
+    <div class='desc'>
+        <p class="aui-font-size-20">• Please upload trade voucher.</p>
+    </div>
+    <div class="container">
+        <div class="page-header">
+            <form id="uploadForm" enctype='multipart/form-data'>
+                <div class="form-group">
+                    <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                        <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                            <img id='pay_pic' onclick="showAction('pay_pic')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport2.jpg" alt="" />
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <!-- <span class="btn btn-primary btn-file"> -->
+                                <!-- <span class="fileinput-new">选择文件</span> -->
+                                <!-- <span class="fileinput-exists">换一张</span> -->
+                                <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                            <!-- </span> -->
+                            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+            </form>
+        </div>
+    </div>
+    <div class='content-box'>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="submit">
+                        <span>Submit</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="return">
+                        <span>Return</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--浮动层-->
+       <div class="ftc_wzsf">
+           <div class="srzfmm_box">
+               <div class="qsrzfmm_bt clear_wl">
+                   <img src="../image/xx_03.jpg" class="tx close fl">
+                   <!-- <img src="images/jftc_03.png" class="tx fl"> -->
+                   <span class="fl">请输入支付密码</span></div>
+               <div class="zfmmxx_shop">
+                   <div class="mz">测试商品</div>
+                   <div class="zhifu_price">￥10.00</div></div>
+               <ul class="mm_box">
+                   <li></li><li></li><li></li><li></li><li></li><li></li>
+               </ul>
+           </div>
+           <div class="numb_box">
+               <div class="xiaq_tb">
+                   <img src="../image/jftc_14.jpg" height="10"></div>
+               <ul class="nub_ggg">
+                   <li><a href="javascript:void(0);" class="zf_num">1</a></li>
+                   <li><a href="javascript:void(0);" class="zj_x zf_num">2</a></li>
+                   <li><a href="javascript:void(0);" class="zf_num">3</a></li>
+                   <li><a href="javascript:void(0);" class="zf_num">4</a></li>
+                   <li><a href="javascript:void(0);" class="zj_x zf_num">5</a></li>
+                   <li><a href="javascript:void(0);" class="zf_num">6</a></li>
+                   <li><a href="javascript:void(0);" class="zf_num">7</a></li>
+                   <li><a href="javascript:void(0);" class="zj_x zf_num">8</a></li>
+                   <li><a href="javascript:void(0);" class="zf_num">9</a></li>
+                   <li><a href="javascript:void(0);" class="zf_empty">清空</a></li>
+                   <li><a href="javascript:void(0);" class="zj_x zf_num">0</a></li>
+                   <li><a href="javascript:void(0);" class="zf_del">删除</a></li>
+               </ul>
+           </div>
+           <div class="hbbj"></div>
+       </div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script type="text/javascript" src="../script/iScroll.js"></script>
+<script type="text/javascript" src="../script/Mdate.js"></script>
+<!-- <script type="text/javascript" src="../plugin/picker/scripts/picker.min.js"></script> -->
+<!-- <script type="text/javascript" src="../plugin/picker/scripts/city.js"></script> -->
+<!-- <script type="text/javascript" src="../plugin/picker/scripts/index.js"></script> -->
+<script type="text/javascript" src="../plugin/bootstrap/bootstrap-fileinput.js"></script>
+<script>
+// new Mdate("birthday");
+var apiurl = '';
+var token = '';
+var box = 'box1';
+var id = '';
+var username = '';
+var img = '';
+var payment = '';
+var imgarr = [];
+apiready = function() {
+    var storage= window.localStorage;
+    apiurl=api_au;
+    if (!storage) {
+        api.alert('请升级浏览器');
+        return false;
+    }
+    token = storage.getItem('ylh_authorization_token');
+    id = storage.getItem('ylh_authorization_id');
+    username = storage.getItem('ylh_authorization_username');
+
+    $('.xbox').css('display', 'none');
+    $('.' + box).css('display', 'block');
+    // alert(apiurl);
+}
+new Mdate("birthday", {
+    acceptId: "birthday",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "",
+    endMonth: "",
+    endDay: "",
+    format: "-"
+});
+new Mdate("expiryday", {
+    acceptId: "expiryday",
+    beginYear: "1960",
+    beginMonth: "1",
+    beginDay: "1",
+    endYear: "3000",
+    endMonth: "1",
+    endDay: "1",
+    format: "-"
+});
+$('.return').on('click', function () {
+    api.openWin({
+        name: 'user_setting',
+        url: 'user_setting.html',
+        pageParam: {
+
+        }
+    });
+
+});
+
+//选项卡
+$('#tab>div').on('click', function () {
+    box = $(this).attr('data');
+    $('#tab>div').removeClass('aui-active');
+    $(this).addClass('aui-active');
+    $('.xbox').css('display', 'none');
+    $('.' + box).css('display', 'block');
+});
+
+// 上传图片
+function showAction(picImg){
+     api.actionSheet({
+         title: 'Upload Pictures',
+         cancelTitle: 'Cancel',
+         buttons: ['Photograph','Selection From Mobile Phone Album']
+     }, function(ret, err) {
+         if (ret) {
+             getPicture(ret.buttonIndex, picImg);
+         }
+     });
+}
+
+function getPicture(sourceType, picImg) {
+    if(sourceType==1){ // 拍照
+        api.getPicture({
+            sourceType: 'camera',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            allowEdit: false,
+            destinationType: 'base64',
+            quality: 90,
+            saveToPhotoAlbum: true
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.base64Data == '') return false;
+               $('#' + picImg).attr('src', ret.base64Data);
+               img = ret.base64Data;
+            }else {
+                api.alert(err.body.message);
+            }
+        });
+    }
+    else if(sourceType==2){ // 从相机中选择
+        api.getPicture({
+                sourceType: 'library',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                destinationType: 'base64',
+                quality: 50,
+                targetWidth: 750,
+                targetHeight: 750
+            }, function(ret, err) {
+                if (ret) {
+                    if (ret.base64Data == '') return false;
+                    // $('#imgUp').attr('src', ret.base64Data)
+                    var aa=ret.base64Data;
+                    $('#' + picImg).attr('src',aa);
+                    imgarr[imgarr.length] = aa;
+                    img = aa;
+                } else {
+                    alert(err.body.message);
+                }
+        });
+    }
+}
+$('.submit').on('click', function () {
+    continue_afterpay();
+});
+//打开浮动
+$(".ljzf_but").click(function(){
+    api.actionSheet({
+        title: '支付方式',
+        cancelTitle: '取消',
+        // destructiveTitle: '需缴纳 ￥10 费用',
+        buttons: ['GP', 'PA']
+    }, function(ret, err) {
+        // var index = ret.buttonIndex;
+        switch (ret.buttonIndex) {
+            case '1':
+                $('.mz').html('GP');
+                payment = 'GP';
+                break;
+            case '2':
+                $('.mz').html('PA');
+                payment = 'PA';
+                break;
+            default:
+                payment = 'GP';
+                $('.mz').html('GP');
+        }
+        if (ret.buttonIndex != '3') $(".ftc_wzsf").show();
+    });
+});
+//关闭浮动
+$(".close").click(function(){
+    $(".ftc_wzsf").hide();
+    $(".mm_box li").removeClass("mmdd");
+    $(".mm_box li").attr("data","");
+    i = 0;
+});
+    //数字显示隐藏
+$(".xiaq_tb").click(function(){
+    $(".numb_box").slideUp(500);
+});
+$(".mm_box").click(function(){
+    $(".numb_box").slideDown(500);
+});
+    //----
+var i = 0;
+$(".nub_ggg li .zf_num").click(function(){
+
+    if(i<6){
+        $(".mm_box li").eq(i).addClass("mmdd");
+        $(".mm_box li").eq(i).attr("data",$(this).text());
+        i++
+        if (i==6) {
+          setTimeout(function(){
+            var data = "";
+                $(".mm_box li").each(function(){
+                data += $(this).attr("data");
+            });
+            var number = moment().local().format('YYMMDD');
+            alert("支付成功"+data);
+            $(".ftc_wzsf").hide();
+            // api.ajax({
+            //     url: apiurl + 'transaction/create',
+            //     method: 'post',
+            //     headers: {
+            //         'Content-Type': 'application/json;charset=utf-8',
+            //         'authorization': 'Bearer ' + token
+            //     },
+            //     returnAll: true,
+            //     data: {
+            //         body: {
+            //           "accountIn": "GP",
+            //           "accountInAmount": 10,
+            //           "accountOut": "NA",
+            //           "accountOutAmount": 0,
+            //           "fromMemberId": id,
+            //           "securityPassword": data,
+            //           "serialNumHeader": "si" + number,
+            //           "serviceCharge": 0,
+            //           "toMemberId": id,
+            //           "transactionType": "SIGN_IN"
+            //         }
+            //     }
+            // }, function(ret, err) {
+            //     if (ret.body.result == 'SUCCESS') {
+            //         continue_afterpay();
+            //     } else {
+            //         api.toast({
+            //             msg: '支付失败',
+            //             duration: 3000,
+            //             location: 'middle'
+            //         });
+            //     }
+            // });
+          },100);
+        };
+    }
+});
+
+$(".nub_ggg li .zf_del").click(function(){
+    if(i>0){
+        i--
+        $(".mm_box li").eq(i).removeClass("mmdd");
+        $(".mm_box li").eq(i).attr("data","");
+    }
+});
+
+$(".nub_ggg li .zf_empty").click(function(){
+    $(".mm_box li").removeClass("mmdd");
+    $(".mm_box li").attr("data","");
+    i = 0;
+});
+
+function continue_afterpay() {
+    var certificateNum = $('.' + box + ' input[name="certificateNum"]').val();
+    var dateOfBirth = $('.' + box + ' input[name="dateOfBirth"]').val();
+    var expiryDate = $('.' + box + ' input[name="expiryDate"]').val();
+    var realName = $('.' + box + ' input[name="realName"]').val();
+    var detailedAddress = $('.' + box + ' input[name="detailedAddress"]').val();
+    var fileName = 'passport_pic';
+    var resourceType = "PASSPORT";
+    switch (box) {
+        case 'box2':
+            fileName = 'driver_license_pic';
+            resourceType = "DRIVER_LICENCE";
+            break;
+        case 'box3':
+            fileName = '???';
+            resourceType = "???";
+            break;
+        default:
+
+    }
+    api.ajax({
+        method:"post",
+        url:apiurl + "memberinfo/update",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        data:{
+            body: {
+                "busniessNum": "",
+                "certificateNum": certificateNum,
+                "detailedAddress": detailedAddress,
+                "dateOfBirth": moment(dateOfBirth).format('MM-DD-YYYY'),
+                "expiryDate": moment(expiryDate).format('MM-DD-YYYY'),
+                "gender": "",
+                "gstRegistered": "",
+                "id": id,
+                "realName": realName
+            }
+        },
+        dataType:'json',
+        async:true,
+    },function(ret,err){
+        if(ret){
+            if (ret.result == 'SUCCESS') {
+                api.alert({
+                    msg: '提交成功',
+                    duration: 2000,
+                    location: 'center'
+                },function () {
+                    api.openWin({
+                        name: 'user_center',
+                        url: 'user_center.html',
+                    });
+                });
+            }
+        }else{
+            alert(JSON.stringify(err.body.message));
+        }
+    })
+    for (var i = 0; i < imgarr.length; i++) {
+        api.ajax({
+            method:"post",
+            url:apiurl + "resource/store",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'authorization': 'Bearer ' + token
+            },
+            data:{
+                body: {
+                    "data": imgarr[i].substr(23),
+                    "fileName": id + '_' + fileName + i,
+                    "memberId": id,
+                    "path": id + "/",
+                    "resourceType": resourceType
+                }
+            },
+            dataType:'json',
+            async:true,
+        },function(ret,err){
+            if(ret){
+                // if (ret.=result == 'SUCCESS') {
+                //     api.toast({
+                //         msg: '接口2成功',
+                //         duration: 2000,
+                //         location: 'middle'
+                //     });
+                // }
+            }else{
+                // alert(JSON.stringify(err));
+                api.toast({
+                    msg: err.message,
+                    duration: 3000,
+                    location: 'middle'
+                });
+            }
+        })
+    }
+}
+</script>
+
+</html>

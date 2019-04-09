@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>转出</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+	<style>
+    	html,body {
+    		background-color: #f5f5f5;
+    	}
+		.top_box {
+			padding: 0.5rem;
+			background-color: #f5f5f5;
+		}
+		.main_box {
+			padding-top: 2rem;
+			background-color: #fff;
+		}
+		.main_box img {
+			margin: auto;
+		}
+		.main_box p {
+			text-align: center;
+		}
+		.form_box {
+			background-color: #fff;
+		}
+		.form_box h4 {
+			display: inline;
+		}
+		.form_box input {
+			height: 1.5rem;
+			border:1px solid red;
+			display: inline;
+			width: 70%;
+			border: none;
+		}
+		.sub_box {
+			background-color: #fff;
+			padding-top: 1.5rem;
+			padding-bottom: 1.5rem;
+			padding-left: 2.2rem;
+			padding-right: 2.2rem;
+		}
+		.tips_box {
+			background-color: #fff;
+			padding-top: 2rem;
+			background-color: #fff;
+			padding-left: 1rem;
+			padding-bottom: 4rem;
+			padding-right: 1rem;
+		}
+		.tips_box ul li {
+			overflow: hidden;
+			color: #666;
+			line-height: 1rem;
+		}
+		.tips_box ul li img {
+			float: left;
+			margin-right: 0.5rem;
+			width: 0.8rem;
+			height: 1rem;
+		}
+		.tips_box ul li div {
+			width: 85%;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+
+<div class="top_box">
+    <div class="isenable">
+        <div class="aui-font-size-12">您还未实名认证地，无法兑换</div>
+        <div class="aui-btn aui-btn-warning aui-btn-sm aui-margin-t-10" style="border-radius: 2rem;" onclick="go_url(799)">
+        个人认证
+        </div>
+    </div>
+	<div class="aui-font-size-12 aui-margin-t-10">
+		您当前未设置安全密码，请先&nbsp;&nbsp;
+		<div class="aui-btn aui-btn-warning aui-btn-sm" style="border-radius: 2rem;" onclick="go_url(801)">
+			设置安全密码
+		</div>
+	</div>
+</div>
+
+<div class="main_box aui-padded-b-15">
+	<img src="../image/1.png" />
+	<p class="aui-margin-t-15">Cloud Union 账户</p>
+        <h1 class="aui-text-warning aui-margin-t-10" style="text-align:center;">AUD$ <span class="cloudUnionAccount"></span></h1>
+</div>
+
+<div class="form_box aui-padded-10 aui-margin-t-15 aui-border-b">
+	<h4>转出金额</h4>
+	<input type="text" name="money" class="aui-margin-l-10 aui-font-size-12 aui-padded-l-5" placeholder="请输入您要从该账户转到prepayment账户的金额">
+</div>
+
+<div class="sub_box">
+	<div class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm" style="border-radius: 2rem;">
+	提交
+	</div>
+</div>
+
+<div class="tips_box">
+	<h3 class="aui-margin-b-15">温馨提示</h3>
+	<ul>
+		<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-14">
+			<img src="../image/fd165844513guygsidgfi4864.png">
+			<div>转出是指从Cloud Union账户转入Prepayment账户</div>
+		</li>
+		<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-14">
+			<img src="../image/fd165844513guygsidgfi4864.png">
+			<div>转出金额不能超出该账户余额</div>
+		</li>
+	</ul>
+</div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+
+<script>
+var apiurl = '';
+var user_info = '';
+var token = '';
+var user_name = '';
+apiready = function() {
+    var storage= window.localStorage;
+    if (!storage) {
+        api.alert('请升级APP');
+        return false;
+    }
+    apiurl=api_au;
+    token = storage.getItem('ylh_authorization_token');
+    token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+    user_name = storage.getItem('ylh_authorization_username');
+    user_info = JSON.parse(storage.getItem('ylh_authorization_userinfo'));
+    $('.cloudUnionAccount').html(user_info.cloudUnionAccount);
+}
+
+function go_url(typenub) {
+	var jsfun = 'go_url('+typenub+');';
+	api.execScript({
+	    script: jsfun
+	});
+}
+</script>
+</html>

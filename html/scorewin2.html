@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>个人积分账户</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+		#header {
+			background-color: #fff;
+		}
+    </style>
+</head>
+<body>
+
+<header class="aui-bar aui-bar-nav aui-bar-light" id="header">
+    <a class="aui-pull-left aui-btn" id="back">
+        <span class="aui-iconfont aui-icon-left" style="color:#FBB223;"></span>
+    </a>
+    <div class="aui-title" id="top_title" style="color:#FBB223;">个人积分账户</div>
+    <a class="aui-pull-right aui-font-size-14 aui-text-warning" id="header_right">
+
+    </a>
+</header>
+
+
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+apiready = function() {
+    api.parseTapmode();
+    var header = $api.byId('header');
+    $api.fixStatusBar(header);
+    var headerH = $api.offset(header).h;
+    //frame的高度为当前window高度减去header和footer的高度
+    var frameH = api.winHeight - headerH;
+    var pagetype = api.pageParam.pagetype;
+    go_url(pagetype);
+    //给 id为back的 元素，绑定 单击事件，关闭当前 window窗口页面
+    $api.addEvt($api.byId('back'), 'click', function(){
+        api.closeWin();
+    });
+}
+
+function go_url(pagetype) {
+    api.parseTapmode();
+    var header = $api.byId('header');
+    $api.fixStatusBar(header);
+    var headerH = $api.offset(header).h;
+    //frame的高度为当前window高度减去header和footer的高度
+    var frameH = api.winHeight - headerH;
+    if (pagetype == 104) {
+        $('#top_title').html('Oz Points兑换');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'redscore_exchange',
+            url: './redscore_exchange.html',
+            bounces: false,
+            reload: true,
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 105) {
+        $('#top_title').html('充值Trading Points');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'score_recharge',
+            url: './score_recharge.html',
+            bounces: false,
+            reload: true,
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 106) {
+        $('#top_title').html('商家收银');
+        $('#header_right').html('收银明细');
+        $('#header_right').attr('onclick','go_url(909)');
+        api.openFrame({
+            name: 'cashier-center',
+            url: './cashier-center.html',
+            bounces: false,
+            reload: true,
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 107) {
+        $('#top_title').html('商家收银');
+        $('#header_right').html('收银明细');
+        $('#header_right').attr('onclick','go_url(909)');
+        api.openFrame({
+            name: 'cashier-center2',
+            url: './cashier-center2.html',
+            bounces: false,
+            reload: true,
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 204) {
+        $('#top_title').html('充值');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'topup',
+            url: './topup.html',
+            bounces: false,
+            reload: true,
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 205) {
+        $('#top_title').html('结算');
+        $('#header_right').html('结算明细');
+        $('#header_right').attr('onclick','go_url(501)');
+        api.openFrame({
+            name: 'my_settle',
+            url: './my_settle.html',
+            bounces: false,
+            reload: true,
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 206) {
+        $('#top_title').html('转出');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'capital_out',
+            url: './capital_out.html',
+            bounces: false,
+            reload: true,
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 501) {
+        api.openWin({
+            name: 'scorewin',
+            url: './scorewin.html',
+            reload: true,
+            pageParam: {
+                pagetype: pagetype
+            }
+        });
+    } else if (pagetype == 6001 || pagetype == 6002) {
+        $('#top_title').html('个人资金账户');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'my_capital',
+            url: './my_capital.html',
+            bounces: false,
+            reload: true,
+            pageParam: {
+                pagetype: pagetype
+            },
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 5001) {
+        $('#top_title').html('我的积分');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'my_score',
+            url: './my_score.html',
+            reload: true,
+            bounces: false,
+            pageParam: {
+                pagetype: pagetype
+            },
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    }  else if (pagetype == 5002) {
+        $('#top_title').html('我的积分');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'my_score2',
+            url: './my_score2.html',
+            reload: true,
+            bounces: false,
+            pageParam: {
+                pagetype: pagetype
+            },
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    } else if (pagetype == 5003) {
+        $('#top_title').html('我的积分');
+        $('#header_right').html('');
+        api.openFrame({
+            name: 'my_score3',
+            url: './my_score3.html',
+            bounces: false,
+            reload: true,
+            pageParam: {
+                pagetype: pagetype
+            },
+            rect: {
+                x:0,
+                y:headerH,
+                w:'auto',
+                h:frameH
+            }
+        })
+    }else if (pagetype == 801) {
+        api.openWin({
+            name: 'scorewin',
+            url: './scorewin.html',
+            reload: true,
+            pageParam: {
+                pagetype: pagetype
+            }
+        });
+    } else if (pagetype == 909) {
+        api.openWin({
+            name: 'scorewin',
+            url: './scorewin.html',
+            reload: true,
+            pageParam: {
+                pagetype: pagetype
+            }
+        });
+    } else if (pagetype == 907) {
+        api.openWin({
+            name: 'scorewin',
+            url: './scorewin.html',
+            reload: true,
+            pageParam: {
+                pagetype: pagetype
+            }
+        });
+    } else {
+        api.openWin({
+            name: 'scorewin',
+            url: './scorewin.html',
+            pageParam: {
+                pagetype: pagetype
+            }
+        });
+    }
+}
+
+</script>
+
+</html>

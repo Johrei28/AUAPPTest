@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Cloud Union</title>
+    <link rel="stylesheet" type="text/css" href="css/api.css" />
+    <link rel="stylesheet" type="text/css" href="css/aui.css" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+        }
+        .flex-1 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+        }
+    </style>
+</head>
+
+<body class="wrap">
+
+</body>
+
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/aui-tab.js" ></script>
+<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+apiready = function() {
+    var url = 'html/index.html';
+//    var url = 'html/cover.html';
+    var referrer = '';
+
+    // 在此验证是否是第一次进入app
+    // 若是第一次进入则进入启动页
+    // 若不是则直接打开首页
+
+    // api.openFrame({
+    //     name: 'index_page',
+    //     url: 'html/index_page.html',
+    //     bounces: false,
+    //     rect: {
+    //         x:0,
+    //         y:0,
+    //         w:'auto',
+    //         h:'auto'
+    //     }
+    // })
+    api.setPrefs({
+        key: 'area_cn',
+        value: '{"1":"中国(+86)","2":"新西兰(+64)","3":"美国(+1)","4":"澳大利亚(+61)","5":"马来西亚(+60)","6":"台湾(+886)"}'
+    });
+    api.setPrefs({
+        key: 'area_en',
+        value: '{"1":"CN(+86)","2":"NZ(+64)","3":"US(+1)","4":"AU(+61)","5":"MY(+60)","6":"TW(+886)"}'
+    });
+    api.setPrefs({
+        key: 'area_value',
+        value: '{"1":"86","2":"64","3":"1","4":"61","5":"60","6":"886"}'
+    });
+    //接口地址
+    api.setPrefs({
+        key: 'apiurl_au',
+        value: 'http://cloudunionauproduction-env.3fpfpq2mra.ap-southeast-2.elasticbeanstalk.com/'
+    });
+    // api.addEventListener({
+    //     name : 'appintent'
+    // }, function(ret, err) {
+    //     //得到参数 进行跳转
+    //     url = ret.appParam.param1 != '' ? ret.appParam.param1 : '';
+    //     referrer = ret.appParam.param2 != '' ? ret.appParam.param2 : '';
+    // });
+    api.openFrame({
+        name: 'index-main',
+        url: url,
+        bounces: false,
+        rect: {
+            x:0,
+            y:0,
+            w:'auto',
+            h:'auto'
+        }
+    })
+
+};
+
+
+</script>
+
+</html>

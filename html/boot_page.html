@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title></title>
+		<style type="text/css">
+			html,body {
+				background-color: #fff;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.bigbox{
+				position: relative;
+			}
+			.header{
+				background: #eee;
+				height: 5rem;
+			}
+			.header>p{
+				padding: 0.3rem;
+				text-indent: 0.2rem;
+			}
+			.header>a{
+				display: inline-block;
+				background: orange;
+				color: #fff;
+				padding: 0.15rem 0.4rem;
+				border-radius: 0.75rem;
+				margin-left: 0.5rem;
+				text-decoration: none;
+			}
+			.header-prompt{
+				color: #aaa;
+				line-height: 2rem;
+				margin-left: 0.5rem;
+			}
+			.header-prompt a{
+				display: inline-block;
+				background: orange;
+				line-height: 1rem;
+				padding: 0.1rem 0.4rem;
+				color: #fff;
+				text-decoration: none;
+				border-radius: 5.05rem;
+				margin-left: 0.2rem;
+			}
+			.content{
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				margin-top: 2.5rem;
+				padding-bottom: 2.5rem;
+			}
+			.content img{
+				margin: auto;
+				width: 3rem;
+				height: 4rem;
+			}
+			.content p:nth-child(2){
+				color: #666;
+				text-align: center;
+				line-height: 2rem;
+				margin-top: 0.5rem;
+			}
+			.content p:nth-child(3){
+				font-size: 0.9rem;
+				color: orange;
+				text-align: center;
+			}
+			.content p:nth-child(4){
+				color: #888;
+				text-align: center;
+				line-height: 1.5rem;
+			}
+			.border-b{
+				width: 100%;
+				height: 0.6rem;
+				background: #eee;
+			}
+
+			.inputbox{
+				width: 100%;
+			}
+			.inputbox ul{
+				width: 100%;
+			}
+			.inputbox ul li{
+				border-bottom: 1px solid #eee;
+				line-height: 2rem;
+				color: #666;
+			}
+			.inputbox ul li span:nth-child(1){
+				display: inline-block;
+				width: 25%;
+				padding-left: 0.5rem;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.inputbox ul li input{
+				display: inline-block;
+				height: 2rem;
+				width: 73%;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				border: none;
+				outline: none;
+			}
+
+			.bank{
+				height: 2rem;
+			}
+			.bank span:nth-child(1){
+				float: left;
+			}
+			.bank span:nth-child(2){
+				float: left;
+				display: block;
+				width: 66%;
+				height: 2rem;
+				color: #aaa;
+				overflow: hidden;
+			}
+			.bank span:nth-child(3){
+				display: inline-block;
+				width: 1rem;
+				height: 1rem;
+				overflow: hidden;
+			}
+			.bank span:nth-child(3) img{
+				width: 2rem;
+				height: 2rem;
+				margin: -0.25rem 0 0 -0.25rem;
+			}
+			.inputbox-btn{
+				display: block;
+				width: 50%;
+				margin:1rem 0 0 25%;
+				height: 1.5rem;
+				color: #fff;
+				background: orange;
+				text-align: center;
+				line-height: 1.5rem;
+				border: none;
+				border-radius: 1rem;
+				outline: none;
+			}
+
+			.prompt{
+				padding: 1rem 0 0 0.5rem;
+			}
+			.prompt h5{
+				color: #666;
+			}
+			.prompt ul{
+				padding-top: 0.6rem;
+			}
+			.prompt ul li img{
+				display:inline-block;
+				width: 0.5rem;
+				height: 0.75rem;
+			}
+			.prompt ul li span{
+				color: #888;
+			}
+
+			.bank-list{
+				position: absolute;
+				display: none;
+				width: 100%;
+				height: 841px;
+				background: #fff;
+				left: 0;
+				top: 0;
+
+			}
+			.bank-list-title{
+				width: 100%;
+				height:3rem;
+				position: relative;
+				border-bottom:1px solid #ddd;
+			}
+			.bank-list-title div{
+				position: absolute;
+				display: block;
+				transform:rotate(180deg);
+				-ms-transform:rotate(180deg);
+				-moz-transform:rotate(180deg);
+				-webkit-transform:rotate(180deg);
+				-o-transform:rotate(180deg);
+				width: 2rem;
+				height: 3rem;
+				overflow: hidden;
+			}
+			.bank-list-title div img{
+				width: 4rem;
+				height: 4rem;
+				margin: -1rem 0 0 -1rem;
+			}
+			.bank-list-title span{
+				position: absolute;
+				display: block;
+				width:100%;
+				font-size: 0.9rem;
+				color: #444444;
+				text-align: center;
+				line-height:3rem;
+			}
+			.bank-list-all{
+				width:100%;
+			}
+			.bank-list-all li{
+				width:100%;
+				height: 2rem;
+				color: #666;
+				line-height: 2rem;
+				text-indent:0.5rem ;
+				border-bottom: 1px solid #ddd;
+				background: url(../image/right-1.png)no-repeat 96% 0.6rem ;
+				background-size:0.7rem;
+				overflow: hidden;
+			}
+
+
+			::-webkit-input-placeholder {
+			    color:    #aaa;
+			}
+			.clearfix::after{
+				clear: both;
+				content: "";
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bigbox">
+			<div class="header">
+				<p class="aui-font-size-12">您未实名认证，无法结算</p>
+				<a href="" class="aui-font-size-12" onclick="go_url(799)">个人认证</a>
+				<div class="header-prompt" onclick="go_url(801)">
+					<p class="aui-font-size-12">您当前还未设置安全密码,请先<a href="javascript:;" class="aui-font-size-12">设置安全密码</a></p>
+				</div>
+			</div>
+
+			<div class="content">
+				<img src="../image/1.png"/>
+				<p class="aui-font-size-12">Cloud Union账户</p>
+            <p class="aui-font-size-12">OzPD0.00</p>
+			</div>
+
+			<div class="border-b">
+
+			</div>
+
+			<div class="inputbox">
+				<form action="" method="post">
+					<ul>
+						<li>
+                        <span class="aui-font-size-12">结算OzPD</span>
+                        <input type="number" placeholder="单笔结算最低 OzPD100" class="aui-font-size-12" />
+						</li>
+						<li>
+							<span class="aui-font-size-12">银行用户名</span>
+							<input type="text" placeholder="请输入银行用户名" class="aui-font-size-12"/>
+						</li>
+						<li>
+							<span class="aui-font-size-12">结算账户</span>
+							<input type="number" placeholder="请输入银行账号" class="aui-font-size-12"/>
+						</li>
+						<li class="bank">
+							<span class="aui-font-size-12">银行</span>
+							<span class="bank-name aui-font-size-12">请选择银行</span>
+							<span class="bank-name-right"><img src="../image/0601 (19).png"/></span>
+						</li>
+					</ul>
+					<input type="button" value="提交" class="inputbox-btn aui-font-size-12"/>
+				</form>
+			</div>
+
+			<div class="prompt">
+				<h5 class="aui-font-size-12">温馨提示</h5>
+				<ul>
+					<li>
+						<img src="../image/fd165844513guygsidgfi4864.png" alt="" />
+						<span class="aui-font-size-12">结算指把您商城账户中的余额提取到您私人的银行卡中</span>
+					</li>
+					<li>
+						<img src="../image/fd165844513guygsidgfi4864.png" alt="" />
+                    <span class="aui-font-size-12">单笔结算最高OzPD500，每天最多结算3次</span>
+					</li>
+					<li>
+						<img src="../image/fd165844513guygsidgfi4864.png" alt="" />
+						<span class="aui-font-size-12">请检查账户类别及账号，确认是结算至您本人的账户中</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="bank-list">
+				<div class="bank-list-title clearfix">
+					<span class="aui-font-size-12">开户总行</span>
+					<div class="back">
+						<img src="../image/0601 (20).png"></img>
+					</div>
+				</div>
+				<ul class="bank-list-all aui-font-size-12">
+					<li>ANZ</li>
+					<li>ASB</li>
+					<li>TSB</li>
+					<li>Westpac</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+	<script type="text/javascript">
+		var oBankBtn = document.querySelector(".bank");
+		var oBankList = document.querySelector(".bank-list");
+		var oBack = document.querySelector(".back");
+		var oBankListAll = document.querySelectorAll(".bank-list-all li");
+		var oBankName = document.querySelector(".bank-name");
+		var oBankNameRight = document.querySelector(".bank-name-right");
+		oBankBtn.onclick = function(){
+			oBankList.style.display = "block";
+		}
+		oBack.onclick = function(){
+			oBankList.style.display = "none";
+		}
+		for(let i = 0;i<oBankListAll.length;i++){
+			let index = i;
+			oBankListAll[index].onclick = function(){
+				oBankName.innerHTML = oBankListAll[index].innerHTML;
+				oBankList.style.display = "none";
+			}
+		}
+
+		function go_url(typenub) {
+			var jsfun = 'go_url('+typenub+');';
+			api.execScript({
+			    script: jsfun
+			});
+		}
+
+	</script>
+</html>

@@ -1,0 +1,116 @@
+.date_maxbox {
+	/*height: 20rem;*/
+	overflow: hidden;
+	background-color: #fff;
+	/*border: 1px solid red;*/
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+}
+.date_topbtn {
+	margin-top: 0.8rem;
+	overflow: hidden;
+}
+.date_topbtn span {
+	color: #fff;
+	background-color: rgb(255,182,28);
+	padding:0.2rem 0.5rem;
+	border-radius: 1rem;
+	border: 1px solid #ffc107;
+}
+.left_btn {
+	margin-left: 0.5rem;
+	float: left;
+}
+.date_topbtn .right_btn {
+	margin-right:0.5rem;
+	float: right;
+	color: #ffc107;
+	background-color: #fff;
+}
+.date_timebox {
+	margin-top: 0.4rem;
+	color: rgb(255,182,28);
+	overflow: hidden;
+}
+.left_text {
+	margin-left: 1rem;
+	float: left;
+}
+.right_text {
+	margin-right:1rem;
+	float: right;
+}
+.date_backline {
+	margin-top: 0.4rem;
+	height: 2rem;
+	line-height: 2rem;
+	background-color: rgb(204,204,204);
+}
+.left_linetext {
+	margin-left: 0.8rem;
+	float: left;
+}
+.right_linetext {
+	margin-right:0.8rem;
+	float: right;
+}
+
+.date_cal {
+	overflow: hidden;
+}
+.cal_header {
+	overflow: hidden;
+}
+.cal_header span{
+	height: 100%;
+}
+.cal_header_left {
+	height: 2.3rem;
+	line-height: 2.3rem;
+	text-align: center;
+	width: 30%;
+}
+.cal_header_middle {
+	height: 2.3rem;
+	line-height: 2.3rem;
+	text-align: center;
+	width: 40%;
+}
+.cal_header_right {
+	height: 2.3rem;
+	line-height: 2.3rem;
+	text-align: center;
+	width: 30%;
+}
+.cal_week {
+	overflow: hidden;
+}
+.cal_week li {
+	height: 1.8rem;
+	line-height: 1.8rem;
+	text-align: center;
+	width: 14.2%;
+	float: left;
+}
+.cal_main {
+	overflow: hidden;
+}
+.cal_main li {
+	width: 14.28%;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	border-radius: 50%;
+	float: left;
+	/*border: 1px solid #ddd;*/
+	text-align: center;
+}
+.cal_header img  {
+	width: 1.3rem;
+	height: 1.3rem;
+	margin:auto;
+	margin-top: 0.6rem;
+	vertical-align: middle;
+}

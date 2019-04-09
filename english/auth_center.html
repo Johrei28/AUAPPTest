@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>authentication center</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        .phone {
+                display: none;
+            }
+        .card {
+            display: none;
+        }
+        .pending{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-media-list">
+        <!-- <li class="aui-list-item phone">
+            <div class="aui-media-list-item-inner">
+	            <div class="aui-list-item-media" style="width:2.5rem;">
+	                <img src="../image/rz_true.png" style="width:2.5rem;">
+	            </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">Mobile / email has been certified</div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        Mobile / email verification has passed.
+                    </div>
+                </div>
+            </div>
+        </li> -->
+        <li class="aui-list-item aui-list-item-arrow card" style="display: flex;align-items: center;">
+            <div class="aui-media-list-item-inner">
+	            <div class="aui-list-item-media" style="width:2.5rem;">
+	                <img src="../image/rz_true.png" style="width:2.5rem;">
+	            </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title"><span class="memberInfoType">Personal authentication</span> <span class="status">Approved</span></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        Certificate / operator certification has been passed
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- <li class="aui-list-item aui-list-item-arrow email">
+            <div class="aui-media-list-item-inner" onclick="goauth()">
+	            <div class="aui-list-item-media" style="width:2.5rem;">
+	                <img src="../image/rz_false.png" style="width:2.5rem; margin-top:0.8rem;">
+	            </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">Cell phone / mailbox is not certified</div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        Binding a mobile phone/mailbox makes it easier for users to retrieve passwords, receive mail and other services, and cannot be modified after authentication
+                    </div>
+                </div>
+            </div>
+        </li> -->
+
+        <li class="aui-list-item aui-list-item-arrow mr" style="display: flex;align-items: center;">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width:2.5rem;">
+                    <img src="../image/rz_false.png" style="width:2.5rem;">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title"><span class="memberInfoType">Personal authentication</span> <span class="status">Not Verified</span></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        Authentication of authentic identity information ensures the safety of your funds. The successful authentication will show your location on the merchant map
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li class="aui-list-item aui-list-item-arrow company" style="display: flex;align-items: center;">
+            <div class="aui-media-list-item-inner" onclick="goauth()">
+                <div class="aui-list-item-media" style="width:2.5rem;">
+                    <img src="../image/rz_false.png" style="width:2.5rem;">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title"><span class="memberInfoType">Personal authentication</span> <span class="status">Not Verified</span></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12" style="color:#ccc;">
+                        Authentication of authentic identity information ensures the safety of your funds. The successful authentication will show your location on the merchant map
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2 aui-font-size-12 declineReason" style="color:#ccc;">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow pending" style="display: flex;align-items: center;">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width:2.5rem;">
+                    <img src="../image/rz_false.png" style="width:2.5rem;">
+                </div>
+                <div class="aui-list-item-inner" style="display: flex;align-items: center;">
+                    <div class="aui-list-item-text" style="color: #cccccc;height: 1rem;line-height: 1rem;font-size: 0.8rem;">
+                        Application for certification has been submitted and is pending review
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script>
+var apiurl = '';
+$('.mr').show().siblings().hide();
+apiready = function() {
+    // api.parseTapmode();
+    // var header = $api.byId('top_box');
+    var storage= window.localStorage;
+    apiurl=api_au;
+    if (!storage) {
+        api.alert('请升级浏览器');
+        return false;
+    }
+    var token = storage.getItem('ylh_authorization_token');
+    var user_name = storage.getItem('ylh_authorization_username');
+    var user_email = '';
+
+    //获取用户信息
+    api.ajax({
+        url: apiurl + 'member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": user_name,
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            $('#declineReason').html(ret.body.member.declineReason);
+            if (ret.body.member.enable) {
+                $('.phone').css('display', 'block');
+                $('.email').css('display', 'none');
+            } else {
+                $('.phone').css('display', 'none');
+                $('.email').css('display', 'block');
+            }
+            if (ret.body.member.verifyStatus == 'APPROVED') {
+                $('.status').html("Approved");
+                $('.card').show().siblings().hide();
+            }
+            else if(ret.body.member.verifyStatus == 'DECLINED') {
+                $('.status').html('Declined');
+                $('.company').show().siblings().hide();
+                $('.company .decline').show();
+                $('#declineReason').html(ret.body.member.declineReason);
+
+            }
+            else if(ret.body.member.verifyStatus == 'PENDING_APPROVAL') {
+                $('.status').html('Pending');
+                $('.pending').show().siblings().hide();
+            }
+            else if(ret.body.member.verifyStatus == 'DEFAULF') {
+                $('.status').html('Not Verified');
+                $('.company').show().siblings().hide();
+            }else {
+                $('.status').html("Not Verified");
+                $('.company').show().siblings().hide();
+            }
+
+            if(ret.body.member.memberInfoType == 'INDIVIDUAL') {
+                $('.memberInfoType').html('Personal authentication');
+            } else {
+                    $('.memberInfoType').html('Company certification');
+            }
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+}
+function goauth() {
+    api.openWin({
+        name: 'user_auth',
+        reload: true,
+        url: 'user_auth.html'
+    });
+
+}
+</script>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Personal information</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel='stylesheet' type="text/css" href="../css/Mdate.css" />
+
+<style>
+        html,body {
+            background-color: #F8F8F8;
+        }
+        .content-box {
+            margin-top: 2rem;
+        }
+        .user-pic {
+            display: inline-flex;
+            align-items: center;
+            height: 5rem;
+        }
+        .user-name {
+            display: inline-block;
+        }
+
+        .top_logo {
+            /*margin-left: 5rem;*/
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        .top_logo img {
+            border-radius: 50%;
+        }
+        .aui-pull-right {
+            font-size: 1.2rem;
+            margin-left: .5rem;
+            margin-top: .2rem;
+        }
+        .user-desc {
+            float: right;
+        }
+        .aui-list-item-title {
+            float: left;
+        }
+        .float-right {
+            color: #A2A2A4;
+        }
+        .return {
+            height: 3rem;
+            width: 100%;
+            color: #A2A2A4;
+            display: inline-flex;
+            align-items: center;
+        }
+        .return span {
+            display: block;
+            width: inherit;
+            text-align: center;
+        }
+        .aui-list-item {
+            height: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class='content-box'>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Essential information
+                        </div>
+                        <div class="aui-btn aui-btn-info float-right aui-font-size-20 save">
+                            save
+                        </div>
+                    </div>
+                </li>
+
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title user-pic">
+                            <div style='margin-right:8.5rem;' class="aui-list-item-title aui-font-size-20">
+                                Head portrait
+                            </div>
+
+                            <div class="aui-list-item-right">
+                                <div class="top_logo">
+                                    <img src="../image/touxiang.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            User ID
+                        </div>
+                        <div >
+                            <div style='color:#A2A2A4;' class="aui-list-item-title aui-font-size-20">
+                                Unfilled
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Name
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' name='user_name' placeholder='Unfilled' class="aui-font-size-20 float-right"  />
+
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Sex
+                        </div>
+                        <!-- <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                            修改
+                        </div> -->
+                        <div class="aui-list-item-right">
+                           <label><input class="aui-radio aui-font-size-20" type="radio" name="sex" value='1' checked> Man</label>
+                           <label><input class="aui-radio aui-font-size-20" type="radio" name="sex" value='2'> Womon</label>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Date of birth
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly class='aui-font-size-20 float-right' type="text" id='birthday' placeholder="Unfilled">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            Degree of Education
+                        </div>
+                        <div style='color:#A2A2A4;' class="aui-list-item-title aui-font-size-20 float-right">
+                            Unfilled
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class='content-box'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-title">
+                                Membership information
+                            </div>
+                            <div class="aui-btn aui-btn-info float-right">
+                                save
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                Membership grade
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                modify
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                Member type
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                modify
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class='content-box'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-title">
+                                Contact information
+                            </div>
+                            <div class="aui-btn aui-btn-info float-right">
+                                Save
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                The area in which it is located
+                            </div>
+                            <input style='color:#A2A2A4;' id="picker" name='user_area' class="aui-font-size-20"  />
+                            <div style='color:#A2A2A4;' class="aui-list-item-title">
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                Detailed address
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                null
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                Phone number
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                null
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                telephone number
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                null
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                email
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                null
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                Zip code
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                null
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                QQ number
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                null
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class='content-box'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="return">
+                                <span>Return</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script type="text/javascript" src="../script/iScroll.js"></script>
+<script type="text/javascript" src="../script/Mdate.js"></script>
+<script type="text/javascript" src="../plugin/picker/scripts/picker.min.js"></script>
+<script type="text/javascript" src="../plugin/picker/scripts/city.js"></script>
+<script type="text/javascript" src="../plugin/picker/scripts/index.js"></script>
+<script>
+// new Mdate("birthday");
+
+new Mdate("birthday", {
+    acceptId: "birthday",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "",
+    endMonth: "",
+    endDay: "",
+    format: "-"
+});
+$('.return').on('click', function () {
+    api.openWin({
+        name: 'user_setting',
+        url: 'user_setting.html',
+        pageParam: {
+
+        }
+    });
+
+});
+</script>
+
+</html>

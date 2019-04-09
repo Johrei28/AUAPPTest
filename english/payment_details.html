@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+    	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>支付明细</title>
+		<style type="text/css">
+			.clearfix::after{
+				clear: both;
+				content: "";
+				display: block;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.search{
+				width: 100%;
+				padding-top: 1rem;
+			}
+			.search-left,.search-center,.search-right{
+				float: left;
+			}
+			.search-left{
+				position: relative;
+				width: 25%;
+				padding-left: 5%;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.search-left span:nth-child(1){
+				/*font-size:0.75rem ;*/
+				color: #444;
+			}
+			.search-left span:nth-child(2){
+				display: inline-block;
+				width: 0.7rem;
+				height: 0.7rem;
+				background: url(../image/dnsdkfnkjnfdksdf45345345.png)no-repeat 0 0.2rem;
+				background-size:100% ;
+				margin-top: 0.4rem;
+			}
+			.order{
+				position: absolute;
+				width: 4rem;
+				background: orange;
+				border-radius: 0.3rem;
+				display: none;
+				z-index:99;
+			}
+
+			.order li{
+				padding: 0.4rem 0;
+				text-align: center;
+				color: #fff;
+			}
+			.order li:nth-child(2){
+				padding-top: 0;
+			}
+			.search-center{
+				width: 55%;
+				background: #ddd;
+				height: 1.5rem;
+				border-radius: 0.2rem;
+				padding-left: 2%;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			.search-center input{
+				float: left;
+				display: inline-block;
+				width: 84%;
+				height: 1.5rem;
+				border: none;
+				/*font-size: 0.7rem;*/
+				background: rgba(255,255,255,0);
+				outline: none;
+			}
+			.search-center div{
+				float: left;
+				display: inline-block;
+				width: 16%;
+				height: 1.5rem;
+				display: inline-block;
+				background-size: 100%;
+			}
+			.search-center div img{
+				height: 0.8rem;
+				margin-top: 0.35rem;
+			}
+			.search-right{
+				width: 20%;
+				color: #444;
+				text-align: center;
+				line-height: 1.5rem;
+			}
+
+			.header{
+				width: 100%;
+				height: 2rem;
+				background: #fff0d3;
+				margin-top:1rem ;
+			}
+			.header ul{
+				width: 100%;
+				height: 2rem;
+			}
+			.header ul li{
+				float: left;
+				color: #808080;
+			}
+			.header ul li:nth-child(1),.header ul li:nth-child(2){
+				width: 30%;
+				text-align: center;
+				line-height: 2rem;
+			}
+			.header ul li:nth-child(3){
+				width: 30%;
+				text-indent: 0.5rem;
+				line-height: 2rem;
+			}
+			.header ul li:nth-child(4){
+				width: 30%;
+				text-align: center;
+				line-height: 2rem;
+			}
+
+			.points{
+				width: 100%;
+			}
+			.points ul{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.points ul li{
+				width: 30%;
+				text-align: center;
+				height:2.8rem;
+				line-height:1rem;
+				color: orange;
+				padding:0.4rem 0;
+			}
+			.points ul li:nth-child(2) img{
+				width: 1rem;
+				margin: auto;
+				transform: translateY(50%);
+			}
+			.points ul li:nth-child(3){
+				width: 30%;
+				text-align: left;
+				padding-left: 0.7rem;
+			}
+			.points ul li:nth-child(4){
+				width: 30%;
+				line-height:2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="search clearfix">
+			<div class="search-left">
+				<span class="aui-font-size-14">Order number</span>
+				<span></span>
+				<ul class="order aui-font-size-12">
+					<li>order number</li>
+					<li>User ID</li>
+				</ul>
+			</div>
+			<div class="search-center clearfix">
+				<input type="search" placeholder="Please enter a complete order number search" class="aui-font-size-12"/>
+				<div class="">
+					<img src="../image/0601 (16).png"/>
+				</div>
+			</div>
+			<div class="search-right aui-font-size-14">Time Builder</div>
+		</div>
+
+		<div class="header">
+			<ul class="clearfix aui-font-size-14">
+				<li>Date</li>
+				<li>Status</li>
+				<li>Amount</li>
+				<!-- <li>Amount(NZ$)</li> -->
+			</ul>
+		</div>
+
+		<div class="points">
+			<ul class="aui-font-size-12">
+				<!-- <li>2018</br>05-17</li>
+				<li><img src="../image/0601(21).png"/></li>
+				<li>100.00</br>sign in</li>
+				<li>100.00</li> -->
+			</ul>
+		</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/moment.min.js"></script>
+	<script type="text/javascript">
+var storage= window.localStorage;
+var token = storage.getItem('ylh_authorization_token');
+var id = storage.getItem('ylh_authorization_id');
+var username = storage.getItem('ylh_authorization_username');
+var apiurl = '';
+		let oContetLeft = document.querySelectorAll(".search-left span")[0];
+		let oOrder = document.querySelector(".order");
+		let oOrderLi = oOrder.querySelectorAll("li");
+		oContetLeft.onclick = function(){
+			oOrder.style.display = "block";
+		}
+		for(let i = 0;i<oOrderLi.length;i++){
+			oOrderLi[i].onclick = function(){
+				oOrder.style.display = "none";
+			}
+		}
+
+apiready = function () {
+	apiurl=api_au;
+	api.addEventListener({
+        name: 'update'
+    }, function(ret, err) {
+        window.location.reload();
+    });
+	api.ajax({
+		url: apiurl + 'transaction/get',
+		method: 'get',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'authorization': 'Bearer ' + token
+		},
+		returnAll: true,
+		data: {
+			body: {
+			  "memberId": id
+			}
+		}
+	}, function(ret, err) {
+		if (ret) {
+			var str = '';
+			var tmpval = '';
+			for (var i in ret.body.transactions) {
+				if (ret.body.transactions[i].transactionType == 'TP_TO_GP') {
+					tmpval = ret.body.transactions[i].accountOutAmount;
+				} else {
+					tmpval = ret.body.transactions[i].accountInAmount;
+				}
+				if (ret.body.transactions[i].transactionType == 'CA_TO_TP' || ret.body.transactions[i].transactionType == 'PA_TO_TP' || ret.body.transactions[i].transactionType == 'CHECK_OUT') {
+					str = '<ul class="main_ul aui-border-b">' +
+						'<li class="aui-pull-left">' + moment(ret.body.transactions[i].createdDate.slice(0,-6)).format('DD/HH:mm:ss') + '</li>' +
+						'<li class="aui-pull-left" style="overflow:hidden;"><span>' + ret.body.transactions[i].transactionType + '</span></li>' +
+						'<li class="aui-pull-left li_shou">' +
+							'<span>' + tmpval + '</span>' +
+						'</li>' +
+						// '<li class="aui-pull-left">' + ret.body.transactions[i].accountInAmount + '</li>' +
+					'</ul>';
+					$('.points').append(str);
+				}
+			}
+			// $('.main_box').html(str);
+		} else {
+			api.toast({
+				msg: err.body.message,
+				duration: 2500,
+				location: 'middle'
+			});
+		}
+	});
+}
+	</script>
+</html>

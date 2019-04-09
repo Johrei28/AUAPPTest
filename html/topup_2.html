@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>充值</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+   	 	<style type="text/css">
+   	 		body{
+   	 			background: #fff;
+   	 		}
+   	 		.prompt-header{
+   	 			width: 100%;
+   	 			height: 2rem;
+   	 			background: #ddd;
+   	 		}
+   	 		.prompt-header-text{
+   	 			padding-left: 10%;
+   	 			line-height: 2rem;
+   	 		}
+   	 		.prompt-header-text span{
+   	 			float: left;
+   	 			color: #444;
+   	 		}
+   	 		.prompt-header-text a{
+   	 			float: left;
+				display: block;
+				height: 1rem;
+				line-height: 1rem;
+   	 			background: orange;
+   	 			margin-top: 0.5rem;
+   	 			margin-left: 5px;
+   	 			padding: 0 0.5rem;
+   	 			border-radius: 0.5rem;
+   	 			color: #eee;
+   	 		}
+   	 		.content{
+   	 			width: 50%;
+   	 			margin: auto;
+   	 			padding-top: 1.5rem;
+   	 			padding-bottom: 2rem;
+   	 		}
+   	 		.content span{
+   	 			display: block;
+   	 			text-align: center;
+   	 			padding: 0.1rem 0;
+   	 		}
+   	 		.content span:nth-child(2){
+   	 			color: #444;
+   	 		}
+   	 		.content span:nth-child(3){
+   	 			color: orange;
+   	 		}
+   	 		.content span:nth-child(4){
+   	 			color: #ddd;
+   	 		}
+   	 		.password{
+   	 			width: 90%;
+   	 			margin: auto;
+   	 			padding-bottom: 1.5rem;
+   	 		}
+   	 		.password .user-pass,.password .determine-pass{
+   	 			border-bottom: 1px solid #ddd;
+   	 		}
+   	 		.password span{
+   	 			display: inline-block;
+   	 			width: 20%;
+   	 			height: 1rem;
+   	 			font-weight: bold;
+   	 			text-align: center;
+   	 			line-height: 1rem;
+   	 			color: #666;
+   	 		}
+   	 		.password input{
+   	 			display: inline-block;
+   	 			width: 75%;
+   	 			height: 2rem;
+   	 			box-sizing: border-box;
+   	 			-webkit-box-sizing: border-box;
+   	 			text-indent: 1rem;
+   	 		}
+   	 		.password input::-webkit-input-placeholder{
+   	 			color: #aaa;
+   	 		}
+   	 		.prompt{
+   	 			width: 90%;
+   	 			margin: auto;
+   	 			padding-top:0.5rem;
+   	 			padding-bottom: 2.5rem;
+   	 		}
+   	 		.prompt p{
+   	 			color: #ddd;
+   	 		}
+   	 		.btn{
+   	 			display: block;
+   	 			margin:auto;
+   	 			width: 50%;
+   	 			height: 1.5rem;
+   	 			background: orange;
+   	 			border-radius: 0.75rem;
+   	 			color: #fff;
+   	 		}
+            .active{
+                background: #cccccc;
+            }
+   	 		.determine-pass{
+   	 			height: 2rem;
+   	 			line-height: 2rem;
+   	 		}
+   	 		.determine-pass span:nth-child(2){
+   	 			width: 60%;
+   	 			color: #aaa;
+   	 			text-align: left;
+   	 			font-weight: 200;
+   	 			text-indent: 1rem;
+   	 		}
+   	 		.determine-pass span:nth-child(3){
+   	 			width: 10%;
+   	 			color: #aaa;
+   	 		}
+			.contentbox {
+				display: none;
+			}
+			.imgbox {
+				width: 100%;
+				align-items: center;
+				display: flex;
+			}
+      .box-bottom{
+        margin-top: 2rem;
+        width: 100%;
+        color: #999;
+        margin-bottom: 2rem;
+      }
+      .box-bottom>span{
+        margin-left: 1rem;
+      }
+      .box-bottom-text{
+        margin-top: 1rem;
+        line-height: 1rem;
+        font-size: 0.7rem;
+      }
+      .box-bottom-text img{
+        float: left;
+        display: block;
+        width: 0.8rem;
+        height: 1rem;
+        margin-left: 1rem;
+        margin-right: 0.3rem;
+        margin-top: -0.2rem;
+      }
+      .box-bottom-text span{
+        display: inline-block;
+        width: calc(100% - 2.8rem);
+        color: #666;
+        margin-left: 0.1rem;
+      }
+      .textcenter {
+        text-align: center;
+      }
+   	 	</style>
+	</head>
+	<body>
+		<!-- <div class="prompt-header">
+			<div class="prompt-header-text">
+				<span class="aui-font-size-12">您当前还未设置安全密码，请先</span>
+				<a href="javascript:;" class="aui-font-size-12" onclick="go_url(801)">设置安全密码</a>
+			</div>
+		</div> -->
+
+		<div class="content">
+			<img src="../image/664986797673468132.png"/>
+			<div class="box-top-text">
+				<p style="text-align:center;">Prepayment余额</p>
+	            <h1 class="aui-text-warning aui-margin-t-10" name='total' style = "text-align: center;"></h1>
+		    </div>
+		</div>
+
+
+		<div style="height: 0.5rem;width: 100%;background: #eee;margin-bottom: 0.4rem;"></div>
+
+	<div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-item">
+		        <div class="aui-list-item-inner">
+		            <div class="aui-list-item-label" style="font-size:.5rem;">
+		                    充值金额
+		            </div>
+		            <div class="aui-list-item-input">
+		                <input class="aui-font-size-14" type="text" name="account" placeholder="请输入您需要充值的金额">
+		            </div>
+		        </div>
+		    </li>
+			<li class="aui-list-item">
+               <div class="aui-list-item-inner">
+                   <div class="aui-list-item-label" style="font-size:.5rem;">
+                       支付方式
+                   </div>
+                   <div class="aui-list-item-input">
+                       <select name="payment" class="aui-font-size-14">
+                           <option value="0">请选择</option>
+                           <option value="1">银行转账</option>
+                           <option value="2">支付宝</option>
+                           <option value="6">微信</option>
+													 <option value="5">信用卡</option>
+                           <!-- <option value="3">CloudUnion Account</option> -->
+                           <!-- <option value="4">Prepayment Account</option> -->
+
+                       </select>
+                   </div>
+               </div>
+           </li>
+           <li class="aui-list-item">
+               <div class="aui-list-item-inner">
+                   <div class="aui-list-item-label" style="font-size:.5rem;">
+                       安全密码
+                   </div>
+                   <div class="aui-list-item-input">
+                       <input class="aui-font-size-14" type="password" name="password" placeholder="请输入安全密码">
+                   </div>
+               </div>
+           </li>
+        </ul>
+    </div>
+
+
+    <div class="aui-content aui-margin-b-15 contentbox contentbox1">
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                Cloud Union (Australia) Network Technology Pty Ltd.
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Bank: Australia and New Zealand Banking Group Limited</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">BSB: 013225</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Bank Address: 10 Main St，Box Hill ，VIC 3128，Australia</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Account: 417207277</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Oversea Swift Code: ANZBAU3M</div>
+                </div>
+            </li>
+        </ul>
+		<!--  支付凭证上传-->
+        <div class="container">
+            <div class="page-header">
+                <form id="uploadForm" enctype='multipart/form-data'>
+                    <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                            <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                 <img id='transaction_pic1' onclick="showAction('transaction_pic1')" style="width: 100%;height: auto;max-height: 140px;" src="../image/authpic1.jpg" alt="请上传支付凭证" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                              <a href="javascript:;" class="btn btn-warning fileinput-exists textcenter" data-dismiss="fileinput">移除</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                请上传支付凭证
+            </div>
+         </div>
+    </div>
+    <div class="aui-content aui-margin-b-15 contentbox contentbox2">
+        <img src="../image/wechat_alipay.png" alt="支付宝付款二维码" style="width:18rem;">
+		<!--  支付凭证上传-->
+        <div class="container">
+            <div class="page-header">
+                <form id="uploadForm" enctype='multipart/form-data'>
+                    <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                            <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                 <img id='transaction_pic2' onclick="showAction('transaction_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/authpic1.jpg" alt="请上传支付凭证" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                              <!-- <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                请上传支付凭证
+            </div>
+         </div>
+    </div>
+
+		<input type="button" class="btn submit" value="提交" />
+
+    <div class="box-bottom">
+      <span>温馨提示</span>
+      <div class="box-bottom-text">
+      <ul>
+				<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+          <img src="../image/fd165844513guygsidgfi4864.png">
+          <div>信用卡收取3%手续费</div>
+        </li>
+          <li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+              <img src="../image/fd165844513guygsidgfi4864.png">
+              <div>支付宝、微信收取1%手续费</div>
+          </li>
+        <li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+          <img src="../image/fd165844513guygsidgfi4864.png">
+          <div>请检查充值方式及账号，一旦充值成功将不能撤回</div>
+        </li>
+
+    </ul>
+  </div>
+</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<!-- <div class="bottom_box" id="bottom_time">
+	<div class="shuai_box aui-font-size-14 aui-border-b">
+		<div class="aui-pull-left aui-margin-l-15" onclick="show_dayselect()">
+			<span class="day_text">今天</span>
+			<i class="aui-iconfont aui-icon-down"></i>
+		</div>
+		<div class="day_box aui-font-size-12 isshow">
+			<li>今天</li>
+			<li>昨天</li>
+			<li>近三天</li>
+			<li>近一个月</li>
+		</div>
+		<div class="aui-pull-right aui-margin-r-15" onclick="show_filter()">
+			<img src="../image/060113.png" >
+			&nbsp;时间筛选
+		</div>
+	</div>
+	<div class="pie">
+		<div class="pie_left aui-pull-left">
+			<div class="pie_main" id="mypie">
+
+			</div>
+			<div class="change_icon aui-font-size-14 aui-text-warning">
+				&nbsp;&nbsp;&nbsp;
+				<img src="../image/change_icon.png" />
+				Income/Expenses
+			</div>
+		</div>
+		<div class="pie_right aui-pull-left aui-padded-t-15 aui-margin-l-10">
+			<h3>收入</h3>
+			<h2 class="aui-text-warning">0.00</h2>
+		</div>
+	</div>
+</div> -->
+
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src='../script/moment.min.js'></script>
+<!-- 时间筛选 -->
+<script type="text/javascript" src="../script/mydateselect.js"></script>
+<!-- 饼图 -->
+<script type="text/javascript" src="../plugin/echarts/echarts.common.min.js"></script>
+<!--MD5加密-->
+<script type="text/javascript" src='../script/md5.js'></script>
+<script type="text/javascript">
+
+var apiurl = '';
+var token = '';
+var id = '';
+var username = '';
+var userinfo = '';
+var img = '';
+var paymentid = '';
+var resultStatus=false;
+var resultVal='';
+function GetRequest() {
+   var url = location.search; //获取url中"?"符后的字串
+   var theRequest = new Object();
+   if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+      }
+   }
+   return theRequest;
+}
+var strr="function GetRequest(){var url = location.search;var theRequest = new Object();if (url.indexOf('?') != -1) {var str = url.substr(1);strs = str.split('&');for(var i = 0; i < strs.length; i ++) {theRequest[strs[i].split('=')[0]]=unescape(strs[i].split('=')[1]);}}return theRequest;}window.setInterval(function(){console.log(JSON.stringify(GetRequest()));},2000);"
+var paystatus=true;
+apiready = function() {
+    // api.parseTapmode();
+    // var header = $api.byId('top_box');
+    var storage= window.localStorage;
+    apiurl=api_au;
+
+    var enable = storage.getItem('ylh_authorization_enable');
+    var verified = storage.getItem('ylh_authorization_verified');
+    token = storage.getItem('ylh_authorization_token');
+    id = storage.getItem('ylh_authorization_id');
+    username = storage.getItem('ylh_authorization_username');
+    if (enable) $('.isenable').css('display', 'none');
+    if (verified) $('.verified').css('display', 'none');
+	userinfo = JSON.parse(storage.getItem('ylh_authorization_userinfo'));
+	$('h1[name="total"]').html(userinfo.prepayAccount.toFixed(2));
+    apiurl=api_au;
+	//添加监听时间，刷新数据
+	api.addEventListener({
+		name: 'update'
+	}, function(ret, err) {
+		window.location.reload();
+	});
+
+}
+$('select[name="payment"]').on('change', function(event) {
+	$('.contentbox').hide();
+    $('.contentbox' + $(this).val()).show();
+});
+
+   function go_url(typenub) {
+      var jsfun = 'go_url('+typenub+');';
+      api.execScript({
+          script: jsfun
+      });
+   }
+   $('.submit').on('click', function () {
+       var number = moment().local().format('YYMMDD');
+       var account = $('input[name="account"]').val();
+       var password = $('input[name="password"]').val();
+       var payment = $('select[name="payment"]').val();
+       var methods = "OFFLINE_TRANSFER";
+       var account2 = 0;
+       if(paystatus){
+           $(this).addClass('active');
+           paystatus=false;
+           if (account == '' || password == '' || payment == 0) {
+               alert('请填写完整信息');
+               return false;
+           }
+           if (payment == 5) {
+               methods = "PAYMENT_EXPRESS";
+               var accountOut = "EN";
+               account2 = account;
+           }
+           else if(payment == 6||payment == 2){
+//	       支付宝支付
+               let pay_type='IE0013';
+               var monneytype='rmb_fee';
+               let apikey='hQTt1N2MGjzxgibInBDKW6e0A9PfsmX2';
+               let total_fee=Math.ceil(account*100);
+               let outstr=order_str();
+               let sinstr='goods=001&goods_detail=001&mid=10331&out_trade_no='+outstr+'&pay_type='+pay_type+'&'+monneytype+'='+total_fee+'&version=v1'+apikey;
+               let postdata={};
+               postdata.mid='10331';
+//            postdata.tid='hQTt1N2MGjzxgibInBDKW6e0A9PfsmX2';
+               postdata.pay_type=pay_type;
+//            postdata.refund_amount=1;
+//            postdata.reference='refund memo';
+               postdata.goods='001';
+               postdata.goods_detail='001';
+               postdata.out_trade_no=outstr;
+//            postdata.pay_rate='1';
+               postdata.version='v1';
+               //微信支付
+               if(payment == 6){
+                   pay_type='IE0022';
+                   monneytype='total_fee';
+                   postdata.total_fee=total_fee;
+                   postdata.pay_type=pay_type;
+                   sinstr='goods=001&goods_detail=001&mid=10331&out_trade_no='+outstr+'&pay_type='+pay_type+'&'+monneytype+'='+total_fee+'&version=v1'+apikey;
+               }else {
+                   postdata.rmb_fee=total_fee;
+               }
+               let signstr=$.md5(sinstr);
+               postdata.sign=signstr;
+               console.log(total_fee);
+               console.log(monneytype);
+               console.log(sinstr);
+               console.log(signstr);
+               console.log(JSON.stringify(postdata));
+               api.ajax({
+                   method:"post",
+                   url:"https://a.mypaynz.com/api/online",
+                   data:postdata,
+                   dataType:'json',
+                   async:true,
+               },function (ret,err) {
+                   if(ret){
+                       console.log(ret.extra.pay_url);
+                       console.log(JSON.stringify(ret));
+                   }else {
+                       console.log(JSON.stringify(err));
+                   }
+               });
+           }
+           else {
+               if (img == '') {
+                   alert('请上传支付凭证.');
+                   return false;
+               }
+               var accountOut = "EN";
+               api.ajax({
+                   method:"post",
+                   url:apiurl + "resource/store",
+                   headers: {
+                       'Content-Type': 'application/json;charset=utf-8',
+                       'authorization': 'Bearer ' + token
+                   },
+                   data:{
+                       body: {
+                           "data": img.substr(23),
+                           "fileName": id + '_' + 'transaction_pic',
+                           "memberId": id,
+                           "path": id + "/",
+                           "resourceType": 'PAYMENT'
+                       }
+                   },
+                   dataType:'json',
+                   async:true,
+               },function(ret,err){
+                   if(ret){
+                   }else{
+                       api.toast({
+                           msg: err.message,
+                           duration: 3000,
+                           location: 'middle'
+                       });
+                   }
+               })
+           }
+
+           api.ajax({
+               url: apiurl + 'payment/create',
+               method: 'post',
+               headers: {
+                   'Content-Type': 'application/json;charset=utf-8',
+                   'authorization': 'Bearer ' + token
+               },
+               returnAll: true,
+               data: {
+                   body: {
+                       "accountIn": "PA",
+                       "accountInAmount": account,
+                       "accountOut": accountOut,
+                       "accountOutAmount": account2,
+                       "memberId": id,
+                       "method": methods,
+                       "paymentType": "PA_TOP_UP",
+                       "securityPassword": password,
+                       "serialNumHeader": "pt" + number,
+                       "serviceCharge": 0
+                   }
+               }
+               }, function(ret, err) {
+                   if (ret) {
+                       if (ret.body.result == 'SUCCESS') {
+                           paymentid = ret.body.payment.id;
+                           if(payment == 5){
+                               goCreditCardUrl(id,paymentid,password);
+
+                               //console.log(JSON.stringify(ret));
+                               return;
+                           }
+                           alert('交易成功');
+                           api.sendEvent({
+                               name: 'update'
+                           });
+                           api.closeWin();
+
+                           canpay();
+                       } else {
+                           alert('未知错误');
+                       }
+                   } else {
+                       api.toast({
+                           msg: '交易失败，请再次尝试',
+                           duration: 2500,
+                           location: 'middle'
+                       });
+                       canpay();
+                   }
+           });
+       }
+
+   });
+   function canpay() {
+       $('.submit').removeClass('active');
+       paystatus=true;
+   }
+   function order_str() {
+
+       var nowdate = new Date();
+       var nowyear = nowdate.getFullYear();
+       var nowmon = nowdate.getMonth() + 1;
+       var nowDay = nowdate.getDate();
+       var nowH = nowdate.getHours();
+       var nowM = nowdate.getMinutes();
+       var nowS = nowdate.getSeconds();
+       var ranstr = '';
+       for(var i = 0; i < 18; i += 1){
+           ranstr += Math.floor(Math.random() * 10);
+       }
+       if (nowmon >= 1 && nowmon <= 9) {
+           nowmon = "0" + nowmon;
+       }
+       if (nowDay >= 0 && nowDay <= 9) {
+           nowDay = "0" + nowDay;
+       }
+       if (nowH >= 0 && nowH <= 9) {
+           nowH = "0" + nowH;
+       }
+       if (nowM >= 0 && nowM <= 9) {
+           nowM = "0" + nowM;
+       }
+       if (nowS >= 0 && nowS <= 9) {
+           nowS = "0" + nowS;
+       }
+       var nowstr = nowyear+nowmon+nowDay+nowH+nowM+nowS+ranstr;
+       return nowstr;
+   }
+	 function goCreditCardUrl(memberid,paymentid,password){
+		 api.ajax({
+				 url: apiurl + 'payment/dps/create',
+				 method: 'post',
+				 headers: {
+						 'Content-Type': 'application/json;charset=utf-8',
+						 'authorization': 'Bearer ' + token
+				 },
+				 returnAll: true,
+				 data: {
+						 body: {
+							"memberId":memberid,
+							"paymentId":paymentid,
+							"securityPassword":password
+			      }
+				 }
+		 }, function(ret, err) {
+
+				 if (ret) {
+			if (ret.body.result == 'SUCCESS') {
+				  var url = ret.body.url;
+						// alert(url);
+					    api.openFrame({
+								name: 'CreditCard',
+						        url: url,
+			              rect: {
+			                        x: 0,
+			                        y: 0,
+			                        w: 'auto',
+			                        h: 'auto'
+			                    }
+							});
+							api.addEventListener({
+									 name: 'getUrl'
+							 }, function(ret, err) {
+									 if(ret && ret.value){
+											 var value = ret.value;
+											//  console.log(JSON.stringify({msg: value.location.search}));
+										     var reg = new RegExp("(^|&)result=([^&]*)(&|$)");
+										     var r = value.location.search.substr(1).match(reg);
+											 if(r!=null){
+												 resultVal=unescape(r[2]);
+												 resultStatus=true;
+											 }
+									 }
+							 });
+                window.setTimeout(function(){canpay();},5000);
+							window.setTimeout(function(){
+								var timetime=window.setInterval(function(){
+									if(resultStatus){
+										resultStatus=false;
+										window.clearInterval(timetime);
+										api.closeFrame({name:'CreditCard'});
+										//alert(resultVal);
+										checkCreditCard(resultVal,paymentid);
+									}
+									var script = "api.sendEvent({name: 'getUrl', extra: {location: window.location}});";
+									api.execScript({
+											frameName: 'CreditCard',
+											script: script
+									});
+								},1000);
+							},5000);
+
+					//alert(JSON.stringify(ret));
+			} else {
+				alert('未知错误');
+                canpay();
+			}
+				 } else {
+						 api.toast({
+								 msg: '系统错误',
+								 duration: 2500,
+								 location: 'middle'
+						 });
+                     canpay();
+				 }
+		 });
+	 }
+
+	 function checkCreditCard(code,paymentid)
+	 {
+		 api.ajax({
+				 url: apiurl + '/payment/dps/complete',
+				 method: 'post',
+				 headers: {
+						 'Content-Type': 'application/json;charset=utf-8',
+						 'authorization': 'Bearer ' + token
+				 },
+				 returnAll: true,
+				 data: {
+						 body: {
+							 "paymentId":paymentid,
+               "result": code
+			      }
+				 }
+		 }, function(ret, err) {
+				 if (ret) {
+			if (ret.body.result == 'SUCCESS') {
+				if(ret.body.success){
+					alert('充值成功');
+				}else{
+					alert('充值失败');
+				}
+			} else {
+				alert('交易失败');
+			}
+				 } else {
+						 api.toast({
+								 msg: '交易失败，请再次尝试',
+								 duration: 2500,
+								 location: 'middle'
+						 });
+				 }
+		 });
+	 }
+
+   function getPicture(sourceType, picImg) {
+       if(sourceType==1){ // 拍照
+           api.getPicture({
+               sourceType: 'camera',
+               encodingType: 'jpg',
+               mediaValue: 'pic',
+               allowEdit: false,
+               destinationType: 'base64',
+               quality: 90,
+               saveToPhotoAlbum: true
+           }, function(ret, err) {
+               if (ret) {
+                  if (ret.base64Data == '') return false;
+                  $('#' + picImg).attr('src', ret.base64Data);
+                  img = ret.base64Data;
+               }else {
+                   api.alert('上传图片失败，请再次尝试');
+               }
+           });
+       }
+       else if(sourceType==2){ // 从相机中选择
+           api.getPicture({
+                   sourceType: 'library',
+                   encodingType: 'jpg',
+                   mediaValue: 'pic',
+                   destinationType: 'base64',
+                   quality: 50,
+                   targetWidth: 750,
+                   targetHeight: 750
+               }, function(ret, err) {
+                   if (ret) {
+                       if (ret.base64Data == '') return false;
+                       // $('#imgUp').attr('src', ret.base64Data)
+                       var aa=ret.base64Data;
+                       $('#' + picImg).attr('src',aa);
+                       img = aa;
+                   } else {
+                       alert('上传图片失败，请再次尝试');
+                   }
+           });
+       }
+   }
+
+   // 上传图片
+   function showAction(picImg){
+        api.actionSheet({
+            title: '上传图片',
+            cancelTitle: '取消',
+            buttons: ['拍照','从手机相册选择']
+        }, function(ret, err) {
+            if (ret) {
+                getPicture(ret.buttonIndex, picImg);
+            }
+        });
+   }
+</script>

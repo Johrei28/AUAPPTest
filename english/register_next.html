@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../plugin/layui/css/layui.css">
+    <style>
+		html,body {
+			background-color: #fff;
+		}
+		.sub_box {
+			padding-top: 1rem;
+			padding-left: 2.2rem;
+			padding-right: 2.2rem;
+		}
+		.footer_info {
+			color: #666;
+			margin-top: 2rem;
+			margin-bottom: 0.5rem;
+			text-align: center;
+			position: fixed;
+			bottom: 0px;
+			width: 100%;
+		}
+		.email-box {
+			display: none;
+		}
+		.phone-box {
+			display: none;
+		}
+		.code-box {
+			display: inline-block;
+		}
+		.aui-content-padded {
+			padding-top: 1.5rem;
+		}
+    </style>
+</head>
+<body>
+
+<div class="aui-content-padded">
+	<ul class="aui-form-list" style="border-top:none;">
+		<h4>Username</h4>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+		    <div class="aui-list-item-inner">
+		        <div class="aui-list-item-input">
+		            <input class="aui-font-size-12" type="text" onblur="checkExist('username', this)" name="user_name" placeholder="2-16 digits combination of any alphabets and numbers">
+		        </div>
+		    </div>
+		</li>
+		<h4 class="aui-margin-t-10">Password</h4>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+		    <div class="aui-list-item-inner">
+		        <div class="aui-list-item-input">
+		            <input class="aui-font-size-12" type="password" name="user_password" placeholder="8-16 digits combination of any alphabets characters and/or numbers">
+		        </div>
+		    </div>
+		</li>
+		<h4 class="aui-margin-t-10">Confirm Password</h4>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+		    <div class="aui-list-item-inner">
+		        <div class="aui-list-item-input">
+		            <input class="aui-font-size-12" type="password" name="user_password2" placeholder="Please enter your password again">
+		        </div>
+		    </div>
+		</li>
+		<h4 class="aui-margin-t-10">Referee</h4>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+		    <div class="aui-list-item-inner">
+		        <div class="aui-list-item-input">
+		            <input class="aui-font-size-12" type="text" name="user_referee" value='CUAUadmin' placeholder="CUAUadmin">
+		        </div>
+		    </div>
+		</li>
+		<div class="email-box">
+		<h4>Email</h4>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+				<div class="aui-list-item-inner">
+						<div class="aui-list-item-input">
+								<input class="aui-font-size-12" type="email" onblur="checkExist('email', this)" name="user_email" placeholder="Please enter frequently used mailboxes">
+						</div>
+				</div>
+		</li>
+		</div>
+
+		<div class="phone-box">
+		<h4>Mobile Number</h4>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+				<div class="aui-list-item-inner">
+						<div class="aui-list-item-input">
+								<select class="aui-font-size-12" name="phone_type" >
+
+								</select>
+						</div>
+				</div>
+		</li>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+				<div class="aui-list-item-inner">
+						<div class="aui-list-item-input">
+								<input class="aui-font-size-12" type="email" name="user_mobile" placeholder="Please enter your mobile number">
+						</div>
+				</div>
+		</li>
+		<!-- <h4>Code</h4>
+		<li class="aui-list-item aui-border-b" style="padding-left: 0;">
+			<div class="aui-list-item-inner">
+				<div class="aui-list-item-input code-box">
+					<input class="aui-font-size-12" type="text" name="user_code" placeholder="Please input verification code">
+				</div>
+				<button class="aui-btn aui-btn-primary sendcode">Send code</button>
+			</div>
+		</li> -->
+		</div>
+	</ul>
+</div>
+
+<div class="sub_box">
+	<div class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm" style="border-radius: 2rem;" onclick="register()">
+	Register Now
+	</div>
+</div>
+
+<div class="aui-font-size-12 footer_info">
+	Cloud Union (Australia) Network Technology Pty Ltd.
+</div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+
+<script>
+var area_cn = '';
+var area_en = '';
+var area_value = '';
+var apiurl = '';
+apiready = function () {
+    var str = '';
+    var index = 1;
+	var register_type = api.pageParam.register_type == 1 ? 'phone-box' : 'email-box';
+	apiurl=api_au;
+	$('.' + register_type).css('display', 'block');
+    area_cn = JSON.parse(
+        api.getPrefs({
+            sync: true,
+            key: 'area_cn'
+        })
+    );
+    area_en = JSON.parse(
+        api.getPrefs({
+            sync: true,
+            key: 'area_en'
+        })
+    );
+    area_value = JSON.parse(
+        api.getPrefs({
+            sync: true,
+            key: 'area_value'
+        })
+    );
+    while (area_en[index]) {
+        str += '<option value="' + area_value[index] + '">' + area_en[index] + '</option>';
+        index++;
+    };
+    $('select[name="phone_type"]').html(str);
+	if (api.pageParam.referrer) {
+		$('input[name="user_referee"]').val(api.pageParam.referrer).attr('readonly', 'true').css('background-color', '#FFF');
+	}
+}
+	$('.aui-content-padded ul').css('border-top','none');
+	// 解决输入框input获取焦点得时，虚拟键盘会把fixed元素顶上去
+	$('input').bind('focus',function(){
+	    $('.footer_info').css('position','static');
+	    //或者$('#viewport').height($(window).height()+'px');
+	}).bind('blur',function(){
+	    $('.footer_info').css({'position':'fixed','bottom':'0'});
+	    //或者$('#viewport').height('auto');
+	});
+
+
+	function register() {
+		var password = $("input[name='user_password']").val();
+		var password2 = $("input[name='user_password2']").val();
+		var user_email = $("input[name='user_email']").val();
+		var user_mobile = $("input[name='user_mobile']").val();
+		var user_referee = $("input[name='user_referee']").val();
+		var user_name = $("input[name='user_name']").val();
+		var phone_type = $("select[name='phone_type']").val();
+		var tmp_type = api.pageParam.user_type == 1 ? 'INDIVIDUAL' : 'COMPANY';
+		var verifier = '';
+		var url = '';
+		var pattern= /^[a-zA-Z][a-zA-Z0-9]{1,12}$/;
+		if (pattern.test(user_name)) {
+		} else {
+			alert('Please enter valid characters for username');
+			return false;
+		}
+		if (password != password2) {
+			api.toast({
+				msg: 'Two password inconsistency',
+				duration: 1000,
+				location: 'middle'
+			});
+			return false;
+		}
+		if (api.pageParam.register_type == 1) {
+			verifier = phone_type + user_mobile;
+			url = apiurl + 'registerVerifiedByMobile';
+		} else {
+			verifier = user_email;
+			url = apiurl + 'register';
+		}
+		api.ajax({
+	    url: url,
+	    method: 'post',
+	    headers: {
+	        'Content-Type': 'application/json;charset=utf-8'
+	    },
+		returnAll: true,
+	    data: {
+				body: {
+					"verifier": verifier,
+					"infoType": tmp_type,
+					"password": password,
+					"referrerName": user_referee,
+					"username": user_name
+				}
+			}
+		}, function(ret, err) {
+			if (ret) {
+			   if (ret.body.result == 'SUCCESS') {
+				   if (api.pageParam.register_type == 1) {
+					   api.openWin({
+						   name: 'confirm',
+						   url: './confirm.html',
+						   pageParam: {
+							   'mobile' : user_mobile
+						   }
+					   });
+				   } else {
+					   api.openWin({
+						   name: 'login',
+						   url: './login.html',
+					   });
+				   }
+			   } else {
+				   toast.fail({
+					   title: ret.body.message,
+					   duration:3000
+				   });
+			   }
+		   } else {
+			   api.toast({
+				   msg: err.body.message,
+				   duration: 2000,
+				   location: 'middle'
+			   });
+		   }
+		});
+	}
+	/*
+	点击发送验证码触发
+	*/
+	var t = 60;
+	var timer = '';
+	$('.sendcode').on('click', function () {
+		if (timer) return false;
+		var str = $(this).html();
+		var tmp = t;
+	    var _that = $(this);
+		_that.removeClass('aui-btn-primary');
+		_that.html('Resend');
+		timer = setInterval(function () {
+			t--;
+			_that.html('Resend(' + t + ')');
+			if (t == 0) {
+				t = 60;
+				clearInterval(timer);
+				_that.addClass('aui-btn-primary');
+				_that.html(str);
+				timer = '';
+			}
+		}, 1000);
+	});
+	function checkExist (type, obj) {
+		var input = $(obj);
+		var msg = '';
+		if (input.val() == '') {
+			return false;
+		}
+		switch (type) {
+			case 'username':
+				msg = '用户名已存在';
+				break;
+			case 'mobile':
+				msg = '手机号码已存在';
+				break;
+			case 'email':
+				msg = '邮箱已存在';
+				break;
+			default:
+
+		}
+		api.ajax({
+		url: apiurl + 'member/exist/' + type,
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		},
+		returnAll: true,
+		data: {
+				body: {
+					"payLoad": input.val()
+				}
+			}
+		}, function(ret, err) {
+			if (ret) {
+					if (ret.body.result == 'SUCCESS') {
+						console.log(input.val());
+					} else {
+						toast.fail({
+						    title: msg,
+						    duration:3000
+						});
+					}
+
+				} else {
+					api.toast({
+						msg: err.body.message,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+		});
+	}
+</script>
+
+</html>

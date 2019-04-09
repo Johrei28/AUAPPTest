@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Sign in</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../plugin/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href='../css/fullcalendar.css'/>
+
+    <style>
+		html,body {
+			background-color: #fff;
+			width: 100vw;
+			overflow: hidden;
+		}
+		.top_box {
+			text-align: center;
+		}
+		.xieyi_box span {
+			color: rgb(255, 181, 30);
+		}
+		.sub_box {
+			padding-top: 2.5rem;
+			padding-left: 2.2rem;
+			padding-right: 2.2rem;
+		}
+		.register_account {
+			color: #666;
+			margin-top: 2rem;
+			text-align: center;
+		}
+		.register_account span {
+			color: rgb(255, 181, 30);
+		}
+		.footer_info {
+			color: #666;
+			margin-top: 2rem;
+			margin-bottom: 0.5rem;
+			text-align: center;
+			position: fixed;
+			bottom: 0px;
+			width: 100%;
+		}
+
+       /* 日历 */
+       #calendar {
+           margin: 40px auto;
+           padding: 0 10px;
+       }
+
+	   .submit {
+	    display: none;
+	   }
+
+    </style>
+</head>
+<body>
+<div id='calendar'></div>
+
+<div class="sub_box">
+	<div class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm submit" style="border-radius: 2rem;">
+	Sign in today
+	</div>
+	<div class="aui-btn aui-btn-block aui-btn-sm return" style="border-radius: 2rem;margin-top:1rem;">
+	Return
+	</div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src='../script/moment.min.js'></script>
+<script type="text/javascript" src='../plugin/fullcalendar/fullcalendar.min.js'></script>
+<script>
+var id = '';
+var username = '';
+var token = '';
+var apiurl = '';
+//签到记录
+var signInRecord = [];
+var signstatus=false;
+
+// console.log(JSON.stringify(moment('2018-10-26T02:32:16Z').local().format('YYYY-MM-DD HH:mm:ss')));
+apiready = function() {
+	var storage= window.localStorage;
+	if (!storage) {
+		api.alert('Please upgrade APP');
+		return false;
+	}
+	token = storage.getItem('ylh_authorization_token');
+	id = storage.getItem('ylh_authorization_id');
+	username = storage.getItem('ylh_authorization_username');
+
+	apiurl=api_au;
+	//获取签到记录
+	api.ajax({
+        url: apiurl + 'signInRecord',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+			  "memberId": id,
+			  "username": username
+			}
+        }
+    }, function(ret, err) {
+        if (ret) {
+			for (var i = 0; i < ret.body.records.length; i++) {
+				signInRecord[i] = {
+					title: 'sigin',
+					start: moment(ret.body.records[i]).local().format('YYYY-MM-DD'),
+					color: '#FDA139',
+				}
+			}
+			showSiginTbale(signInRecord);
+			if (ret.body.records.length <= 0 || moment(ret.body.records[ret.body.records.length - 1]).local().format('YYYY-MM-DD') != moment().local().format('YYYY-MM-DD')) {
+				$('.submit').css('display', 'block');
+                signstatus=true;
+			}
+        } else {
+            api.toast({
+                msg: err.body.message,
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+}
+$('.submit').on('click', function () {
+    if(signstatus){
+        signstatus=false;
+        $('.submit').remove();
+        api.ajax({
+            url: apiurl + 'signIn',
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'authorization': 'Bearer ' + token
+            },
+            returnAll: true,
+            data: {
+                body: {
+                    "memberId": id,
+                    "username": username
+                }
+            }
+        }, function(ret, err) {
+            var number = moment().local().format('YYMMDD');
+            api.ajax({//签到赠送GP
+                url: apiurl + 'transaction/create',
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'authorization': 'Bearer ' + token
+                },
+                returnAll: true,
+                data: {
+                    body: {
+                        "accountIn": "GP",
+                        "accountInAmount": 100,
+                        "accountOut": "NA",
+                        "accountOutAmount": 0,
+                        "fromMemberId": id,
+                        "securityPassword": "",
+                        "serialNumHeader": "si" + number,
+                        "serviceCharge": 0,
+                        "toMemberId": id,
+                        "transactionType": "SIGN_IN"
+                    }
+                }
+            }, function(ret, err) {
+                window.location.reload();
+            });
+        });
+	}
+
+});
+function showSiginTbale(signInRecord) {
+	var modtime = moment().local().format('YYYY-MM-DD HH:mm:ss');
+	//国际化默认值为'en'，代表使用英文
+	var initialLangCode = 'en';
+	//初始化FullCalendar
+	$('#calendar').fullCalendar({
+		//设置头部信息，如果不想显示，可以设置header为false
+		header: {
+			//日历头部左边：初始化切换按钮
+			left: false,
+			//日历头部中间：显示当前日期信息
+			center: 'title',
+			//日历头部右边：初始化视图
+			right: false
+		},
+		//设置是否显示周六和周日，设为false则不显示
+		weekends: true,
+		//日历初始化时显示的日期，月视图显示该月，周视图显示该周，日视图显示该天，和当前日期没有关系
+		defaultDate: modtime,
+		//日程数据
+		events: signInRecord
+	});
+}
+$('.return').on('click', function () {
+	api.openWin({
+        name: 'index',
+        url: 'index.html',
+        pageParam: {
+
+        }
+    });
+});
+</script>

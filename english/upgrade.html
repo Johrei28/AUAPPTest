@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Member Upgrade</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../plugin/layui/css/layui.css">
+    <style>
+		html,body {
+			background-color: #fff;
+			width: 100vw;
+			overflow: hidden;
+		}
+		.top_box {
+			text-align: center;
+		}
+		.xieyi_box span {
+			color: rgb(255, 181, 30);
+		}
+		.sub_box {
+			padding-top: 2.5rem;
+			padding-left: 2.2rem;
+			padding-right: 2.2rem;
+		}
+		.register_account {
+			color: #666;
+			margin-top: 2rem;
+			text-align: center;
+		}
+		.register_account span {
+			color: rgb(255, 181, 30);
+		}
+		.footer_info {
+			color: #666;
+			margin-top: 2rem;
+			margin-bottom: 0.5rem;
+			text-align: center;
+			position: fixed;
+			bottom: 0px;
+			width: 100%;
+		}
+		.sub_box .active{
+			background-color: #cccccc !important;
+		}
+		.header{
+			background: #eee;
+		}
+		.header>p{
+			padding: 0.3rem;
+			text-indent: 0.2rem;
+		}
+		.header>a{
+			display: inline-block;
+			background: orange;
+			color: #fff;
+			padding: 0.15rem 0.4rem;
+			border-radius: 0.75rem;
+			margin-left: 0.5rem;
+			text-decoration: none;
+		}
+		.header-prompt{
+			color: #aaa;
+			line-height: 2rem;
+			margin-left: 0.5rem;
+		}
+		.header-prompt a{
+			display: inline-block;
+			background: orange;
+			line-height: 1rem;
+			padding: 0.1rem 0.4rem;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 5.05rem;
+			margin-left: 0.2rem;
+		}
+		.contentbox {
+			display: none;
+		}
+		.contentbox1 {
+			display: block;
+		}
+		.notic {
+			padding: 1rem 0;
+		}
+		.notic p {
+			line-height: 1.4rem;
+			font-size: 0.8rem;
+			padding: 0 1.2rem;
+			display: none;
+		}
+    </style>
+</head>
+<body>
+	<div class="header">
+		<!-- <div class="header-prompt" onclick="go_url()">
+			<p class="aui-font-size-12">You have not set your security password, please<a href="javascript:;" class="aui-font-size-12">Set your security passwoard</a></p>
+		</div> -->
+		<div class="notic">
+			<p class="aui-font-size-14">Offline Transfer: Upgrade to Diamond Member will charge AU$999</p>
+			<p class="aui-font-size-14">Alipay/Wechat: Upgrade to Diamond Member will charge AU$999</p>
+			<p class="aui-font-size-14">PA: Upgrade to Diamond Member will charge AU$999</p>
+			<p class="aui-font-size-14">CA: Upgrade to Diamond Member will charge OzPD:999.00</p>
+		</div>
+	</div>
+	<div class="aui-content aui-margin-b-15">
+	    <ul class="aui-list aui-form-list">
+	        <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-label">
+	                    Payment Method
+	                </div>
+	                <div class="aui-list-item-input">
+						<select class="aui-select" id='type_select' name="payment">
+							<option value="1">Bank Transfer</option>
+							<option value="2">Alipay/Wechat</option>
+							<option value="3">Prepayment Account</option>
+							<option value="4">CloudUnion Account</option>
+						</select>
+	                    <!-- <label><input class="aui-radio" type="radio" name="paymentMethod" checked>Prepayment Account</label><hr>
+						<label><input class="aui-radio" type="radio" name="paymentMethod">CloudUnion Account</label> -->
+					</div>
+	            </div>
+	        </li>
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-label">
+						Security Password
+					</div>
+					<div class="aui-list-item-input">
+						<input type="text" name="securityPassword" placeholder="Please enter a security password">
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+
+	<div class="aui-content aui-margin-b-15 contentbox contentbox1">
+		<ul class="aui-list aui-list-in">
+			<li class="aui-list-header">
+				  Cloud Union (Australia) Network Technology Pty Ltd.
+			</li>
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-title">Bank: Australia and New Zealand Banking Group Limited</div>
+				</div>
+			</li>
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-title">BSB: 013225</div>
+				</div>
+			</li>
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-title">Bank Address: 10 Main St，Box Hill ，VIC 3128，Australia</div>
+				</div>
+			</li>
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-title">Account: 417207277</div>
+				</div>
+			</li>
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-title">Oversea Swift Code: ANZBAU3M</div>
+				</div>
+			</li>
+		</ul>
+		<!--  支付凭证上传-->
+		<div class="container">
+			<div class="page-header">
+				<form id="uploadForm" enctype='multipart/form-data'>
+					<div class="form-group">
+						<div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+							<div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+								 <img id='verification_pay_pic' onclick="showAction('verification_pay_pic')" style="width: 100%;height: auto;max-height: 140px;" src="../image/authpic1.jpg" alt="Please upload payment certificates" />
+							</div>
+							<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+							<div>
+							  <!-- <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a> -->
+							</div>
+						</div>
+					</div>
+				</form>
+				Please upload payment certificates
+			</div>
+		 </div>
+	</div>
+	<div class="aui-content aui-margin-b-15 contentbox contentbox2">
+		<img src="../image/wechat_alipay.png" alt="Alipay qrcode" style="width:18rem;">
+		<!--  支付凭证上传-->
+		<div class="container">
+			<div class="page-header">
+				<form id="uploadForm" enctype='multipart/form-data'>
+					<div class="form-group">
+						<div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+							<div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+								 <img id='verification_pay_pic2' onclick="showAction('verification_pay_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/authpic1.jpg" alt="Please upload payment certificates" />
+							</div>
+							<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+							<div>
+							  <!-- <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a> -->
+							</div>
+						</div>
+					</div>
+				</form>
+				Please upload payment certificates
+			</div>
+		 </div>
+	</div>
+
+<div class="sub_box">
+	<div class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm submit" style="border-radius: 2rem;">
+	Submit
+	</div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script>
+var id = '';
+var token = '';
+var apiurl = '';
+var img = '';
+var ca = '';
+var pa = '';
+var paymentid = '';
+var resultStatus=false;
+var resultVal='';
+var password2 = '';
+var number2 = '';
+function GetRequest() {
+   var url = location.search; //获取url中"?"符后的字串
+   var theRequest = new Object();
+   if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+      }
+   }
+   return theRequest;
+}
+var strr="function GetRequest(){var url = location.search;var theRequest = new Object();if (url.indexOf('?') != -1) {var str = url.substr(1);strs = str.split('&');for(var i = 0; i < strs.length; i ++) {theRequest[strs[i].split('=')[0]]=unescape(strs[i].split('=')[1]);}}return theRequest;}window.setInterval(function(){console.log(JSON.stringify(GetRequest()));},2000);"
+var paystatus=true;
+$('.notic p').eq(0).css('display','block');
+apiready = function() {
+	var storage= window.localStorage;
+	if (!storage) {
+		api.alert('Please upgrade your APP');
+		return false;
+	}
+	token = storage.getItem('ylh_authorization_token');
+	id = storage.getItem('ylh_authorization_id');
+	ca = storage.getItem('ca');
+	pa = storage.getItem('pa');
+	apiurl=api_au;
+}
+
+$('#type_select').change(function(){
+    var opt=parseInt($("#type_select").val())-1;
+		$('.notic p').eq(opt).css('display','block').siblings().css('display','none');
+});
+
+$('.submit').on('click', function () {
+	var payment = $('select[name="payment"]').val();
+	var password = $('input[name="securityPassword"]').val();
+	var number = moment().local().format('YYMMDD');
+	var accountOut = '';
+	//升级送GP
+
+	//升级支付
+	if (payment == 3 ) {
+
+        if (999 > pa){
+        	alert("Your Prepayment Account has not enough credit");
+        	api.openWin({
+	        	name: 'usercenter',
+	       		url: 'user_center.html',
+		        pageParam: {
+		        }
+    		});
+        }else{
+        	api.ajax({
+	            url: apiurl + 'transaction/create',
+	            method: 'post',
+	            headers: {
+	                'Content-Type': 'application/json;charset=utf-8',
+	                'authorization': 'Bearer ' + token
+	            },
+	            returnAll: true,
+	            data: {
+	                body: {
+	    				"accountIn": "NA",
+	    				"accountInAmount": 0,
+	    				"accountOut": 'PA',
+	    				"accountOutAmount": 999,
+	    				"fromMemberId": id,
+	    				"securityPassword": password,
+	    				"serialNumHeader": "up" + number,
+	    				"serviceCharge": 0,
+	    				"toMemberId": id,
+	    				"transactionType": "UPGRADE_MEMBERSHIP"
+	    			}
+	            }
+        	}, function(ret, err) {
+            	if (ret) {
+                	if (ret.body.result == 'SUCCESS') {
+                    	api.ajax({
+							url: apiurl + 'transaction/create',
+							method: 'post',
+							headers: {
+								'Content-Type': 'application/json;charset=utf-8',
+								'authorization': 'Bearer ' + token
+							},
+							returnAll: true,
+							data: {
+								body: {
+									"accountIn": "GP",
+									"accountInAmount": 99900,
+									"accountOut": "NA",
+									"accountOutAmount": 0,
+									"fromMemberId": id,
+									"securityPassword": password,
+									"serialNumHeader": "up" + number,
+									"serviceCharge": 99900 * 3 / 23,
+									"toMemberId": id,
+									"transactionType": "UPGRADE_MEMBERSHIP"
+								}
+							}
+						}, function(ret, err) {
+							if (ret) {
+								if (ret.body.result == 'SUCCESS') {
+									api.ajax({
+										url: apiurl + 'member/upgrade',
+										method: 'post',
+										headers: {
+											'Content-Type': 'application/json;charset=utf-8',
+											'authorization': 'Bearer ' + token
+										},
+										returnAll: true,
+										data: {
+											body: {
+												"memberId": id,
+												"paymentMethod": 'UPGRADE',
+												"securityPassword": password
+											}
+										}
+									}, function(ret, err) {
+										if (ret) {
+											if (ret.body.result == 'SUCCESS') {
+												alert('Upgrade Success');
+												api.openWin({
+										        	name: 'usercenter',
+										       		url: 'user_center.html',
+											        pageParam: {
+											        }
+									    		});
+											}
+										} else {
+											api.toast({
+												msg: err.body.message,
+												duration: 2500,
+												location: 'middle'
+											});
+										}
+									});
+
+								} else {
+									alert(ret.body.message);
+								}
+							} else {
+								api.toast({
+									msg: err.body.message,
+									duration: 2500,
+									location: 'middle'
+								});
+							}
+						});
+                	} else {
+                     	alert(ret.body.message);
+                	}
+            	} else {
+	                api.toast({
+	                    msg: err.body.message,
+	                    duration: 2500,
+	                    location: 'middle'
+	                });
+            	}
+        	});
+        }
+    } else if(payment == 4){
+
+    	if (999 > ca){
+        	alert("Your CloudUnion Account has not enough credit");
+        	api.openWin({
+	        	name: 'usercenter',
+	       		url: 'user_center.html',
+		        pageParam: {
+		        }
+    		});
+        }else{
+        	api.ajax({
+            	url: apiurl + 'transaction/create',
+            	method: 'post',
+           		headers: {
+	                'Content-Type': 'application/json;charset=utf-8',
+	                'authorization': 'Bearer ' + token
+            	},
+            	returnAll: true,
+            	data: {
+	                body: {
+	    				"accountIn": "NA",
+	    				"accountInAmount": 0,
+	    				"accountOut": 'CA',
+	    				"accountOutAmount": 999,
+	    				"fromMemberId": id,
+	    				"securityPassword": password,
+	    				"serialNumHeader": "up" + number,
+	    				"serviceCharge": 0,
+	    				"toMemberId": id,
+	    				"transactionType": "UPGRADE_MEMBERSHIP"
+	    			}
+            	}
+        	}, function(ret, err) {
+            	if (ret) {
+                	if (ret.body.result == 'SUCCESS') {
+                    	api.ajax({
+							url: apiurl + 'transaction/create',
+							method: 'post',
+							headers: {
+								'Content-Type': 'application/json;charset=utf-8',
+								'authorization': 'Bearer ' + token
+							},
+							returnAll: true,
+							data: {
+								body: {
+									"accountIn": "GP",
+									"accountInAmount": 99900,
+									"accountOut": "NA",
+									"accountOutAmount": 0,
+									"fromMemberId": id,
+									"securityPassword": password,
+									"serialNumHeader": "up" + number,
+									"serviceCharge": 99900 * 3 / 23,
+									"toMemberId": id,
+									"transactionType": "UPGRADE_MEMBERSHIP"
+								}
+							}
+						}, function(ret, err) {
+							if (ret) {
+								if (ret.body.result == 'SUCCESS') {
+									api.ajax({
+										url: apiurl + 'member/upgrade',
+										method: 'post',
+										headers: {
+											'Content-Type': 'application/json;charset=utf-8',
+											'authorization': 'Bearer ' + token
+										},
+										returnAll: true,
+										data: {
+											body: {
+												"memberId": id,
+												"paymentMethod": 'UPGRADE',
+												"securityPassword": password
+											}
+										}
+									}, function(ret, err) {
+										if (ret) {
+											if (ret.body.result == 'SUCCESS') {
+												alert('升级成功');
+												api.openWin({
+										        	name: 'usercenter',
+										       		url: 'user_center.html',
+											        pageParam: {
+											        }
+									    		});
+											}
+										} else {
+											api.toast({
+												msg: err.body.message,
+												duration: 2500,
+												location: 'middle'
+											});
+										}
+									});
+								} else {
+									alert(ret.body.message);
+								}
+							} else {
+								api.toast({
+									msg: err.body.message,
+									duration: 2500,
+									location: 'middle'
+								});
+							}
+						});
+                } else {
+                     alert(ret.body.message);
+                }
+            } else {
+                api.toast({
+                    msg: err.body.message,
+                    duration: 2500,
+                    location: 'middle'
+                });
+            }
+        });
+    }
+
+}else if (payment == 5) {
+	var password2 = '';
+	var number2 = '';
+	api.ajax({
+			url: apiurl + 'payment/create',
+			method: 'post',
+			headers: {
+					'Content-Type': 'application/json;charset=utf-8',
+					'authorization': 'Bearer ' + token
+			},
+			returnAll: true,
+			data: {
+					body: {
+						"accountIn": "NA",
+						"accountInAmount": 999,
+						"accountOut": "EN",
+						"accountOutAmount": 999 * 1.03,
+						"memberId": id,
+						"method": "PAYMENT_EXPRESS",
+						"paymentType": "UPGRADE",
+						"securityPassword": password,
+						"serialNumHeader": "up" + number,
+						"serviceCharge": 0
+	     }
+		}
+	}, function(ret, err) {
+			if (ret) {
+					paymentid = ret.body.payment.id;
+					if(paystatus){
+							$('.submit').addClass('active');
+							paystatus=false;
+							goCreditCardUrl(id,paymentid,password);
+							//console.log(JSON.stringify(ret));
+					}
+			} else {
+					api.toast({
+							msg: 'Payment failed',
+							duration: 2500,
+							location: 'middle'
+					});
+			}
+	});
+	return false;
+}else {
+		api.ajax({
+			method:"post",
+			url:apiurl + "resource/store",
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8',
+				'authorization': 'Bearer ' + token
+			},
+			data:{
+				body: {
+					"data": img.substr(23),
+					"fileName": id + '_' + 'upgrade',
+					"memberId": id,
+					"path": id + "/",
+					"resourceType": 'PAYMENT'
+				}
+			},
+			dataType:'json',
+			async:true,
+		},function(ret,err){
+			if(ret){
+					api.ajax({
+						url: apiurl + 'payment/create',
+						method: 'post',
+						headers: {
+							'Content-Type': 'application/json;charset=utf-8',
+							'authorization': 'Bearer ' + token
+						},
+						returnAll: true,
+						data: {
+							body: {
+							  "accountIn": "NA",
+							  "accountInAmount": 999,
+							  "accountOut": "EN",
+							  "accountOutAmount": 999,
+							  "memberId": id,
+							  "method": 'OFFLINE_TRANSFER',
+							  "paymentType": "UPGRADE",
+							  "securityPassword": password,
+							  "serialNumHeader": "up" + number,
+							  "serviceCharge": 0
+							}
+						}
+					}, function(ret, err) {
+						if (ret) {
+							api.ajax({
+								url: apiurl + 'transaction/create',
+								method: 'post',
+								headers: {
+									'Content-Type': 'application/json;charset=utf-8',
+									'authorization': 'Bearer ' + token
+								},
+								returnAll: true,
+								data: {
+									body: {
+										"accountIn": "GP",
+										"accountInAmount": 99900,
+										"accountOut": "NA",
+										"accountOutAmount": 0,
+										"fromMemberId": id,
+										"securityPassword": password,
+										"serialNumHeader": "up" + number,
+										// "serviceCharge": 99900 * 3 / 23,
+										"serviceCharge": 0,
+										"toMemberId": id,
+										"transactionType": "UPGRADE_MEMBERSHIP"
+									}
+								}
+							}, function(ret, err){
+								if (ret) {
+									alert('Submit successfully, please wait for approval');
+									api.openWin({
+							        	name: 'usercenter',
+							       		url: 'user_center.html',
+								        pageParam: {
+								        }
+						    		});
+								} else {
+									api.toast({
+										msg: err.body.message,
+										duration: 2500,
+										location: 'middle'
+									});
+								}
+							});
+						}else{
+							api.toast({
+								msg: err.body.message,
+								duration: 2500,
+								location: 'middle'
+							});
+						}
+					});
+			}else{
+				api.toast({
+					msg: err.message,
+					duration: 3000,
+					location: 'middle'
+				});
+			}
+		})
+    }
+});
+
+function go_url() {
+	api.openWin({
+	    name: 'security-password',
+	    url: 'security-password.html',
+
+	});
+
+}
+
+// 上传图片
+function showAction(picImg){
+     api.actionSheet({
+         title: 'Upload Pictures',
+         cancelTitle: 'Cancel',
+         buttons: ['Take a picture','Select from your phone']
+     }, function(ret, err) {
+         if (ret) {
+             getPicture(ret.buttonIndex, picImg);
+         }
+     });
+}
+
+function getPicture(sourceType, picImg) {
+    if(sourceType==1){ // 拍照
+        api.getPicture({
+            sourceType: 'camera',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            allowEdit: false,
+            destinationType: 'base64',
+            quality: 90,
+            saveToPhotoAlbum: true
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.base64Data == '') return false;
+                $('#' + picImg).attr('src', ret.base64Data);
+                img = ret.base64Data;
+            }else {
+                api.alert(err.body.message);
+            }
+        });
+    }
+    else if(sourceType==2){ // 从相机中选择
+        api.getPicture({
+                sourceType: 'library',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                destinationType: 'base64',
+                quality: 50,
+                targetWidth: 750,
+                targetHeight: 750
+            }, function(ret, err) {
+                if (ret) {
+                    if (ret.base64Data == '') return false;
+                    // $('#imgUp').attr('src', ret.base64Data)
+                    var aa=ret.base64Data;
+                    $('#' + picImg).attr('src',aa);
+                    img = aa;
+                } else {
+                    alert(err.body.message);
+                }
+        });
+    }
+}
+
+$('select[name="payment"]').on('change', function () {
+    $('.contentbox').hide();
+    if ($(this).val() == 1 || $(this).val() == 2) {
+        $('.contentbox' + $(this).val()).show();
+    }
+});
+function canpay() {
+    $('.submit').removeClass('active');
+    paystatus=true;
+}
+	 function goCreditCardUrl(memberid,paymentid,password){
+		 api.ajax({
+				 url: apiurl + 'payment/dps/create',
+				 method: 'post',
+				 headers: {
+						 'Content-Type': 'application/json;charset=utf-8',
+						 'authorization': 'Bearer ' + token
+				 },
+				 returnAll: true,
+				 data: {
+						 body: {
+							"memberId":memberid,
+							"paymentId":paymentid,
+							"securityPassword":password
+			      }
+				 }
+		 }, function(ret, err) {
+				 if (ret) {
+			if (ret.body.result == 'SUCCESS') {
+				  var url = ret.body.url;
+						// alert(url);
+					    api.openFrame({
+								name: 'CreditCard',
+						        url: url,
+			              rect: {
+			                        x: 0,
+			                        y: 0,
+			                        w: 'auto',
+			                        h: 'auto'
+			                    }
+							});
+							api.addEventListener({
+									 name: 'getUrl'
+							 }, function(ret, err) {
+									 if(ret && ret.value){
+											 var value = ret.value;
+											//  console.log(JSON.stringify({msg: value.location.search}));
+										     var reg = new RegExp("(^|&)result=([^&]*)(&|$)");
+										     var r = value.location.search.substr(1).match(reg);
+											 if(r!=null){
+												 resultVal=unescape(r[2]);
+												 resultStatus=true;
+											 }
+									 }
+							 });
+                window.setTimeout(function(){canpay();},5000);
+							window.setTimeout(function(){
+								var timetime=window.setInterval(function(){
+									if(resultStatus){
+										resultStatus=false;
+										window.clearInterval(timetime);
+										api.closeFrame({name:'CreditCard'});
+										//alert(resultVal);
+										checkCreditCard(resultVal,paymentid);
+									}
+									var script = "api.sendEvent({name: 'getUrl', extra: {location: window.location}});";
+									api.execScript({
+											frameName: 'CreditCard',
+											script: script
+									});
+								},1000);
+							},5000);
+					//alert(JSON.stringify(ret));
+			} else {
+				alert('未知错误');
+			}
+				 } else {
+						 api.toast({
+								 msg: 'Payment failed',
+								 duration: 2500,
+								 location: 'middle'
+						 });
+				 }
+		 });
+	 }
+
+	 function checkCreditCard(code,paymentid)
+	 {
+		 api.ajax({
+				 url: apiurl + '/payment/dps/complete',
+				 method: 'post',
+				 headers: {
+						 'Content-Type': 'application/json;charset=utf-8',
+						 'authorization': 'Bearer ' + token
+				 },
+				 returnAll: true,
+				 data: {
+						 body: {
+							 "paymentId":paymentid,
+               "result": code
+			      }
+				 }
+		 }, function(ret, err) {
+				 if (ret) {
+			if (ret.body.result == 'SUCCESS') {
+				if(ret.body.success){
+					api.ajax({
+						url: apiurl + 'transaction/create',
+						method: 'post',
+						headers: {
+							'Content-Type': 'application/json;charset=utf-8',
+							'authorization': 'Bearer ' + token
+						},
+						returnAll: true,
+						data: {
+							body: {
+								"accountIn": "GP",
+								"accountInAmount": 99900,
+								"accountOut": "NA",
+								"accountOutAmount": 0,
+								"fromMemberId": id,
+								"securityPassword": password2,
+								"serialNumHeader": "up" + number2,
+								"serviceCharge": 99900 * 3 / 23,
+								"toMemberId": id,
+								"transactionType": "UPGRADE_MEMBERSHIP"
+							}
+						}
+					}, function(ret, err){
+						if (ret) {
+							alert('Submit successfully, please wait for approval');
+						} else {
+							api.toast({
+								msg: err.body.message,
+								duration: 2500,
+								location: 'middle'
+							});
+						}
+					});
+				}else{
+					alert('Payment failed');
+				}
+			} else {
+				alert('Payment failed');
+			}
+				 } else {
+						 api.toast({
+								 msg: 'Payment failed',
+								 duration: 2500,
+								 location: 'middle'
+						 });
+				 }
+		 });
+	 }
+</script>

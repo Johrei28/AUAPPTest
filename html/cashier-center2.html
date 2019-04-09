@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+   	 	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+   	 	<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>收银中心</title>
+
+		<style type="text/css">
+			html,body {
+				background-color: #fff;
+			}
+			*{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.box-header{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.box-header span{
+				display: block;
+				width: 35%;
+				text-align: center;
+				border: 1px solid orange;
+				padding: 0.30rem 0;
+				border-radius: 2rem;
+				color: #444;
+			}
+			.box-header span:nth-child(2){
+				margin-left:10%;
+			}
+			.box-header span.now{
+				border: none;
+				background: orange;
+				color: #fff;
+			}
+
+			.box-top{
+				width: 50%;
+				margin: auto;
+				padding-top: 1.6rem;
+			}
+			.box-top img{
+				display: block;
+				width: 4rem;
+				height: 4rem;
+				margin: auto;
+			}
+			.box-top>span{
+				display: block;
+				color: #444;
+			}
+			.box-top>span:nth-child(2){
+				padding-top: 0.8rem;
+				text-align: center;
+			}
+			.box-top>span:nth-child(3){
+				font-size: 1rem;
+				padding: 0.4rem 0;
+				text-align: center;
+			}
+			.box-top-text {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.box-top-text span{
+				font-size: 0.6rem;
+			}
+			.box-top-text span:nth-child(1){
+				/*line-height: 1rem;*/
+				margin-top: 0.25rem;
+				margin-right: 0.5rem;
+			}
+			.box-top-text span:nth-child(2){
+				padding:0.2rem 0.5rem;
+				background-color: orange;
+				color: #fff;
+				border-radius: 0.8rem;
+			}
+
+			.box-checkout{
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				margin-top: 3rem;
+			}
+			.box-checkout-img{
+				display: inline-block;
+				background: orange;
+				width: 3.5rem;
+				height: 3.5rem;
+				border-radius:2.5rem;
+				margin: auto;
+			}
+			.box-checkout-img img{
+				width: 1.5rem;
+				height: 1.5rem;
+				padding: 1rem;
+			}
+			.box-checkout span{
+				display: inline-block;
+				text-align: center;
+				line-height: 2rem;
+			}
+
+			.box-bottom{
+				margin-top: 2rem;
+				width: 100%;
+				color: #999;
+			}
+			.box-bottom>span{
+				margin-left: 1rem;
+			}
+			.box-bottom-text{
+				margin-top: 1rem;
+				line-height: 1rem;
+				font-size: 0.7rem;
+			}
+			.box-bottom-text img{
+				float: left;
+				display: block;
+				width: 0.8rem;
+				height: 1rem;
+				margin-left: 1rem;
+				margin-top: -0.2rem;
+			}
+			.box-bottom-text span{
+				display: inline-block;
+				width: calc(100% - 2.8rem);
+				color: #666;
+				margin-left: 0.1rem;
+			}
+			.main_box {
+				margin-top: 1.5rem;
+				overflow: hidden;
+			}
+			.sub_box {
+				margin-top: 0.5rem;
+			}
+			.sub_box li {
+				width: 68%;
+				margin:0 auto;
+				text-align: center;
+				height: 2rem;
+				line-height: 2rem;
+				color: #fff;
+				background-color: #EF4E14;
+				border-radius: 2rem;
+			}
+			.seimg img {
+				display: inline;
+				width: 0.7rem;
+				vertical-align: middle;
+			}
+			.textcenter {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content aui-margin-t-15">
+			<div class="box-header aui-margin-t-15">
+				<span class="aui-font-size-14" onclick="go_url(106)">扫码收银</span>
+				<span class="now aui-font-size-14">录入收银</span>
+			</div>
+
+			<div class="box-top">
+				<img src="../image/djfaskhfawe46846g4dfguygaer.png"/>
+				<div class="box-top-text">
+					<span class="aui-font-size-14">
+					<p class="aui-margin-t-10">Trading Points余额</p>
+	                <h1 class="aui-text-warning aui-margin-t-10" name='total1'></h1></span>
+				</div>
+				<div class="box-top-text">
+					<span class="aui-font-size-14">
+					<p class="aui-margin-t-10">可收银</p>
+	                <h1 class="aui-text-warning aui-margin-t-10" name='total2'></h1></span>
+					<span class="aui-font-size-12 textcenter" style = "height:40px;width:40px;border-radius:35%;" onclick="go_url(907)">充值</span>
+				</div>
+			</div>
+
+			<div class="aui-content-padded aui-margin-b-15 main_box">
+			    <ul class="aui-list aui-form-list">
+			        <!-- <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label aui-font-size-12">
+			                    请选择
+			                </div>
+			                <div class="aui-list-item-input seimg">
+			                    <img src="../image/new_ciryel.png" > <span class="aui-font-size-12">注册ID</span>&nbsp;&nbsp;&nbsp;
+
+			                </div>
+			            </div>
+			        </li> -->
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label aui-font-size-12">
+			                    买家用户名
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="text" name="member" placeholder="输入买家注册的用户名" class="aui-font-size-12">
+			                </div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label aui-font-size-12">
+                            交易金额(AUD$)
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="text" name="amount" placeholder="请输入买家消费金额" class="aui-font-size-12">
+			                </div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label aui-font-size-12">
+			                    交易备注
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="text" placeholder="请输入交易备注以备查询" class="aui-font-size-12">
+			                </div>
+			            </div>
+			        </li>
+							<li class="aui-list-item">
+							   <div class="aui-list-item-inner">
+								    <div class="aui-list-item-label aui-font-size-12">
+						                    交易百分比
+			              </div>
+								   <div class="aui-list-item-input aui-font-size-12">
+									   <label><img src="../image/diamond4.png" alt=""><input class="aui-radio" type="radio" value="1" name="persent" checked> 100%</label>
+									   <label><img src="../image/diamond3.png" alt=""><input class="aui-radio" type="radio" value="0.75" name="persent"> 75%</label>
+									   <label><img src="../image/diamond2.png" alt=""><input class="aui-radio" type="radio" value="0.50" name="persent"> 50%</label>
+									   <label><img src="../image/diamond1.png" alt=""><input class="aui-radio" type="radio" value="0.25" name="persent"> 25%</label>
+									   <meta name="viewport" content="user-scalable=yes">
+								   </div>
+							   </div>
+						   </li>
+
+					   <li class="aui-list-item">
+	               <div class="aui-list-item-inner">
+	                   <div class="aui-list-item-label aui-font-size-12">
+	                       安全密码
+	               			</div>
+	                  <div class="aui-list-item-input">
+	                      <input type="password" name="password" placeholder="请输入安全密码" class="aui-font-size-12">
+	                  </div>
+	               </div>
+	            </li>
+			    </ul>
+			</div>
+			<div class="sub_box submit" id = "TP_checkout_submit">
+				<li>提交</li>
+			</div>
+		</div>
+
+		<div class="box-bottom">
+			<span>温馨提示</span>
+			<div class="box-bottom-text">
+				<ul>
+					<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+						<img src="../image/fd165844513guygsidgfi4864.png">
+						<div>当收银成功，买家的Gift Points将会相应增加（不包含GST）
+						</div>
+					</li>
+					<li class="aui-margin-t-5 aui-margin-b-10 aui-font-size-12">
+						<img src="../image/fd165844513guygsidgfi4864.png">
+						<div>收银成功后将不能撤回，请谨慎操作
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<br/>
+		<br/>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+	<script type="text/javascript" src='../script/moment.min.js'></script>
+
+	<script>
+		var apiurl = '';
+		var user_info = '';
+		var token = '';
+		var user_name = '';
+		var number = moment().local().format('YYMMDD');
+		var id = '';
+		apiready = function() {
+		    var storage= window.localStorage;
+		    apiurl=api_au;
+		    token = storage.getItem('ylh_authorization_token');
+			id = storage.getItem('ylh_authorization_id');
+
+		    var token_expiry_time = moment(storage.getItem('ylh_authorization_token_expiry')).format('YYYY-MM-DD 00:00:00');
+		    user_name = storage.getItem('ylh_authorization_username');
+			user_info = JSON.parse(storage.getItem('ylh_authorization_userinfo'));
+		    var modtime = moment().format('YYYY-MM-DD HH:mm:ss');
+			<!-- $('h1[name="total1"]').html(user_info.tradingPoint.toFixed(2)); -->
+			<!-- $('h1[name="total2"]').html("NZ$"+" "+(+user_info.tradingPoint *0.01).toFixed(2)); -->
+			//获取用户信息
+			api.ajax({
+				url: apiurl + 'member/get',
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8',
+					'authorization': 'Bearer ' + token
+				},
+				returnAll: true,
+				data: {
+					body: {
+						"email": '',
+						"type": 'username',
+						"username": user_name,
+					}
+				}
+			}, function(ret, err) {
+				if (ret) {
+					storage.setItem('ylh_authorization_enable', ret.body.member.username);
+					storage.setItem('ylh_authorization_verified', ret.body.member.verified);
+					storage.setItem('ylh_authorization_userinfo', JSON.stringify(ret.body.member));
+					user_info = ret.body.member;
+				} else {
+					api.toast({
+						msg: '获取用户信息失败',
+						duration: 2500,
+						location: 'middle'
+					});
+				}
+			});
+			//添加监听时间，刷新数据
+			api.addEventListener({
+				name: 'update'
+			}, function(ret, err) {
+				window.location.reload();
+			});
+			trading_point_display1 = user_info.tradingPoint;
+			trading_point_display2 = user_info.tradingPoint * 0.01;
+
+			trading_point_display1 = trading_point_display1.toString();
+			trading_point_display2 = trading_point_display2.toString();
+
+			if (trading_point_display1.indexOf('.') != -1) {
+				trading_point_display1 = trading_point_display1.slice(0, (trading_point_display1.indexOf(".")) + 3);
+				$('h1[name="total1"]').html(trading_point_display1);
+			} else {
+				$('h1[name="total1"]').html(trading_point_display1);
+			};
+			if (trading_point_display2.indexOf('.') != -1) {
+				trading_point_display2 = trading_point_display2.slice(0, (trading_point_display2.indexOf(".")) + 3);
+				$('h1[name="total2"]').html("AU$"+" "+trading_point_display2);
+			} else {
+				$('h1[name="total2"]').html("AU$"+" "+trading_point_display2);
+			};
+		}
+
+		$('input[type="radio"]').click(function () {
+		    $(this).parent().addClass('che').siblings().removeClass('che');
+		})
+		function go_url(typenub) {
+			var jsfun = 'go_url('+typenub+');';
+			api.execScript({
+			    script: jsfun
+			});
+		}
+
+		$('.seimg img').click(function(event) {
+			$('.seimg img').attr('src','../image/new_cir.png');
+			$(this).attr('src','../image/new_ciryel.png');
+		});
+
+$('.submit').on('click', function () {
+	$('#TP_checkout_submit').css('display', 'none');
+	var amount = $('input[name="amount"]').val();
+	var password = $('input[name="password"]').val();
+	var member = $('input[name="member"]').val();
+	var persent =$('input[name="persent"]:checked').val();
+
+
+	// if($('input[name="persent"]').checked){
+	// 	var persent = $('input[name="persent"]').val();
+	// }else if ($('input[name="persent1"]').chekced){
+	// 	var persent = $('input[name="persent1"]').val();
+	// }else if($('input[name="persent2"]').chekced){
+	// 	var persent = $('input[name="persent2"]').val();
+	// }else if($('input[name="persent3"]').chekced){
+	// 	var persent = $('input[name="persent3"]').val();
+	// }
+
+	var memberid = '';
+
+	if (amount == '' || member == '' || password == '') {
+		alert('请上传支付截图并填写完整信息！');
+		$('#TP_checkout_submit').css('display', 'block');
+		return false;
+	}
+	api.ajax({
+		url: apiurl + 'member/get',
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'authorization': 'Bearer ' + token
+		},
+		returnAll: true,
+		data: {
+			body: {
+			  "email": "",
+			  "type": "username",
+			  "username": member
+			}
+		}
+	}, function(ret, err) {
+		if (ret) {
+			memberid = ret.body.member.id;
+			if (memberid == id) {
+				alert('不可以将自己的Trading Points 转换成Gift Points');
+				$('#TP_checkout_submit').css('display', 'block');
+				return false;
+			}
+			api.ajax({
+				url: apiurl + 'transaction/create',
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8',
+					'authorization': 'Bearer ' + token
+				},
+				returnAll: true,
+				data: {
+					body: {
+					  "accountIn": "GP",
+					  "accountInAmount": amount * 100 *  persent,
+					  "accountOut": "TP",
+					  "accountOutAmount": amount * 100 *  persent,
+					  "fromMemberId": id,
+					  "securityPassword": password,
+					  "serialNumHeader": "co" + number,
+					//   "serviceCharge":  amount * persent / 23 * 3 * 100,//修改时间2019/2/26
+					  "serviceCharge":  0,
+					  "toMemberId": memberid,
+					  "transactionType": "CHECK_OUT"
+					}
+				}
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.body.result == 'SUCCESS') {
+						alert('交易成功！');
+						api.sendEvent({
+							name: 'update'
+						});
+						api.closeWin();
+					} else {
+						api.toast({
+							msg: ret.body.message,
+							duration: 2500,
+							location: 'middle'
+						});
+						$('#TP_checkout_submit').css('display', 'block');
+					}
+				} else {
+					api.toast({
+						msg: '交易失败',
+						duration: 2500,
+						location: 'middle'
+					});
+					$('#TP_checkout_submit').css('display', 'block');
+				}
+			});
+		} else {
+			api.toast({
+				msg: '未知错误',
+				duration: 2500,
+				location: 'middle'
+			});
+			$('#TP_checkout_submit').css('display', 'block');
+		}
+	});
+
+});
+	</script>
+</html>

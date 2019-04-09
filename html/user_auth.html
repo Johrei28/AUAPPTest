@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel='stylesheet' type="text/css" href="../css/Mdate.css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-fileinput.css" rel="stylesheet">
+<style>
+        html,body {
+            background-color: #F8F8F8;
+        }
+        .content-box {
+            margin-top: 2rem;
+        }
+        .user-pic {
+            display: inline-flex;
+            align-items: center;
+            height: 5rem;
+        }
+        .user-name {
+            display: inline-block;
+        }
+
+        .top_logo {
+            /*margin-left: 5rem;*/
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        .top_logo img {
+            border-radius: 50%;
+        }
+        .aui-pull-right {
+            font-size: 1.2rem;
+            margin-left: .5rem;
+            margin-top: .2rem;
+        }
+        .user-desc {
+            float: right;
+        }
+        .aui-list-item-title {
+            float: left;
+        }
+        .float-right {
+            color: #A2A2A4;
+        }
+        .return {
+            height: 3rem;
+            width: 100%;
+            color: #A2A2A4;
+            display: inline-flex;
+            align-items: center;
+        }
+        .return span {
+            display: block;
+            width: inherit;
+            text-align: center;
+        }
+        .submit {
+            height: 3rem;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            text-align: center;
+            color: #00BCD4;
+        }
+        .submit span {
+            display: block;
+            width: inherit;
+            text-align: center;
+        }
+        .active{
+            background: #cccccc;
+        }
+        .aui-list-item {
+            height: 5rem;
+        }
+        .desc p {
+            margin: 1rem;
+        }
+        #tab div {
+            height:4rem;
+        }
+        #tab {
+            margin-top: 2rem;
+        }
+        .contentbox {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="aui-tab" id="tab">
+        <div  class="aui-tab-item aui-font-size-20 aui-padded-5 aui-active" data="box1">护照</div>
+        <div class="aui-tab-item aui-font-size-20 aui-padded-5" data="box2">澳大利亚驾照</div>
+        <div  class="aui-tab-item aui-font-size-20 aui-padded-5" data="box3">中国会员认证</div>
+    </div>
+    <div class='content-box xbox box1'>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            真实姓名
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' name='realName' placeholder='请输入真实姓名' class="aui-font-size-20 float-right"  />
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            护照号码
+                        </div>
+                        <div class="aui-list-item-right">
+                           <input class="aui-text aui-font-size-20" type="text" name="certificateNum" placeholder='请输入护照号码' value=''>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            出生日期
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="dateOfBirth" class='aui-font-size-20' type="text" id='birthday' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            过期日期
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="expiryDate" class='aui-font-size-20' type="text" id='expiryday' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            地址
+                        </div>
+						 <div class="aui-list-item-right">
+							<input class="aui-text aui-font-size-20" type="text" name="detailedAddress" placeholder='请填写地址' value=''>
+
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+            <div class='desc'>
+			    <p class="aui-font-size-20">请上传护照照片</p>
+                <p class="aui-font-size-20">• 请使用有效期超过1年的护照</p>
+                <p class="aui-font-size-20">• 请不要化妆和/或PS.拍照</p>
+                <p class="aui-font-size-20">• 拍一张照片你拿着你的护照不覆盖任何信息</p>
+                <p class="aui-font-size-20">• 确保照片清晰易读</p>
+                <p class="aui-font-size-20">• 图片的大小应小于2MB，以JPG或PNG格式</p>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic1' onclick="showAction('passport_pic1')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport1.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的护照照片
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic2' onclick="showAction('passport_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport2.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您手持护照照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic3' onclick="showAction('passport_pic3')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport3.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的正面照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic4' onclick="showAction('passport_pic4')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport4.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的侧面照片
+                </div>
+				</div>
+
+
+				<div class="container">
+                    <div class="page-header">
+                        <form id="uploadForm" enctype='multipart/form-data'>
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='passport_pic5' onclick="showAction('passport_pic5')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport7.png" alt="" />
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                    <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                    </div>
+                                </div>
+                            </div>
+                                    <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                        </form>
+					请上传您的地址证明
+                    </div>
+                </div>
+
+		</div>
+	</div>
+
+            <!-- <div class='content-box xbox box2'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-title">
+                                会员信息
+                            </div>
+                            <div class="aui-btn aui-btn-info float-right">
+                                保存
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                会员等级
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                修改
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                会员类型
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                修改
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+
+            <!-- <div class='content-box xbox box3'>
+                <ul class="aui-list aui-list-in">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-title">
+                                联系信息
+                            </div>
+                            <div class="aui-btn aui-btn-info float-right">
+                                保存
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                所在地区
+                            </div>
+                            <input style='color:#A2A2A4;' id="picker" name='user_area' class="aui-font-size-20"  />
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                详细地址
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                请输入
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                手机号码
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                电话号码
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                email
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                邮编
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-list-item-title">
+                                QQ号码
+                            </div>
+                            <div style='color:#A2A2A4;' class="aui-list-item-title float-right">
+                                未填写
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+
+
+    <div class='content-box xbox box2'>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            真实姓名
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' name='realName' placeholder='请输入真实姓名' class="aui-font-size-20 float-right"  />
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            驾驶证号码
+                        </div>
+                        <div class="aui-list-item-right">
+                           <input class="aui-text aui-font-size-20" type="text" name="certificateNum" placeholder='请输入驾驶证号码' value=''>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            出生日期
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="dateOfBirth" class='aui-font-size-20' type="text" id='birthday2' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            过期日期
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="expiryDate" class='aui-font-size-20' type="text" id='expiryday2' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                         <div class="aui-list-item-title aui-font-size-20">
+                            地址
+                        </div>
+						 <div class="aui-list-item-right">
+							<input class="aui-text aui-font-size-20" type="text" name="detailedAddress" placeholder='请填写地址' value=''>
+
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+            <div class='desc'>
+			    <p class="aui-font-size-20">请上传驾驶证照片</p>
+                <p class="aui-font-size-20">• 请使用有效期超过1年的驾驶证</p>
+                <p class="aui-font-size-20">• 请不要化妆和/或PS.照片</p>
+                <p class="aui-font-size-20">• 拍一张照片你拿着你的驾驶证不覆盖任何信息</p>
+                <p class="aui-font-size-20">• 确保照片清晰易读</p>
+                <p class="aui-font-size-20">• 图片的大小应小于2MB，以JPG或PNG格式</p>
+            </div>
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='driver_pic1' onclick="showAction('driver_pic1')" style="width: 100%;height: auto;max-height: 140px;" src="../image/driverLicense1.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的驾驶证正面照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='driver_pic2' onclick="showAction('driver_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/driverLicense2.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的驾驶证反面照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='driver_pic3' onclick="showAction('driver_pic3')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport2.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您手持驾驶证照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='driver_pic4' onclick="showAction('driver_pic4')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport3.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的正面照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='driver_pic5' onclick="showAction('driver_pic5')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport4.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的侧面照片
+                </div>
+				 </div>
+
+				<div class="container">
+                    <div class="page-header">
+                        <form id="uploadForm" enctype='multipart/form-data'>
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='driver_pic6' onclick="showAction('driver_pic6')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport7.png" alt="" />
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                    <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                    </div>
+                                </div>
+                            </div>
+                                    <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                        </form>
+					请上传您的地址证明
+                    </div>
+                </div>
+        </div>
+    </div>
+
+	<div class='content-box xbox box3'>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            真实姓名
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' name='realName' placeholder='请输入真实姓名' class="aui-font-size-20 float-right"  />
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            护照号码
+                        </div>
+                        <div class="aui-list-item-right">
+                           <input class="aui-text aui-font-size-20" type="text" name="certificateNum" placeholder='请输入护照号码' value=''>
+                       </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            出生日期
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="dateOfBirth" class='aui-font-size-20' type="text" id='birthday3' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            过期日期
+                        </div>
+
+                        <div class="aui-list-item-right">
+                            <input style='color:#A2A2A4;' readonly name="expiryDate" class='aui-font-size-20' type="text" id='expiryday3' placeholder="请选择">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-20">
+                            地址
+                        </div>
+						 <div class="aui-list-item-right">
+							<input class="aui-text aui-font-size-20" type="text" name="detailedAddress" placeholder='请填写地址' value=''>
+
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+            <div class='desc'>
+			    <p class="aui-font-size-20">请上传护照照片</p>
+                <p class="aui-font-size-20">• 请使用有效期超过1年的护照</p>
+                <p class="aui-font-size-20">• 请不要化妆和/或PS.拍照</p>
+                <p class="aui-font-size-20">• 拍一张照片你拿着你的护照不覆盖任何信息</p>
+                <p class="aui-font-size-20">• 确保照片清晰易读</p>
+                <p class="aui-font-size-20">• 图片的大小应小于2MB，以JPG或PNG格式</p>
+            </div>
+
+        <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='idcard_pic1' onclick="showAction('idcard_pic1')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport1.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的护照照片
+                </div>
+            </div>
+
+
+
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='idcard_pic2' onclick="showAction('idcard_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport2.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您手持护照照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='idcard_pic3' onclick="showAction('idcard_pic3')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport3.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的正面照片
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='idcard_pic4' onclick="showAction('idcard_pic4')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport4.jpg" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的侧面照片
+                </div>
+			</div>
+
+			<div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='idcard_pic5' onclick="showAction('idcard_pic5')" style="width: 100%;height: auto;max-height: 140px;" src="../image/china_id2.png" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的身份证正面照片
+                </div>
+			</div>
+
+			<div class="container">
+                <div class="page-header">
+                    <form id="uploadForm" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='idcard_pic6' onclick="showAction('idcard_pic6')" style="width: 100%;height: auto;max-height: 140px;" src="../image/china_id1.png" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                    </form>
+					请上传您的身份证背面照片
+                </div>
+			</div>
+
+			<div class="container">
+                    <div class="page-header">
+                        <form id="uploadForm" enctype='multipart/form-data'>
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                    <img id='idcard_pic7' onclick="showAction('idcard_pic7')" style="width: 100%;height: auto;max-height: 140px;" src="../image/passport7.png" alt="" />
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                    <div>
+                                    <!-- <span class="btn btn-primary btn-file"> -->
+                                        <!-- <span class="fileinput-new">选择文件</span> -->
+                                        <!-- <span class="fileinput-exists">换一张</span> -->
+                                        <!-- <input class="hidden" type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/> -->
+                                    <!-- </span> -->
+                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                    </div>
+                                </div>
+                            </div>
+                                    <!-- <button type="button" id="uploadSubmit" class="btn btn-info">提交</button> -->
+                        </form>
+					请上传您的地址证明
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class='desc'>
+        <p class="aui-font-size-20">• 根据AML/CFT反洗钱相关法律法规的要求，会员必须通过第三方审核系统认证，我们代为收取AU$10认证费用。</p>
+    </div>
+    <div class="aui-content aui-margin-b-15 contentbox3">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-item">
+               <div class="aui-list-item-inner">
+                   <div class="aui-list-item-label" style="font-size:.5rem;">
+                       支付方式
+                   </div>
+                   <div class="aui-list-item-input">
+                       <select name="payment">
+                           <option value="0">请选择</option>
+                           <option value="1">银行转账</option>
+                           <option value="2">支付宝/微信</option>
+                           <option value="3">CloudUnion Account</option>
+                           <option value="4">Prepayment Account</option>
+                       </select>
+                   </div>
+               </div>
+           </li>
+           <li class="aui-list-item">
+               <div class="aui-list-item-inner">
+                   <div class="aui-list-item-label" style="font-size:.5rem;">
+                       安全密码
+                   </div>
+                   <div class="aui-list-item-input">
+                       <input class="aui-font-size-14" type="password" name="password" placeholder="请输入安全密码">
+                   </div>
+               </div>
+           </li>
+        </ul>
+    </div>
+    <div class="aui-content aui-margin-b-15 contentbox contentbox1">
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                Cloud Union (Australia) Network Technology Pty Ltd.
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Bank: Australia and New Zealand Banking Group Limited</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">BSB: 013225</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Bank Address: 10 Main St，Box Hill ，VIC 3128，Australia</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Account: 417207277</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">Oversea Swift Code: ANZBAU3M</div>
+                </div>
+            </li>
+        </ul>
+		<!--  支付凭证上传-->
+        <div class="container">
+            <div class="page-header">
+                <form id="uploadForm" enctype='multipart/form-data'>
+                    <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                            <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                 <img id='verification_pay_pic' onclick="showAction('verification_pay_pic')" style="width: 100%;height: auto;max-height: 140px;" src="../image/authpic1.jpg" alt="请上传支付凭证" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                              <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                请上传支付凭证
+            </div>
+         </div>
+    </div>
+    <div class="aui-content aui-margin-b-15 contentbox contentbox2">
+        <img src="../image/wechat_alipay.png" alt="支付宝付款二维码" style="width:18rem;">
+		<!--  支付凭证上传-->
+        <div class="container">
+            <div class="page-header">
+                <form id="uploadForm" enctype='multipart/form-data'>
+                    <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                            <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                 <img id='verification_pay_pic2' onclick="showAction('verification_pay_pic2')" style="width: 100%;height: auto;max-height: 140px;" src="../image/authpic1.jpg" alt="请上传支付凭证" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                              <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                请上传支付凭证
+            </div>
+         </div>
+    </div>
+
+
+	<div class='content-box'>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="submit">
+                        <span>提交</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="return">
+                        <span>返回</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+<script type="text/javascript" src="../script/iScroll.js"></script>
+<script type="text/javascript" src="../script/Mdate.js"></script>
+<!-- <script type="text/javascript" src="../plugin/picker/scripts/picker.min.js"></script> -->
+<!-- <script type="text/javascript" src="../plugin/picker/scripts/city.js"></script> -->
+<!-- <script type="text/javascript" src="../plugin/picker/scripts/index.js"></script> -->
+<script type="text/javascript" src="../plugin/bootstrap/bootstrap-fileinput.js"></script>
+<script>
+// new Mdate("birthday");
+var apiurl = '';
+var token = '';
+var box = 'box1';
+var id = '';
+var username = '';
+var img = '';
+var payment = '';
+var imgarr = [];
+var number = moment().local().format('YYMMDD');
+var paymentid = '';
+var resultStatus=false;
+var resultVal='';
+var password2 = '';
+function GetRequest() {
+   var url = location.search; //获取url中"?"符后的字串
+   var theRequest = new Object();
+   if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+      }
+   }
+   return theRequest;
+}
+var strr="function GetRequest(){var url = location.search;var theRequest = new Object();if (url.indexOf('?') != -1) {var str = url.substr(1);strs = str.split('&');for(var i = 0; i < strs.length; i ++) {theRequest[strs[i].split('=')[0]]=unescape(strs[i].split('=')[1]);}}return theRequest;}window.setInterval(function(){console.log(JSON.stringify(GetRequest()));},2000);"
+var paystatus=true;
+apiready = function() {
+    var storage= window.localStorage;
+    apiurl=api_au;
+    if (!storage) {
+        api.alert('请升级浏览器');
+        return false;
+    }
+    token = storage.getItem('ylh_authorization_token');
+    id = storage.getItem('ylh_authorization_id');
+    username = storage.getItem('ylh_authorization_username');
+
+    $('.xbox').css('display', 'none');
+    $('.' + box).css('display', 'block');
+    // alert(apiurl);
+
+    var paystatus=false;
+    //获取用户信息
+    api.ajax({
+        url: apiurl + 'member/get',
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        returnAll: true,
+        data: {
+            body: {
+                "email": '',
+                "type": 'username',
+                "username": username,
+            }
+        }
+    }, function(ret, err) {
+        if (ret) {
+            console.log(ret.body.member.verifyStatus);
+            if(ret.body.member.verifyStatus == 'DECLINED') {
+                paystatus=true;
+                $('.contentbox3').hide();
+                $('.contentbox1').hide();
+                $('.contentbox2').hide();
+            }
+
+        } else {
+            api.toast({
+                msg: '用户信息获取失败',
+                duration: 2500,
+                location: 'middle'
+            });
+        }
+    });
+}
+new Mdate("birthday", {
+    acceptId: "birthday",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "",
+    endMonth: "",
+    endDay: "",
+    format: "-"
+});
+new Mdate("expiryday", {
+    acceptId: "expiryday",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "3000",
+    endMonth: "1",
+    endDay: "1",
+    format: "-"
+});
+new Mdate("birthday2", {
+    acceptId: "birthday2",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "",
+    endMonth: "",
+    endDay: "",
+    format: "-"
+});
+new Mdate("expiryday2", {
+    acceptId: "expiryday2",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "3000",
+    endMonth: "1",
+    endDay: "1",
+    format: "-"
+});
+new Mdate("birthday3", {
+    acceptId: "birthday3",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "",
+    endMonth: "",
+    endDay: "",
+    format: "-"
+});
+new Mdate("expiryday3", {
+    acceptId: "expiryday3",
+    beginYear: "1934",
+    beginMonth: "1",
+    beginDay: "19",
+    endYear: "3000",
+    endMonth: "1",
+    endDay: "1",
+    format: "-"
+});
+$('.return').on('click', function () {
+    api.openWin({
+        name: 'user_setting',
+        url: 'user_setting.html',
+        pageParam: {
+
+        }
+    });
+
+});
+
+//选项卡
+$('#tab>div').on('click', function () {
+    box = $(this).attr('data');
+    $('#tab>div').removeClass('aui-active');
+    $(this).addClass('aui-active');
+    $('.xbox').css('display', 'none');
+    $('.' + box).css('display', 'block');
+});
+
+// 上传图片
+function showAction(picImg){
+     api.actionSheet({
+         title: '上传图片',
+         cancelTitle: '取消',
+         buttons: ['拍照','从手机相册选择']
+     }, function(ret, err) {
+         if (ret) {
+             getPicture(ret.buttonIndex, picImg);
+         }
+     });
+}
+
+function getPicture(sourceType, picImg) {
+    if(sourceType==1){ // 拍照
+        api.getPicture({
+            sourceType: 'camera',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            allowEdit: false,
+            destinationType: 'base64',
+            quality: 90,
+            saveToPhotoAlbum: true
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.base64Data == '') return false;
+                $('#' + picImg).attr('src', ret.base64Data);
+                imgarr[imgarr.length] = ret.base64Data;
+                img = ret.base64Data;
+            }else {
+                api.alert(err.body.message);
+            }
+        });
+    }
+    else if(sourceType==2){ // 从相机中选择
+        api.getPicture({
+                sourceType: 'library',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                destinationType: 'base64',
+                quality: 50,
+                targetWidth: 750,
+                targetHeight: 750
+            }, function(ret, err) {
+                if (ret) {
+                    if (ret.base64Data == '') return false;
+                    // $('#imgUp').attr('src', ret.base64Data)
+                    var aa=ret.base64Data;
+                    $('#' + picImg).attr('src',aa);
+                    imgarr[imgarr.length] = aa;
+                    img = aa;
+                } else {
+                    alert(err.body.message);
+                }
+        });
+    }
+}
+$('.submit').on('click', function () {
+    continue_afterpay();
+});
+//打开浮动
+$(".ljzf_but").click(function(){
+    api.actionSheet({
+        title: '支付方式',
+        cancelTitle: '取消',
+        // destructiveTitle: '需缴纳 $10 费用',
+        buttons: [ '银行转账', '支付宝/微信']
+    }, function(ret, err) {
+        // var index = ret.buttonIndex;
+        switch (ret.buttonIndex) {
+            case '1':
+                $('.mz').html('GP');
+                payment = 'GP';
+                break;
+            case '2':
+                $('.mz').html('PA');
+                payment = 'PA';
+                break;
+            default:
+                payment = 'GP';
+                $('.mz').html('GP');
+        }
+        if (ret.buttonIndex == '1' || ret.buttonIndex == '2') $(".ftc_wzsf").show();
+    });
+});
+//关闭浮动
+$(".close").click(function(){
+    $(".ftc_wzsf").hide();
+    $(".mm_box li").removeClass("mmdd");
+    $(".mm_box li").attr("data","");
+    i = 0;
+});
+    //数字显示隐藏
+$(".xiaq_tb").click(function(){
+    $(".numb_box").slideUp(500);
+});
+$(".mm_box").click(function(){
+    $(".numb_box").slideDown(500);
+});
+    //----
+var i = 0;
+$(".nub_ggg li .zf_num").click(function(){
+
+    if(i<6){
+        $(".mm_box li").eq(i).addClass("mmdd");
+        $(".mm_box li").eq(i).attr("data",$(this).text());
+        i++
+        if (i==6) {
+          setTimeout(function(){
+            var data = "";
+                $(".mm_box li").each(function(){
+                data += $(this).attr("data");
+            });
+            var number = moment().local().format('YYMMDD');
+            alert("支付成功"+data);
+            $(".ftc_wzsf").hide();
+            // api.ajax({
+            //     url: apiurl + 'transaction/create',
+            //     method: 'post',
+            //     headers: {
+            //         'Content-Type': 'application/json;charset=utf-8',
+            //         'authorization': 'Bearer ' + token
+            //     },
+            //     returnAll: true,
+            //     data: {
+            //         body: {
+            //           "accountIn": "GP",
+            //           "accountInAmount": 10,
+            //           "accountOut": "NA",
+            //           "accountOutAmount": 0,
+            //           "fromMemberId": id,
+            //           "securityPassword": data,
+            //           "serialNumHeader": "si" + number,
+            //           "serviceCharge": 0,
+            //           "toMemberId": id,
+            //           "transactionType": "SIGN_IN"
+            //         }
+            //     }
+            // }, function(ret, err) {
+            //     if (ret.body.result == 'SUCCESS') {
+            //         continue_afterpay();
+            //     } else {
+            //         api.toast({
+            //             msg: '支付失败',
+            //             duration: 3000,
+            //             location: 'middle'
+            //         });
+            //     }
+            // });
+          },100);
+        };
+    }
+});
+
+$(".nub_ggg li .zf_del").click(function(){
+    if(i>0){
+        i--
+        $(".mm_box li").eq(i).removeClass("mmdd");
+        $(".mm_box li").eq(i).attr("data","");
+    }
+});
+
+$(".nub_ggg li .zf_empty").click(function(){
+    $(".mm_box li").removeClass("mmdd");
+    $(".mm_box li").attr("data","");
+    i = 0;
+});
+//提交
+function continue_afterpay() {
+    var certificateNum = $('.' + box + ' input[name="certificateNum"]').val();
+    var dateOfBirth = $('.' + box + ' input[name="dateOfBirth"]').val();
+    var expiryDate = $('.' + box + ' input[name="expiryDate"]').val();
+    var realName = $('.' + box + ' input[name="realName"]').val();
+    var detailedAddress = $('.' + box + ' input[name="detailedAddress"]').val();
+    var payment = $('select[name="payment"]').val();
+    var password = $('input[name="password"]').val();
+    var fileName = 'passport_pic';
+    var resourceType = "PASSPORT";
+
+    if (certificateNum == '' || dateOfBirth == '' || expiryDate == '' || realName == '' || detailedAddress == '' || password == '' || payment == ''&&paystatus==false) {
+        alert('请完整填写认证信息,并上传图片');
+        return false;
+    }
+    switch (box) {
+        case 'box2':
+            fileName = 'driver_license_pic';
+            resourceType = "DRIVER_LICENCE";
+            if (imgarr.length < 6) {
+                alert('所有图片都必须上传');
+                return false;
+            }
+            break;
+        case 'box3':
+            fileName = 'idcard_pic';
+            resourceType = "PASSPORT";
+            if (imgarr.length < 7) {
+                alert('所有图片都必须上传');
+                return false;
+            }
+            break;
+        default:
+            if (imgarr.length < 5) {
+                alert('所有图片都必须上传');
+                return false;
+            }
+    }
+
+    for (var i = 0; i < imgarr.length; i++) {
+        api.ajax({
+            method:"post",
+            url:apiurl + "resource/store",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'authorization': 'Bearer ' + token
+            },
+            data:{
+                body: {
+                    "data": imgarr[i].substr(23),
+                    "fileName": id + '_' + fileName + i,
+                    "memberId": id,
+                    "path": id + "/",
+                    "resourceType": resourceType
+                }
+            },
+            dataType:'json',
+            async:true,
+        },function(ret,err){
+            if(ret){
+                // if (ret.=result == 'SUCCESS') {
+                //     api.toast({
+                //         msg: '接口2成功',
+                //         duration: 2000,
+                //         location: 'middle'
+                //     });
+                // }
+            }else{
+                // alert(JSON.stringify(err));
+                // api.toast({
+                //     msg: err.message,
+                //     duration: 3000,
+                //     location: 'middle'
+                // });
+            }
+        });
+    }
+
+    // alert(certificateNum);
+    // alert(detailedAddress);
+    // alert(moment(dateOfBirth).format('MM-DD-YYYY'));
+    // alert(moment(expiryDate).format('MM-DD-YYYY'));
+    // alert(id);
+    // alert(realName);
+// return false;
+    api.ajax({
+        method:"post",
+        url:apiurl + "memberinfo/update",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'authorization': 'Bearer ' + token
+        },
+        data:{
+            body: {
+                "busniessNum": "",
+                "certificateNum": certificateNum,
+                "detailedAddress": detailedAddress,
+                "dateOfBirth": moment(dateOfBirth).format('MM/DD/YYYY'),
+                "expiryDate": moment(expiryDate).format('MM/DD/YYYY'),
+                "gender": "",
+                "gstRegistered": "",
+                "id": id,
+                "realName": realName
+            }
+        },
+        dataType:'json',
+        async:true,
+    },function(ret,err){
+        if(ret){
+            if (ret.result == 'SUCCESS') {
+                if (payment == 3 || payment == 4) {
+                    var accountOut = payment == 3 ? 'CA' : 'PA';
+                    //获取用户信息
+                    api.ajax({
+                        url: apiurl + 'member/get',
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8',
+                            'authorization': 'Bearer ' + token
+                        },
+                        returnAll: true,
+                        data: {
+                            body: {
+                                "email": '',
+                                "type": 'username',
+                                "username": username,
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            switch (payment) {
+                                case 3:
+                                    if (ret.body.cloudUnionAccount < 10) {
+                                        alert('你的CA不足$10');
+                                        return false;
+                                    }
+                                    break;
+                                case 4:
+                                    if (ret.body.prepayAccount < 10) {
+                                        alert('你的PA不足$10');
+                                        return false;
+                                    }
+                                    break;
+                                default:
+                            }
+                            // 验证扣除10$费用
+                            api.ajax({
+                                url: apiurl + 'transaction/create',
+                                method: 'post',
+                                headers: {
+                                    'Content-Type': 'application/json;charset=utf-8',
+                                    'authorization': 'Bearer ' + token
+                                },
+                                returnAll: true,
+                                data: {
+                                    body: {
+                                        "accountIn": "NA",
+                                        "accountInAmount": 0,
+                                        "accountOut": accountOut,
+                                        "accountOutAmount": 10,
+                                        "fromMemberId": id,
+                                        "securityPassword": password,
+                                        "serialNumHeader": "rz" + number,
+                                        "serviceCharge": 0,
+                                        "toMemberId": id,
+                                        "transactionType": "UPGRADE_MEMBERSHIP"
+                                    }
+                                }
+                            }, function(ret, err) {
+                                if (ret) {
+                                     if (ret.body.result == 'SUCCESS') {
+                                         // alert(certificateNum);
+                                         // alert(detailedAddress);
+                                         // alert(moment(dateOfBirth).format('MM/DD/YYYY'));
+                                         // alert(moment(expiryDate).format('MM/DD/YYYY'));
+                                         // alert(id);
+                                         // alert(realName);
+                                         // alert(token);
+
+                                         api.ajax({
+                                             method:"get",
+                                             url:apiurl + "submitVerficationRequest",
+                                             headers: {
+                                                 'Content-Type': 'application/json;charset=utf-8',
+                                                 'authorization': 'Bearer ' + token
+                                             },
+                                             dataType:'json',
+                                             async:true,
+                                         },function(ret,err){
+                                             if(ret){
+                                                 if (ret.result == 'SUCCESS') {
+                                                     // alert('get success');
+                                                     api.alert({
+                                                         msg: "提交成功！",
+                                                         duration: 2000,
+                                                         location: 'center'
+                                                     },function () {
+                                                         api.openWin({
+                                                             name: 'index',
+                                                             url: 'index.html',
+                                                             pageParam: {
+
+                                                             }
+                                                         });
+                                                     });
+                                                 }
+                                             }else{
+                                                 alert(JSON.stringify(err.message));
+                                                 return false;
+                                             }
+                                         })
+                                     } else {
+                                         alert(ret.body.message);
+                                        return false;
+                                     }
+                                } else {
+alert(err.body.message);
+                                    api.toast({
+                                        msg: '交易失败',
+                                        duration: 2500,
+                                        location: 'middle'
+                                    });
+                                }
+                            });
+                        } else {
+                            api.toast({
+                                msg: '用户信息获取失败',
+                                duration: 2500,
+                                location: 'middle'
+                            });
+                        }
+                    });
+                }else if (payment == 5) { //信用卡扣除
+                  password2 = password;
+                  api.ajax({
+                      url: apiurl + 'payment/create',
+                      method: 'post',
+                      headers: {
+                          'Content-Type': 'application/json;charset=utf-8',
+                          'authorization': 'Bearer ' + token
+                      },
+                      returnAll: true,
+                      data: {
+                          body: {
+                            "accountIn": "PA",
+                            "accountInAmount": 10,
+                            "accountOut": "EN",
+                            "accountOutAmount": 10 * 1.03,
+                            "memberId": id,
+                            "method": "PAYMENT_EXPRESS",
+                            "paymentType": "PA_TOP_UP",
+                            "securityPassword": password,
+                            "serialNumHeader": "pt" + number,
+                            "serviceCharge": 0
+                          }
+                      }
+                  }, function(ret, err) {
+                      if (ret) {
+                        if (ret.body.result == 'SUCCESS') {
+                            paymentid = ret.body.payment.id;
+                              if(paystatus){
+                                $('.submit').addClass('active');
+                                paystatus=false;
+                                goCreditCardUrl(id,paymentid,password);
+                              }
+                        } else {
+                          canpay();
+                          alert('未知错误');
+                        }
+                      } else {
+                          canpay();
+                          api.toast({
+                              msg: '交易失败，请再次尝试',
+                              duration: 2500,
+                              location: 'middle'
+                          });
+                      }
+                  });
+                } else {
+                    // alert(certificateNum);
+                    // alert(detailedAddress);
+                    // alert(moment(dateOfBirth).format('MM/DD/YYYY'));
+                    // alert(moment(expiryDate).format('MM/DD/YYYY'));
+                    // alert(id);
+                    // alert(realName);
+                    // alert(token);
+
+                    api.ajax({
+                        method:"get",
+                        url:apiurl + "submitVerficationRequest",
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8',
+                            'authorization': 'Bearer ' + token
+                        },
+                        dataType:'json',
+                        async:true,
+                    },function(ret,err){
+                        if(ret){
+                            if (ret.result == 'SUCCESS') {
+                                // alert('get success');
+                                api.alert({
+                                    msg: "提交成功！",
+                                    duration: 2000,
+                                    location: 'center'
+                                },function () {
+                                    api.openWin({
+                                        name: 'index',
+                                        url: 'index.html',
+                                        pageParam: {
+
+                                        }
+                                    });
+                                });
+                            }
+                        }else{
+                            alert(JSON.stringify(err.message));
+                            return false;
+                        }
+                    })
+                }
+			}
+        }else{
+            alert(JSON.stringify(err.message));
+            return false;
+        }
+    });
+
+
+
+
+}
+
+$('select[name="payment"]').on('change', function () {
+    $('.contentbox').hide();
+    if ($(this).val() == 1 || $(this).val() == 2) {
+        $('.contentbox' + $(this).val()).show();
+    }
+});
+
+function canpay() {
+    $('.submit').removeClass('active');
+    paystatus=true;
+}
+	 function goCreditCardUrl(memberid,paymentid,password){
+		 api.ajax({
+				 url: apiurl + 'payment/dps/create',
+				 method: 'post',
+				 headers: {
+						 'Content-Type': 'application/json;charset=utf-8',
+						 'authorization': 'Bearer ' + token
+				 },
+				 returnAll: true,
+				 data: {
+						 body: {
+							"memberId":memberid,
+							"paymentId":paymentid,
+							"securityPassword":password
+			      }
+				 }
+		 }, function(ret, err) {
+				 if (ret) {
+			if (ret.body.result == 'SUCCESS') {
+				  var url = ret.body.url;
+						// alert(url);
+					    api.openFrame({
+								name: 'CreditCard',
+						        url: url,
+			              rect: {
+			                        x: 0,
+			                        y: 0,
+			                        w: 'auto',
+			                        h: 'auto'
+			                    }
+							});
+							api.addEventListener({
+									 name: 'getUrl'
+							 }, function(ret, err) {
+									 if(ret && ret.value){
+											 var value = ret.value;
+											//  console.log(JSON.stringify({msg: value.location.search}));
+										     var reg = new RegExp("(^|&)result=([^&]*)(&|$)");
+										     var r = value.location.search.substr(1).match(reg);
+											 if(r!=null){
+												 resultVal=unescape(r[2]);
+												 resultStatus=true;
+											 }
+									 }
+							 });
+                window.setTimeout(function(){canpay();},5000);
+							window.setTimeout(function(){
+								var timetime=window.setInterval(function(){
+									if(resultStatus){
+										resultStatus=false;
+										window.clearInterval(timetime);
+										api.closeFrame({name:'CreditCard'});
+										//alert(resultVal);
+										checkCreditCard(resultVal,paymentid,memberid);
+									}
+									var script = "api.sendEvent({name: 'getUrl', extra: {location: window.location}});";
+									api.execScript({
+											frameName: 'CreditCard',
+											script: script
+									});
+								},1000);
+							},5000);
+					//alert(JSON.stringify(ret));
+			} else {
+        canpay();
+				alert('未知错误');
+			}
+				 } else {
+           canpay();
+						 api.toast({
+								 msg: '系统错误',
+								 duration: 2500,
+								 location: 'middle'
+						 });
+				 }
+		 });
+	 }
+
+	 function checkCreditCard(code,paymentid,memberids)
+	 {
+		 api.ajax({
+				 url: apiurl + '/payment/dps/complete',
+				 method: 'post',
+				 headers: {
+						 'Content-Type': 'application/json;charset=utf-8',
+						 'authorization': 'Bearer ' + token
+				 },
+				 returnAll: true,
+				 data: {
+						 body: {
+							 "paymentId":paymentid,
+               "result": code
+			      }
+				 }
+		 }, function(ret, err) {
+				 if (ret) {
+			if (ret.body.result == 'SUCCESS') {
+				if(ret.body.success){
+					api.ajax({
+						url: apiurl + 'transaction/create',
+						method: 'post',
+						headers: {
+							'Content-Type': 'application/json;charset=utf-8',
+							'authorization': 'Bearer ' + token
+						},
+						returnAll: true,
+						data: {
+							body: {
+								"accountIn": "PA",
+								"accountInAmount":10,
+								"accountOut": "NA",
+								"accountOutAmount": 0,
+								"fromMemberId": memberids,
+								"securityPassword": password2,
+								"serialNumHeader": "pa" + number,
+								"serviceCharge": 0,
+								"toMemberId": memberids,
+								"transactionType": "UPGRADE_MEMBERSHIP"
+							}
+						}
+					}, function(ret, err){
+						if (ret) {
+               if (ret.body.result == 'SUCCESS') {
+                 api.ajax({
+                   method:"get",
+                   url:apiurl + "submitVerficationRequest",
+                   headers: {
+                       'Content-Type': 'application/json;charset=utf-8',
+                       'authorization': 'Bearer ' + token
+                   },
+                   dataType:'json',
+                   async:true,
+                 },function(ret,err){
+                   if(ret){
+                     if(ret.result == 'SUCCESS') {
+                       canpay();
+                       api.alert({
+                           msg: "提交成功！",
+                           duration: 2000,
+                           location: 'center'
+                       },function () {
+                           api.openWin({
+                               name: 'index',
+                               url: 'index.html',
+                               pageParam: {
+                               }
+                           });
+                       });
+                     }
+                   }
+                 });
+               }else{
+                 canpay();
+                 alert(ret.body.message);
+                 return false;
+               }
+						} else {
+              canpay();
+							api.toast({
+								msg: err.body.message,
+								duration: 2500,
+								location: 'middle'
+							});
+						}
+					});
+					//alert('充值成功');
+				}else{
+          canpay();
+					alert('交易失败');
+				}
+			} else {
+        canpay();
+				alert('交易失败');
+			}
+				 } else {
+           canpay();
+						 api.toast({
+								 msg: '交易失败，请再次尝试',
+								 duration: 2500,
+								 location: 'middle'
+						 });
+				 }
+		 });
+	 }
+</script>
+
+</html>

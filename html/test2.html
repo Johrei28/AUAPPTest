@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>datePicker</title>
+<link rel="stylesheet" type="text/css" href="../css/api.css" />
+<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+<script type="text/javascript" src="../plugin/datePicker/datePicker.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+</head>
+
+<body>
+
+<ul class="top_box aui-font-size-16 aui-border-b">
+	<li class="aui-pull-left" value="5001">
+		<span class="this_active">Gift Points</span>
+	</li>
+	<li class="aui-pull-left" value="5002">
+		<span>Oz Points</span>
+	</li>
+	<li class="aui-pull-left" value="5003">
+		<span>Trading Points</span>
+	</li>
+</ul>
+
+<ul class="filter_box aui-font-size-14">
+	<li class="aui-pull-left" onclick="type_filter()">
+		<span class="aui-padded-r-5 type_text">全部</span>
+		<i class="aui-iconfont aui-icon-down"></i>
+	</li>
+	<li class="aui-pull-left aui-border-l aui-border-r">
+		<span class="aui-padded-r-5">2018-06</span>
+		<i class="aui-iconfont aui-icon-down"></i>
+	</li>
+	<li class="aui-pull-left">
+		<div id="demo1">
+		<span class="aui-padded-r-5">日期</span>
+		<i class="aui-iconfont aui-icon-down"></i>
+		</div>
+	</li>
+</ul>
+
+<div class="shade_box isshow"></div>
+
+<div class="type_maxbox isshow">
+	<ul class="type_box aui-font-size-14">
+		<li class="aui-border-b">全部</li>
+		<li class="aui-border-b">admin top to</li>
+		<li class="aui-border-b">consumption return</li>
+		<li class="aui-border-b">sign in</li>
+		<li class="aui-border-b">settlement</li>
+		<li class="aui-border-b">sales rewards</li>
+		<li class="aui-border-b">consumption rewards</li>
+		<li class="aui-border-b">entreprenurship rewards(sales)</li>
+		<li>entrepreneurship rewards(consumption)</li>
+	</ul>
+</div>
+
+<ul class="main_top aui-font-size-12">
+	<li class="aui-pull-left">时间</li>
+	<li class="aui-pull-left">状态</li>
+	<li class="aui-pull-left li_shou">收支</li>
+	<li class="aui-pull-left">余额</li>
+</ul>
+
+<div class="main_box aui-font-size-14">
+	<ul class="main_ul aui-border-b">
+		<li class="aui-pull-left">2018-06-25</li>
+		<li class="aui-pull-left"><img src="../image/0601(21).png" ></li>
+		<li class="aui-pull-left li_shou">
+			<span>100</span>
+			<span>sign in</span>
+		</li>
+		<li class="aui-pull-left">100.00</li>
+	</ul>
+</div>
+
+<div class="btn_box isshow aui-font-size-14" onclick="go_url(876)">兑换</div>
+
+
+<script>
+var calendar = new datePicker();
+calendar.init({
+	'trigger': '#demo1', /*按钮选择器，用于触发弹出插件*/
+	'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'minDate':'1900-1-1',/*最小日期*/
+	'maxDate':'2100-12-31',/*最大日期*/
+	'onSubmit':function(){/*确认时触发事件*/
+		var theSelectData=calendar.value;
+		console.log(theSelectData);
+	},
+	'onClose':function(){/*取消时触发事件*/
+	}
+});
+</script>
+
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+</html>
+
+<script>
+
+apiready = function() {
+	var pagetype = api.pageParam.pagetype;
+	$('.top_box li span').removeClass('this_active');
+	$('.top_box li').each(function(index, el) {
+		var tabval = $(this).attr('value');
+		if (tabval == pagetype) {
+			$(this).find('span').addClass('this_active');
+			if (tabval == 5001) {
+				$('.btn_box').addClass('isshow');
+				$('.type_box').html('<li class="aui-border-b">全部</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">consumption return</li><li class="aui-border-b">sign in</li><li class="aui-border-b">settlement</li><li class="aui-border-b">sales rewards</li><li class="aui-border-b">consumption rewards</li><li class="aui-border-b">entreprenurship rewards(sales)</li><li>entrepreneurship rewards(consumption)</li>');
+			} else if (tabval == 5002) {
+				$('.btn_box').removeClass('isshow');
+				$('.btn_box').text('兑换');
+				$('.btn_box').attr('onclick','go_url(876)');
+				$('.type_box').html('<li class="aui-border-b">all</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">exchange</li><li class="aui-border-b">settlement</li>');
+			} else {
+				$('.btn_box').removeClass('isshow');
+				$('.btn_box').text('充值库存积分');
+				$('.btn_box').attr('onclick','go_url(907)');
+				$('.type_box').html('<li class="aui-border-b">all</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">checkout</li>');
+			}
+		}
+	});
+}
+
+$('body').on('click', '.top_box li', function(event) {
+	$('.top_box li span').removeClass('this_active');
+	$(this).find('span').addClass('this_active');
+	var tab_value = $(this).attr('value');
+	if (tab_value == 5001) {
+		$('.btn_box').addClass('isshow');
+		$('.type_box').html('<li class="aui-border-b">全部</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">consumption return</li><li class="aui-border-b">sign in</li><li class="aui-border-b">settlement</li><li class="aui-border-b">sales rewards</li><li class="aui-border-b">consumption rewards</li><li class="aui-border-b">entreprenurship rewards(sales)</li><li>entrepreneurship rewards(consumption)</li>');
+	} else if (tab_value == 5002) {
+		$('.btn_box').removeClass('isshow');
+		$('.btn_box').text('兑换');
+		$('.btn_box').attr('onclick','go_url(876)');
+		$('.type_box').html('<li class="aui-border-b">all</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">exchange</li><li class="aui-border-b">settlement</li>');
+	} else {
+		$('.btn_box').removeClass('isshow');
+		$('.btn_box').text('充值库存积分');
+		$('.btn_box').attr('onclick','go_url(907)');
+		$('.type_box').html('<li class="aui-border-b">all</li><li class="aui-border-b">admin top up</li><li class="aui-border-b">checkout</li>');
+	}
+});
+
+function go_url(typenub) {
+	var jsfun = 'go_url('+typenub+');';
+	api.execScript({
+	    script: jsfun
+	});
+}
+$('body').on('click', '.type_box li', function(event) {
+	$('.type_maxbox').toggle('isshow');
+	$('.shade_box').toggle('isshow');
+	$('.type_text').text($(this).text());
+});
+
+function type_filter() {
+	$('.type_maxbox').toggle('isshow');
+	$('.shade_box').toggle('isshow');
+}
+
+$('.shade_box').click(function(event) {
+	$('.shade_box').toggle('isshow');
+	$('.date_maxbox').toggle('isshow');
+	$('.type_maxbox').toggle('isshow');
+});
+
+
+</script>

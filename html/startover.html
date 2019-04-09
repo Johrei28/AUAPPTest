@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>云联惠</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            background: #f1e7db;
+        }
+        .main{
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .main .cover,.main .cover>img{
+            width: 100vw;
+            height: auto;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="cover">
+            <img src="../image/startover.jpg">
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-tab.js" ></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/moment.min.js"></script>
+
+<script type="text/javascript">
+    apiready = function() {
+        var newtime=setTimeout(function () {
+            location.replace('./index.html');
+        },3000)
+    };
+</script>
+
+</html>

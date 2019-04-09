@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>积分明细</title>
+	    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+	    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+				list-style:none;
+			}
+			body{
+				background:#fff;
+			}
+			.clearfix::after{
+				clear:both;
+				content:"";
+				display:block;
+			}
+			.header-box{
+				width:100%;
+				border-bottom:1px solid #eee;
+			}
+			.header-box>ul{
+				width:100%;
+				display:flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.header-box>ul>li{
+				width:33%;
+				font-size:0.6rem;
+				display:flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.header-box>ul>li>span{
+				text-align:center;
+				padding:0.6rem 0;
+				line-height:1rem;
+				color: #444;
+				border-bottom: 2px solid transparent;
+			}
+			.header-box>ul>li>span.now{
+				color: orange;
+				border-bottom: 2px solid orange;
+			}
+			
+			.nav{
+				width: 100%;
+				border-bottom: 1px solid #eee;
+			}
+			.nav ul{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.nav ul li{
+				width: 33%;
+				text-align: center;
+				padding: 0.3rem 0;
+				color: #444;
+				border-right: 1px solid #eee;
+			}
+			.nav ul li span:nth-child(2){
+				display: inline-block;
+				background: url(../image/20180605113812.png)0 -0.1rem;
+				width: 0.75rem;
+				height: 0.75rem;
+				margin-left: 0.3rem;
+			}
+			
+			.title{
+				width: 100%;
+				background: #ddd;
+			}
+			.title ul{
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.title ul li{
+				width: 15%;
+				text-align: center;
+				color: #666;
+				padding: 0.4rem 0;
+			}
+			.title ul li:nth-child(3){
+				width: 55%;
+				text-align: left;
+				text-indent: 0.7rem;
+			}
+			
+			.exchange-btn{
+				position: fixed;
+				display: block;
+				left: 50%;
+				bottom: 7rem;
+				transform: translateX(-50%);
+				background: orange;
+				color: #fff;
+				text-decoration: none;
+				width: 10rem;
+				height: 1.8rem;
+				line-height: 1.8rem;
+				text-align: center;
+				border-radius: 0.9rem;
+				z-index: 99;
+			}
+			
+			.points-nav-1,.points-nav-2,.points-nav-3{
+				position: fixed;
+				display: none;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				background: rgba(0,0,0,0.3);
+				z-index:100;
+			}
+			.points-nav-1 ul,.points-nav-2 ul,.points-nav-3 ul{
+				background: #fff;
+				margin-top: 4.2rem;
+			}
+			.points-nav-1 ul li,.points-nav-2 ul li,.points-nav-3 ul li{
+				padding: 0.6rem 0 0.6rem 0.5rem;
+				border: 1px solid #EEE;
+			}
+			
+			.points{
+				width: 100%;
+			}
+			.points ul{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.points ul li{
+				width: 15%;
+				text-align: center;
+				height:2.8rem;
+				line-height:1rem;
+				color: orange;
+				padding:0.4rem 0;
+			}
+			.points ul li:nth-child(2) img{
+				width: 1rem;
+				margin: auto;
+				transform: translateY(50%);
+			}
+			.points ul li:nth-child(3){
+				width: 55%;
+				text-align: left;
+				padding-left: 0.7rem;
+			}
+			.points ul li:nth-child(4){
+				line-height:2rem;
+			}
+			
+			
+			.points2-btn,.points3-btn{
+				display: none;
+			}
+			
+			.nav-all-o{
+				height: 1.9rem;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header-box">
+			<ul>
+				<li>
+					<span class="now aui-font-size-14">Gift Points</span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="nav">
+			<ul>
+				<li class="nav-all-o">
+					<span class="nav-all aui-font-size-12">全部</span>
+					<span></span>
+				</li>
+				<li>
+					<span class="aui-font-size-12">2018-05</span>
+					<span></span>
+				</li>
+				<li style="border-right:none;">
+					<span class="aui-font-size-12">日期</span>
+					<span></span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="title">
+			<ul class="aui-font-size-14">
+				<li>时间</li>
+				<li>状态</li>
+				<li>收支</li>
+				<li>余额</li>
+			</ul>
+		</div>
+			
+		<!--Gift Points/nav1列表-->
+		<div class="points-nav-1">
+			<ul class="aui-font-size-12">
+				<li>admin top up</li>
+				<li>consumption return</li>
+				<li>sign in</li>
+				<li>settlement</li>
+				<li>sales rewards</li>
+				<li>consumption rewards</li>
+			</ul>
+		</div>
+		<div class="points-nav-2">
+			<ul class="aui-font-size-12">
+				<li>admin top up</li>
+				<li>exchange</li>
+				<li>settlement</li>
+			</ul>
+		</div>
+		<div class="points-nav-3">
+			<ul class="aui-font-size-12">
+				<li>admin top up</li>
+				<li>checkout</li>
+			</ul>
+		</div>
+		
+		<!--Gift Points列表-->
+		<div class="points">
+			<ul class="aui-font-size-12">
+				<li>2018</br>05-17</li>
+				<li>Sign in</li>
+				<li>100.00</li>
+				<li>100.00</li>
+			</ul>
+		</div>
+	</body>
+<script type="text/javascript" src="../script/apiURL.js"></script>
+	
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+	
+	<script type="text/javascript">
+		var pointsNum = 0;
+		
+		let oHeaderBox = document.querySelectorAll(".header-box ul li span");
+		let oPoints2Btn = document.querySelector(".points2-btn");
+		let oPoints3Btn = document.querySelector(".points3-btn");
+		let oNavAll = document.querySelector(".nav-all");
+		let oPointsNav1 = document.querySelector(".points-nav-1");
+		let oPointsNav2 = document.querySelector(".points-nav-2");
+		let oPointsNav3 = document.querySelector(".points-nav-3");
+		let oPointsNavLi1 = oPointsNav1.querySelectorAll("ul li");
+		let oPointsNavLi2 = oPointsNav2.querySelectorAll("ul li");
+		let oPointsNavLi3 = oPointsNav3.querySelectorAll("ul li");
+		for(let i = 0;i<oHeaderBox.length;i++){
+			let index = i;
+			oHeaderBox[index].onclick = function(){
+				oNavAll.innerHTML = "全部";
+				for(let j = 0;j<oHeaderBox.length;j++){
+					oHeaderBox[j].classList.remove("now");
+				}
+				oHeaderBox[index].classList.add("now");
+				pointsNum = index;
+				if(index == 1){
+					oPoints2Btn.style.display = "block";
+					oPoints3Btn.style.display = "none";
+				}else if(index == 2){
+					oPoints2Btn.style.display = "none";
+					oPoints3Btn.style.display = "block";
+				}else{
+					oPoints2Btn.style.display = "none";
+					oPoints3Btn.style.display = "none";
+				}
+			}
+		}
+		
+		oNavAll.onclick = function(){
+			if(pointsNum == 0){
+				oPointsNav1.style.display = "block";
+			}else if(pointsNum == 1){
+				oPointsNav2.style.display = "block";
+			}else if(pointsNum == 2){
+				oPointsNav3.style.display = "block";
+			}
+		}
+		
+		for(let i = 0;i<oPointsNavLi1.length;i++){
+			let index = i;
+			oPointsNavLi1[index].onclick = function(){
+				if(pointsNum == 0){
+					oNavAll.innerHTML = oPointsNavLi1[index].innerHTML;
+					oPointsNav1.style.display = "none";
+				}
+			}
+		}
+		
+		for(let i = 0;i<oPointsNavLi2.length;i++){
+			let index = i;
+			oPointsNavLi2[index].onclick = function(){
+				if(pointsNum == 1){
+					oNavAll.innerHTML = oPointsNavLi2[index].innerHTML;
+					oPointsNav2.style.display = "none";
+				}
+			}
+		}
+		
+		for(let i = 0;i<oPointsNavLi3.length;i++){
+			let index = i;
+			oPointsNavLi3[index].onclick = function(){
+				if(pointsNum == 2){
+				oNavAll.innerHTML = oPointsNavLi3[index].innerHTML;
+				oPointsNav3.style.display = "none";
+				}
+			}
+		}
+		
+		oPointsNav1.onclick = function(){
+			oPointsNav1.style.display = "none";
+		}
+		oPointsNav2.onclick = function(){
+			oPointsNav2.style.display = "none";
+		}
+		oPointsNav3.onclick = function(){
+			oPointsNav3.style.display = "none";
+		}
+	</script>
+</html>
